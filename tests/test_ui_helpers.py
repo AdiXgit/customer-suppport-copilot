@@ -4,7 +4,13 @@ introduced for the Streamlit frontend. No streamlit import, no agent
 construction; these are pure functions.
 """
 
-from ui.helpers import MAX_MESSAGE_LENGTH, describe_agent_error, format_similarity, validate_message
+from ui.helpers import (
+    MAX_MESSAGE_LENGTH,
+    describe_agent_error,
+    format_similarity,
+    missing_provider_key_warning,
+    validate_message,
+)
 
 
 def test_validate_message_rejects_none():
@@ -65,3 +71,24 @@ def test_describe_agent_error_ollama_unreachable():
 def test_describe_agent_error_generic_fallback_includes_original_text():
     msg = describe_agent_error(RuntimeError("something entirely unexpected happened"))
     assert "something entirely unexpected happened" in msg
+
+
+def test_describe_agent_error_groq_unreachable():
+    msg = describe_agent_error(RuntimeError("Could not reach Groq: connection refused"))
+    assert "Groq" in msg
+    assert "fallback" in msg.lower()
+
+
+def test_missing_provider_key_warning_groq_without_key():
+    warning = missing_provider_key_warning("groq", has_key=False)
+    assert warning is not None
+    assert "GROQ_API_KEY" in warning
+
+
+def test_missing_provider_key_warning_groq_with_key():
+    assert missing_provider_key_warning("groq", has_key=True) is None
+
+
+def test_missing_provider_key_warning_ollama_never_warns():
+    assert missing_provider_key_warning("ollama", has_key=False) is None
+    assert missing_provider_key_warning("ollama", has_key=True) is None

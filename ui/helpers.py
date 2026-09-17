@@ -30,6 +30,19 @@ def format_similarity(value: float | None) -> str:
     return f"{value:.3f}"
 
 
+def missing_provider_key_warning(provider: str, has_key: bool) -> str | None:
+    """Returns a proactive warning to show before the agent even runs, if
+    the configured provider needs a key that isn't set. Never touches the
+    key itself -- only a bool of whether it's present. Returns None when
+    there's nothing to warn about (Ollama needs no key)."""
+    if provider == "groq" and not has_key:
+        return (
+            "GROQ_API_KEY is not set. Generation will use the safe fallback "
+            "reply until it's configured (see .env.example)."
+        )
+    return None
+
+
 def describe_agent_error(exc: Exception) -> str:
     """Turns an exception raised while constructing or running the agent
     into a short, actionable, user-facing explanation -- never a raw
@@ -49,11 +62,17 @@ def describe_agent_error(exc: Exception) -> str:
             "The retrieval index looks corrupted or stale. Re-run "
             "scripts/build_retrieval_index.py to regenerate it."
         )
-    if "could not reach ollama" in lowered or "ollama" in lowered:
+    if "ollama" in lowered:
         return (
             "The local LLM (Ollama) could not be reached. The agent will still "
             "run using its deterministic fallback reply -- start Ollama "
             "(`ollama pull gemma2:9b-instruct-q4_0` then relaunch it) for "
             "LLM-generated replies."
+        )
+    if "groq" in lowered or "groq_api_key" in lowered:
+        return (
+            "Groq could not be reached (or GROQ_API_KEY is not set). The agent "
+            "will still run using its deterministic fallback reply -- check "
+            "your .env and network connectivity for LLM-generated replies."
         )
     return f"The agent could not process this message: {text}"

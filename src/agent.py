@@ -18,7 +18,7 @@ from pathlib import Path
 from escalation.policy import decide_escalation
 from evidence import assess_evidence
 from generation.generator import FALLBACK_REPLY, Generator
-from generation.llm_client import LocalLLMClient
+from generation.llm_client import get_llm_client
 from intent.deterministic_classifier import OTHER, classify_candidate
 from retrieval.retriever import Retriever
 
@@ -67,11 +67,14 @@ class SupportAgent:
     def __init__(self, retriever: Retriever | None = None, generator: Generator | None = None):
         """Both dependencies are injectable so tests never need the
         real 41k-row index or a live LLM. If omitted, the real Phase 8
-        index and a LocalLLMClient (Ollama) are used."""
+        index is used, and the LLM client is chosen by
+        generation.llm_client.get_llm_client() based on the
+        LLM_PROVIDER environment variable ('ollama' by default, or
+        'groq')."""
         self.retriever = retriever if retriever is not None else Retriever(
             DEFAULT_INDEX_PATH, DEFAULT_METADATA_PATH, DEFAULT_VECTORS_PATH,
         )
-        self.generator = generator if generator is not None else Generator(LocalLLMClient())
+        self.generator = generator if generator is not None else Generator(get_llm_client())
 
     def handle(self, customer_message: str, context_messages_json: str | None = None,
                k: int = DEFAULT_TOP_K, use_intent_filter: bool = False) -> AgentResult:
