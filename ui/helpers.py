@@ -30,6 +30,22 @@ def format_similarity(value: float | None) -> str:
     return f"{value:.3f}"
 
 
+def format_case_count(n: int) -> str:
+    """Renders an integer count with thousands separators for display,
+    e.g. 41092 -> '41,092'. Pure formatting only -- the count itself
+    always comes from the real, live retrieval index (agent.retriever),
+    never a hard-coded number."""
+    return f"{n:,}"
+
+
+def pipeline_stage_icon(status: str) -> str:
+    """Maps a pipeline stage's status to a small presentation glyph. Used
+    for the post-analysis stage summary row -- purely presentational,
+    derived from fields already present on AgentResult/its trace, never
+    a new judgment about correctness."""
+    return {"ok": "✓", "warn": "⚠", "error": "✗"}.get(status, "✓")
+
+
 def missing_provider_key_warning(provider: str, has_key: bool) -> str | None:
     """Returns a proactive warning to show before the agent even runs, if
     the configured provider needs a key that isn't set. Never touches the

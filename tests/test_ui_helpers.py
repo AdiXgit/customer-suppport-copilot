@@ -7,8 +7,10 @@ construction; these are pure functions.
 from ui.helpers import (
     MAX_MESSAGE_LENGTH,
     describe_agent_error,
+    format_case_count,
     format_similarity,
     missing_provider_key_warning,
+    pipeline_stage_icon,
     validate_message,
 )
 
@@ -92,3 +94,21 @@ def test_missing_provider_key_warning_groq_with_key():
 def test_missing_provider_key_warning_ollama_never_warns():
     assert missing_provider_key_warning("ollama", has_key=False) is None
     assert missing_provider_key_warning("ollama", has_key=True) is None
+
+
+def test_format_case_count_adds_thousands_separators():
+    assert format_case_count(41092) == "41,092"
+
+
+def test_format_case_count_small_number_unchanged():
+    assert format_case_count(5) == "5"
+
+
+def test_pipeline_stage_icon_known_statuses():
+    assert pipeline_stage_icon("ok") == "✓"
+    assert pipeline_stage_icon("warn") == "⚠"
+    assert pipeline_stage_icon("error") == "✗"
+
+
+def test_pipeline_stage_icon_unknown_status_defaults_to_ok():
+    assert pipeline_stage_icon("something_else") == "✓"
