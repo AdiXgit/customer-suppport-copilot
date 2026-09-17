@@ -1,0 +1,151 @@
+"""
+Phase 13: Streamlit frontend for the SpotifyCares support agent.
+
+Thin UI only. All intent classification, historical retrieval, evidence
+assessment, grounded generation, and escalation-policy logic lives in
+src/ and is reused unchanged via SupportAgent.handle() -- this file never
+re-implements any of it. See ui/helpers.py for the small amount of pure,
+unit-tested display-formatting logic that *is* new here.
+
+Run:
+    .venv/Scripts/streamlit.exe run app.py
+"""
+
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+import streamlit as st
+
+REPO_ROOT = Path(__file__).parent
+sys.path.insert(0, str(REPO_ROOT / "src"))
+sys.path.insert(0, str(REPO_ROOT))
+
+from agent import SupportAgent  # noqa: E402
+
+from ui.helpers import describe_agent_error, format_similarity, validate_message  # noqa: E402
+
+st.set_page_config(page_title="SpotifyCares Support Agent", page_icon="🎧", layout="wide")
+
+
+@st.cache_resource(show_spinner="Loading retrieval index and agent...")
+def load_agent() -> SupportAgent:
+    return SupportAgent()
+
+
+def render_result(result) -> None:
+    st.subheader("Escalation decision")
+    esc_col, reason_col, evidence_col = st.columns(3)
+    with esc_col:
+        if result.escalate:
+            st.error("ESCALATE to human")
+        else:
+            st.success("AUTO-HANDLE")
+    with reason_col:
+        st.metric("Escalation reason", result.escalation_reason)
+    with evidence_col:
+        st.metric("Evidence sufficient", "Yes" if result.evidence_sufficient else "No")
+
+    st.subheader("Predicted intent")
+    intent_col, conf_col, secondary_col = st.columns(3)
+    intent_col.metric("Intent", result.intent)
+    conf_col.metric("Confidence", result.intent_confidence)
+    secondary_col.metric("Secondary issue", result.secondary_issue or "None")
+
+    st.subheader("Drafted reply")
+    st.info(result.reply)
+
+    gen_status = result.trace.get("generation_status")
+    if gen_status == "llm_unavailable":
+        st.warning(
+            "The local LLM (Ollama) was unavailable, so this reply is the fixed, "
+            "safe fallback template, not an LLM-generated response. "
+            f"Reason: {result.trace.get('generation_reason')}"
+        )
+    elif gen_status == "generation_error":
+        st.warning(
+            f"Generation error, fallback reply used instead: {result.trace.get('generation_reason')}"
+        )
+
+    st.subheader("Historical evidence used")
+    if not result.retrieved_cases:
+        st.write("No historical evidence was retrieved for this message.")
+    else:
+        for case in result.retrieved_cases:
+            title = f"#{case['rank']} — similarity {format_similarity(case['similarity'])} — {case['intent']}"
+            with st.expander(title, expanded=(case["rank"] == 1)):
+                st.markdown(f"**Customer (historical):** {case['customer_message']}")
+                st.markdown(f"**SpotifyCares (historical):** {case['historical_response']}")
+
+    with st.expander("Evidence assessment detail"):
+        st.write(
+            {
+                "top_similarity": format_similarity(result.trace.get("evidence_top_similarity")),
+                "reasons": result.trace.get("evidence_reasons") or [],
+                "distinct_intents_in_evidence": result.trace.get("evidence_distinct_intents"),
+                "weak_response_fraction": result.trace.get("evidence_weak_response_fraction"),
+                "retrieval_mode": result.trace.get("retrieval_mode"),
+            }
+        )
+
+    with st.expander("Full trace (debug)"):
+        st.json(result.to_dict())
+
+
+def main() -> None:
+    st.title("🎧 SpotifyCares Support Agent")
+    st.caption(
+        "Demo dashboard for a brand-specific support agent: intent classification "
+        "→ historical-resolution retrieval → grounded reply generation → escalation "
+        "decision. See docs/FINAL_REPORT.md for full evaluation results and limitations."
+    )
+
+    with st.sidebar:
+        st.header("Retrieval options")
+        k = st.slider("Number of historical cases (k)", min_value=1, max_value=10, value=5)
+        use_intent_filter = st.checkbox("Use intent-filtered retrieval", value=False)
+        st.caption(
+            "Global (default) searches the full historical index. Intent-filtered "
+            "restricts the search to cases sharing the predicted intent."
+        )
+        st.divider()
+        st.caption(
+            "This is a take-home evaluation demo, not a production deployment. "
+            "No UI-side agent logic -- every result comes straight from "
+            "`SupportAgent.handle()` in `src/agent.py`."
+        )
+
+    message = st.text_area(
+        "Customer message",
+        height=120,
+        placeholder="e.g. I was charged twice for Premium this month",
+    )
+    analyze = st.button("Analyze", type="primary")
+
+    if not analyze:
+        return
+
+    error = validate_message(message)
+    if error:
+        st.warning(error)
+        return
+
+    try:
+        agent = load_agent()
+    except Exception as exc:  # noqa: BLE001 -- surfaced to the user, not swallowed
+        st.error(describe_agent_error(exc))
+        return
+
+    with st.spinner("Running the agent pipeline..."):
+        try:
+            result = agent.handle(message, k=k, use_intent_filter=use_intent_filter)
+        except Exception as exc:  # noqa: BLE001
+            st.error(describe_agent_error(exc))
+            return
+
+    render_result(result)
+
+
+if __name__ == "__main__":
+    main()
