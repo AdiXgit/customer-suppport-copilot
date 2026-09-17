@@ -1,0 +1,25 @@
+{
+  "input_rows": 2811774,
+  "missing_tweet_id_rows_dropped": 0,
+  "duplicate_tweet_id_rows_dropped": 0,
+  "duplicate_tweet_ids_sample": [],
+  "missing_required_field_counts": {
+    "tweet_id": 0,
+    "author_id": 0,
+    "inbound": 0,
+    "created_at": 0,
+    "text": 0
+  },
+  "invalid_timestamp_count": 0,
+  "missing_inbound_count": 0,
+  "rows_with_parent_pointer": 2017439,
+  "rows_parent_resolved": 2807912,
+  "rows_parent_broken": 3862,
+  "total_conversations_all_brands": 798197,
+  "total_spotifycares_rows": 91889,
+  "total_reconstructed_conversations": 28280,
+  "customer_messages": 48543,
+  "brand_messages": 43346,
+  "unknown_role_messages": 0,
+  "notes": []
+}

@@ -1,0 +1,597 @@
+{
+  "n_total_golden_examples": 200,
+  "n_scored_examples": 191,
+  "n_excluded_no_gold_intent": 9,
+  "proposed_deterministic_classifier": {
+    "n_examples": 191,
+    "accuracy": 0.5026,
+    "macro_precision": 0.7142,
+    "macro_recall": 0.5737,
+    "macro_f1": 0.5145,
+    "per_intent": {
+      "Account Access & Login": {
+        "precision": 0.6,
+        "recall": 0.75,
+        "f1": 0.6667,
+        "support": 16
+      },
+      "Account Security": {
+        "precision": 0.9091,
+        "recall": 0.8696,
+        "f1": 0.8889,
+        "support": 23
+      },
+      "App & Playback Technical Issues": {
+        "precision": 0.9231,
+        "recall": 0.3243,
+        "f1": 0.48,
+        "support": 37
+      },
+      "Content Availability & Catalog Accuracy": {
+        "precision": 1.0,
+        "recall": 0.2414,
+        "f1": 0.3889,
+        "support": 29
+      },
+      "Country/Market Availability Inquiry": {
+        "precision": 0.9091,
+        "recall": 0.7692,
+        "f1": 0.8333,
+        "support": 13
+      },
+      "Feature Request & Product Feedback": {
+        "precision": 1.0,
+        "recall": 0.1333,
+        "f1": 0.2353,
+        "support": 30
+      },
+      "General Complaint / Service Dissatisfaction": {
+        "precision": 0.1176,
+        "recall": 0.5,
+        "f1": 0.1905,
+        "support": 4
+      },
+      "OTHER / UNKNOWN": {
+        "precision": 0.0845,
+        "recall": 0.8571,
+        "f1": 0.1538,
+        "support": 7
+      },
+      "Premium Subscription & Billing": {
+        "precision": 0.8846,
+        "recall": 0.7188,
+        "f1": 0.7931,
+        "support": 32
+      }
+    },
+    "confusion_matrix": {
+      "labels": [
+        "Account Access & Login",
+        "Account Security",
+        "App & Playback Technical Issues",
+        "Content Availability & Catalog Accuracy",
+        "Country/Market Availability Inquiry",
+        "Feature Request & Product Feedback",
+        "General Complaint / Service Dissatisfaction",
+        "OTHER / UNKNOWN",
+        "Premium Subscription & Billing"
+      ],
+      "matrix": [
+        [
+          12,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          1
+        ],
+        [
+          1,
+          20,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0
+        ],
+        [
+          4,
+          0,
+          12,
+          0,
+          0,
+          0,
+          5,
+          16,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          7,
+          0,
+          0,
+          1,
+          21,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          10,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0,
+          4,
+          8,
+          16,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          6,
+          1
+        ],
+        [
+          0,
+          2,
+          1,
+          0,
+          1,
+          0,
+          0,
+          5,
+          23
+        ]
+      ]
+    },
+    "gold_class_distribution": {
+      "Feature Request & Product Feedback": 30,
+      "Account Security": 23,
+      "Premium Subscription & Billing": 32,
+      "Content Availability & Catalog Accuracy": 29,
+      "Country/Market Availability Inquiry": 13,
+      "General Complaint / Service Dissatisfaction": 4,
+      "App & Playback Technical Issues": 37,
+      "OTHER / UNKNOWN": 7,
+      "Account Access & Login": 16
+    },
+    "predicted_class_distribution": {
+      "OTHER / UNKNOWN": 71,
+      "Account Security": 22,
+      "Premium Subscription & Billing": 26,
+      "Feature Request & Product Feedback": 4,
+      "General Complaint / Service Dissatisfaction": 17,
+      "App & Playback Technical Issues": 13,
+      "Content Availability & Catalog Accuracy": 7,
+      "Account Access & Login": 20,
+      "Country/Market Availability Inquiry": 11
+    }
+  },
+  "majority_baseline": {
+    "n_examples": 191,
+    "accuracy": 0.0366,
+    "macro_precision": 0.0041,
+    "macro_recall": 0.1111,
+    "macro_f1": 0.0079,
+    "per_intent": {
+      "Account Access & Login": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 16
+      },
+      "Account Security": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 23
+      },
+      "App & Playback Technical Issues": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 37
+      },
+      "Content Availability & Catalog Accuracy": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 29
+      },
+      "Country/Market Availability Inquiry": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 13
+      },
+      "Feature Request & Product Feedback": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 30
+      },
+      "General Complaint / Service Dissatisfaction": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 4
+      },
+      "OTHER / UNKNOWN": {
+        "precision": 0.0366,
+        "recall": 1.0,
+        "f1": 0.0707,
+        "support": 7
+      },
+      "Premium Subscription & Billing": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 32
+      }
+    },
+    "confusion_matrix": {
+      "labels": [
+        "Account Access & Login",
+        "Account Security",
+        "App & Playback Technical Issues",
+        "Content Availability & Catalog Accuracy",
+        "Country/Market Availability Inquiry",
+        "Feature Request & Product Feedback",
+        "General Complaint / Service Dissatisfaction",
+        "OTHER / UNKNOWN",
+        "Premium Subscription & Billing"
+      ],
+      "matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          16,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          23,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          37,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          29,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          13,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          32,
+          0
+        ]
+      ]
+    },
+    "gold_class_distribution": {
+      "Feature Request & Product Feedback": 30,
+      "Account Security": 23,
+      "Premium Subscription & Billing": 32,
+      "Content Availability & Catalog Accuracy": 29,
+      "Country/Market Availability Inquiry": 13,
+      "General Complaint / Service Dissatisfaction": 4,
+      "App & Playback Technical Issues": 37,
+      "OTHER / UNKNOWN": 7,
+      "Account Access & Login": 16
+    },
+    "predicted_class_distribution": {
+      "OTHER / UNKNOWN": 191
+    }
+  },
+  "ambiguous_examples_count": 23,
+  "non_english_examples_count": 2,
+  "simple_llm_baseline": {
+    "n_examples": 191,
+    "accuracy": 0.7853,
+    "macro_precision": 0.7087,
+    "macro_recall": 0.7539,
+    "macro_f1": 0.7115,
+    "per_intent": {
+      "Account Access & Login": {
+        "precision": 0.5172,
+        "recall": 0.9375,
+        "f1": 0.6667,
+        "support": 16
+      },
+      "Account Security": {
+        "precision": 0.8846,
+        "recall": 1.0,
+        "f1": 0.9388,
+        "support": 23
+      },
+      "App & Playback Technical Issues": {
+        "precision": 0.875,
+        "recall": 0.7568,
+        "f1": 0.8116,
+        "support": 37
+      },
+      "Content Availability & Catalog Accuracy": {
+        "precision": 0.9091,
+        "recall": 0.6897,
+        "f1": 0.7843,
+        "support": 29
+      },
+      "Country/Market Availability Inquiry": {
+        "precision": 0.8667,
+        "recall": 1.0,
+        "f1": 0.9286,
+        "support": 13
+      },
+      "Feature Request & Product Feedback": {
+        "precision": 0.8261,
+        "recall": 0.6333,
+        "f1": 0.717,
+        "support": 30
+      },
+      "General Complaint / Service Dissatisfaction": {
+        "precision": 0.375,
+        "recall": 0.75,
+        "f1": 0.5,
+        "support": 4
+      },
+      "OTHER / UNKNOWN": {
+        "precision": 0.25,
+        "recall": 0.1429,
+        "f1": 0.1818,
+        "support": 7
+      },
+      "Premium Subscription & Billing": {
+        "precision": 0.875,
+        "recall": 0.875,
+        "f1": 0.875,
+        "support": 32
+      }
+    },
+    "confusion_matrix": {
+      "labels": [
+        "Account Access & Login",
+        "Account Security",
+        "App & Playback Technical Issues",
+        "Content Availability & Catalog Accuracy",
+        "Country/Market Availability Inquiry",
+        "Feature Request & Product Feedback",
+        "General Complaint / Service Dissatisfaction",
+        "OTHER / UNKNOWN",
+        "Premium Subscription & Billing"
+      ],
+      "matrix": [
+        [
+          15,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          23,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          7,
+          0,
+          28,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          1,
+          20,
+          2,
+          3,
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          13,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          1,
+          1,
+          0,
+          19,
+          2,
+          1,
+          3
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          1,
+          0,
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          28
+        ]
+      ]
+    },
+    "gold_class_distribution": {
+      "Feature Request & Product Feedback": 30,
+      "Account Security": 23,
+      "Premium Subscription & Billing": 32,
+      "Content Availability & Catalog Accuracy": 29,
+      "Country/Market Availability Inquiry": 13,
+      "General Complaint / Service Dissatisfaction": 4,
+      "App & Playback Technical Issues": 37,
+      "OTHER / UNKNOWN": 7,
+      "Account Access & Login": 16
+    },
+    "predicted_class_distribution": {
+      "Feature Request & Product Feedback": 23,
+      "Account Security": 26,
+      "Premium Subscription & Billing": 32,
+      "Content Availability & Catalog Accuracy": 22,
+      "Account Access & Login": 29,
+      "General Complaint / Service Dissatisfaction": 8,
+      "Country/Market Availability Inquiry": 15,
+      "App & Playback Technical Issues": 32,
+      "OTHER / UNKNOWN": 4
+    },
+    "n_llm_call_failures": 0
+  }
+}

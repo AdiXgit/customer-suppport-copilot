@@ -1,0 +1,241 @@
+{
+  "n_examples": 200,
+  "judge_scores_by_mode": {
+    "global": {
+      "n_judged": 192,
+      "avg_correctness": 4.7865,
+      "avg_groundedness": 4.5208,
+      "avg_helpfulness": 3.7083,
+      "avg_actionability": 3.9219,
+      "avg_brand_consistency": 4.8802,
+      "hallucination_rate": 0.026,
+      "overall_evidence_supported_rate": 0.974
+    },
+    "intent_filtered": {
+      "n_judged": 192,
+      "avg_correctness": 4.7708,
+      "avg_groundedness": 4.3229,
+      "avg_helpfulness": 3.6302,
+      "avg_actionability": 3.8594,
+      "avg_brand_consistency": 4.7604,
+      "hallucination_rate": 0.0365,
+      "overall_evidence_supported_rate": 0.9583
+    }
+  },
+  "escalation_counts_by_mode": {
+    "global": {
+      "escalate_true": 160,
+      "escalate_false": 40
+    },
+    "intent_filtered": {
+      "escalate_true": 155,
+      "escalate_false": 45
+    }
+  },
+  "evidence_sufficient_counts_by_mode": {
+    "global": 99,
+    "intent_filtered": 105
+  },
+  "n_examples_where_escalation_decision_differs_by_mode": 18,
+  "escalation_decision_diffs": [
+    {
+      "example_id": "GOLD-0055",
+      "global": [
+        true,
+        "CONFLICTING_EVIDENCE"
+      ],
+      "intent_filtered": [
+        false,
+        "NONE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0179",
+      "global": [
+        false,
+        "NONE"
+      ],
+      "intent_filtered": [
+        true,
+        "INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0184",
+      "global": [
+        false,
+        "NONE"
+      ],
+      "intent_filtered": [
+        true,
+        "INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0052",
+      "global": [
+        true,
+        "CONFLICTING_EVIDENCE"
+      ],
+      "intent_filtered": [
+        true,
+        "INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0054",
+      "global": [
+        false,
+        "NONE"
+      ],
+      "intent_filtered": [
+        true,
+        "INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0062",
+      "global": [
+        true,
+        "CONFLICTING_EVIDENCE"
+      ],
+      "intent_filtered": [
+        true,
+        "INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0063",
+      "global": [
+        true,
+        "CONFLICTING_EVIDENCE"
+      ],
+      "intent_filtered": [
+        false,
+        "NONE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0064",
+      "global": [
+        true,
+        "CONFLICTING_EVIDENCE"
+      ],
+      "intent_filtered": [
+        true,
+        "INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0069",
+      "global": [
+        true,
+        "CONFLICTING_EVIDENCE"
+      ],
+      "intent_filtered": [
+        true,
+        "INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0087",
+      "global": [
+        true,
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "intent_filtered": [
+        false,
+        "NONE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0101",
+      "global": [
+        true,
+        "CONFLICTING_EVIDENCE"
+      ],
+      "intent_filtered": [
+        false,
+        "NONE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0123",
+      "global": [
+        true,
+        "CONFLICTING_EVIDENCE"
+      ],
+      "intent_filtered": [
+        true,
+        "INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0129",
+      "global": [
+        true,
+        "CONFLICTING_EVIDENCE"
+      ],
+      "intent_filtered": [
+        true,
+        "INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0175",
+      "global": [
+        true,
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "intent_filtered": [
+        false,
+        "NONE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0186",
+      "global": [
+        true,
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "intent_filtered": [
+        false,
+        "NONE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0191",
+      "global": [
+        true,
+        "CONFLICTING_EVIDENCE"
+      ],
+      "intent_filtered": [
+        false,
+        "NONE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0193",
+      "global": [
+        true,
+        "CONFLICTING_EVIDENCE"
+      ],
+      "intent_filtered": [
+        true,
+        "INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    {
+      "example_id": "GOLD-0198",
+      "global": [
+        true,
+        "CONFLICTING_EVIDENCE"
+      ],
+      "intent_filtered": [
+        false,
+        "NONE"
+      ]
+    }
+  ],
+  "note": "This compares the SAME 200 examples under global vs. intent-filtered retrieval using the LLM judge's own scores -- it is not a claim of ground truth, and no threshold was retuned to produce these numbers. See the final report for factual, non-ranking observations."
+}

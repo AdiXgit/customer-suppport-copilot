@@ -1,0 +1,132 @@
+{
+  "total_examples": 41092,
+  "labeled_count": 12929,
+  "other_unknown_count": 28163,
+  "ambiguous_count": 967,
+  "non_english_count": 164,
+  "per_intent_counts": {
+    "OTHER / UNKNOWN": 28163,
+    "App & Playback Technical Issues": 2781,
+    "Premium Subscription & Billing": 6043,
+    "Content Availability & Catalog Accuracy": 710,
+    "Feature Request & Product Feedback": 670,
+    "Account Access & Login": 1796,
+    "Account Security": 574,
+    "Country/Market Availability Inquiry": 252,
+    "General Complaint / Service Dissatisfaction": 103
+  },
+  "per_intent_percentages": {
+    "OTHER / UNKNOWN": 0.6854,
+    "App & Playback Technical Issues": 0.0677,
+    "Premium Subscription & Billing": 0.1471,
+    "Content Availability & Catalog Accuracy": 0.0173,
+    "Feature Request & Product Feedback": 0.0163,
+    "Account Access & Login": 0.0437,
+    "Account Security": 0.014,
+    "Country/Market Availability Inquiry": 0.0061,
+    "General Complaint / Service Dissatisfaction": 0.0025
+  },
+  "labeling_method_distribution": {
+    "deterministic": 38561,
+    "deterministic_root_context": 2531
+  },
+  "reason_code_distribution": {
+    "no_pattern_matched": 27936,
+    "technical_malfunction_language": 1738,
+    "billing_action_keyword": 5163,
+    "specific_content_missing_or_miscataloged": 502,
+    "root_context:specific_content_missing_or_miscataloged": 208,
+    "praise_only_pattern": 188,
+    "root_context:technical_malfunction_language": 856,
+    "feature_request_phrase": 505,
+    "root_context:billing_action_keyword": 779,
+    "login_topic_no_malfunction_evidence": 1545,
+    "explicit_compromise_language": 453,
+    "root_context:login_topic_no_malfunction_evidence": 251,
+    "whole_service_availability_phrase": 179,
+    "root_context:whole_service_availability_phrase": 73,
+    "root_context:feature_request_phrase": 165,
+    "root_context:explicit_compromise_language": 121,
+    "login_with_troubleshooting_behavior": 77,
+    "off_topic_pattern": 39,
+    "vague_dissatisfaction_phrase": 73,
+    "root_context:vague_dissatisfaction_phrase": 30,
+    "login_with_technical_identifier": 77,
+    "signup_with_plan_context": 82,
+    "root_context:signup_with_plan_context": 19,
+    "login_with_broken_ui_element": 4,
+    "root_context:login_with_troubleshooting_behavior": 20,
+    "root_context:login_with_technical_identifier": 6,
+    "root_context:login_with_broken_ui_element": 3
+  },
+  "deterministic_coverage": 0.3146,
+  "model_assisted_coverage": 0,
+  "model_assisted_used": false,
+  "model_assisted_attempt": {
+    "attempted": true,
+    "tool": "Ollama (local), model gemma2:9b-instruct-q4_0",
+    "outcome": "FAILED -- local Ollama runtime crashed reproducibly ('Error: 500 Internal Server Error: llama runner process has terminated') on two separate invocations, including a minimal single-word prompt with no classification task involved. This is an infrastructure/runtime failure, not a taxonomy-following or prompting issue.",
+    "decision": "Did not proceed with model-assisted labeling this phase. Per instructions, a hosted-model fallback requires explicit approval and was not attempted. The corpus is labeled using the deterministic classifier only; the 68.5% OTHER/UNKNOWN bucket remains unlabeled pending a decision on fixing the local Ollama runtime or approving a hosted alternative (see docs/TODO.md)."
+  },
+  "examples_requiring_review": {
+    "ambiguous_examples_sample": [
+      {
+        "resolution_id": "RES-8676-8675",
+        "primary_intent": "Premium Subscription & Billing",
+        "secondary_issue": "Account Access & Login"
+      },
+      {
+        "resolution_id": "RES-14406-14405",
+        "primary_intent": "Premium Subscription & Billing",
+        "secondary_issue": "App & Playback Technical Issues"
+      },
+      {
+        "resolution_id": "RES-17067-17066",
+        "primary_intent": "Account Security",
+        "secondary_issue": "Account Access & Login"
+      },
+      {
+        "resolution_id": "RES-31596-31594",
+        "primary_intent": "Premium Subscription & Billing",
+        "secondary_issue": "App & Playback Technical Issues"
+      },
+      {
+        "resolution_id": "RES-39742-39743",
+        "primary_intent": "Premium Subscription & Billing",
+        "secondary_issue": "Account Access & Login"
+      },
+      {
+        "resolution_id": "RES-39742-39740",
+        "primary_intent": "Premium Subscription & Billing",
+        "secondary_issue": "Account Access & Login"
+      },
+      {
+        "resolution_id": "RES-39742-39738",
+        "primary_intent": "Premium Subscription & Billing",
+        "secondary_issue": "Account Access & Login"
+      },
+      {
+        "resolution_id": "RES-45747-45746",
+        "primary_intent": "Content Availability & Catalog Accuracy",
+        "secondary_issue": "Feature Request & Product Feedback"
+      },
+      {
+        "resolution_id": "RES-46660-46658",
+        "primary_intent": "Premium Subscription & Billing",
+        "secondary_issue": "Account Access & Login"
+      },
+      {
+        "resolution_id": "RES-55239-55238",
+        "primary_intent": "Premium Subscription & Billing",
+        "secondary_issue": "Account Access & Login"
+      }
+    ]
+  },
+  "known_limitations": [
+    "Deterministic coverage is intentionally low (~31%) by design: rules require explicit, high-precision textual evidence (named entities, specific keywords, technical identifiers) rather than being tuned to maximize coverage, per this phase's explicit instruction not to optimize for coverage.",
+    "The non_english flag reuses the Phase 1/5 ASCII-ratio heuristic, which reliably catches non-Latin scripts but under-counts mostly-Latin European-language text (a documented lower bound, not a bug).",
+    "The root-context fallback (labeling_method='deterministic_root_context') assumes a conversation's root message determines the intent of later follow-up messages in the same thread; this is a reasonable but unverified assumption for a minority of rows.",
+    "ambiguous=True conflates two distinct real phenomena (a message with two genuinely separate issues, vs. one issue that is genuinely hard to classify) -- both are surfaced identically via the secondary_issue field for human review, since a rule-based system cannot reliably distinguish them.",
+    "This classifier was NOT validated against the golden set (by design -- see Golden-Set Isolation below) so its true precision on this specific taxonomy is not independently measured, only manually spot-checked by the author."
+  ]
+}

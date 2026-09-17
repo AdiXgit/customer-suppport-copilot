@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Virtual environment / pip cache
+.venv/
+.pip-cache/
+
+# Secrets / local config
+.env
+.env.*
+*.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Raw dataset (493MB Twitter CSV, Banking77 raw) -- never commit, see docs/DATA.md
+data/raw/twitter/twcs.csv
+data/raw/banking77/
+
+# Retrieval index/vectors -- large, regenerable via scripts/build_retrieval_index.py
+data/retrieval/*.index
+data/retrieval/*.npy
+
+# Long-running background-job logs and other scratch output
+*.log
+scratchpad/

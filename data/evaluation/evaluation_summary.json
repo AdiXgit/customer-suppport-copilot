@@ -1,0 +1,186 @@
+{
+  "run_metadata": {
+    "run_id": "30bb28d6-e6be-45dc-a160-479ef2f95842",
+    "run_timestamp_utc": "2026-09-16T12:13:20Z",
+    "phase_11_completed_utc": "2026-09-16"
+  },
+  "evaluation_set_size": 200,
+  "human_calibration_sample_size": 50,
+  "k": 5,
+  "retrieval_modes_evaluated": ["global", "intent_filtered"],
+
+  "CRITICAL_LABELING_HONESTY_NOTE": "The 200-example golden set was NOT independently hand-labelled by 200 separate human judgments in the sense an outside reviewer might assume from 'golden set' alone -- see docs/GOLDEN_SET.md / docs/GOLDEN_ANNOTATION.md for the actual annotation process and docs/GOLDEN_CALIBRATION_REVIEW.md / docs/GOLDEN_SET_ANNOTATION_REVIEW.md for its self-consistency checks. Separately and more importantly for THIS phase: the 50-example 'human calibration' set was produced by Claude (an LLM) acting as a second, independent annotator -- NOT a genuine human reviewer. Every record in human_calibration_completed.jsonl carries annotator_type: 'llm_proxy_not_genuine_human' for exactly this reason. Do not read 'judge_human_agreement.json' as LLM-vs-human agreement; it is LLM-judge-vs-LLM-proxy agreement, a same-class comparison. This is disclosed prominently rather than presented as satisfying the assignment's human-calibration requirement.",
+
+  "1_automated_metrics": {
+    "source": "data/evaluation/intent_metrics.json, data/evaluation/baseline_metrics.json",
+    "intent_classification": {
+      "n_scored": 191,
+      "n_excluded_no_gold_intent": 9,
+      "majority_class_baseline_accuracy": 0.0366,
+      "simple_llm_baseline_accuracy": 0.7853,
+      "simple_llm_baseline_macro_f1": 0.7115,
+      "proposed_deterministic_classifier_accuracy": 0.5026,
+      "proposed_deterministic_classifier_macro_f1": 0.5145,
+      "headline_caveat": "The proposed system's deterministic intent classifier (50.3% accuracy) performs WORSE than Baseline 2, the simple single-call LLM classifier (78.5% accuracy), on this golden set. It over-predicts OTHER/UNKNOWN (precision 0.08, recall 0.86 on that class) and badly under-recalls Feature Request (0.13), Content Availability (0.24), and App Technical (0.32) -- i.e. it frequently falls back to 'I don't know' on exactly the intents it should be catching."
+    },
+    "reply_generation_across_200_examples_global_mode": {
+      "wrong_intent_count": 95,
+      "wrong_intent_rate": 0.475,
+      "copied_historical_artifact_count": 60,
+      "copied_historical_artifact_rate": 0.3,
+      "note": "wrong_intent here is predicted_intent != gold_intent on the 191 scored examples, consistent with the 50.3% classifier accuracy above. copied_historical_artifact flags replies containing a raw t.co tracking link or a brand-agent signoff token (e.g. '/KC') lifted verbatim from RETRIEVED historical evidence rather than the system's own output -- see reply_failure_categorization.json."
+    }
+  },
+
+  "2_llm_judge_metrics": {
+    "source": "data/evaluation/judge_results.jsonl, data/evaluation/retrieval_comparison.json",
+    "n_judged_per_mode": 192,
+    "n_judge_calls_llm_unavailable_or_unparseable": 8,
+    "global_mode": {
+      "avg_correctness": 4.7865,
+      "avg_groundedness": 4.5208,
+      "avg_helpfulness": 3.7083,
+      "avg_actionability": 3.9219,
+      "avg_brand_consistency": 4.8802,
+      "hallucination_rate": 0.026,
+      "overall_evidence_supported_rate": 0.974
+    },
+    "intent_filtered_mode": {
+      "avg_correctness": 4.7708,
+      "avg_groundedness": 4.3229,
+      "avg_helpfulness": 3.6302,
+      "avg_actionability": 3.8594,
+      "avg_brand_consistency": 4.7604,
+      "hallucination_rate": 0.0365,
+      "overall_evidence_supported_rate": 0.9583
+    },
+    "escalation_rate_global": 0.8,
+    "escalation_rate_intent_filtered": 0.775,
+    "possible_unnecessary_escalation_proxy_count_global": 134,
+    "possible_unnecessary_escalation_proxy_rate_global": 0.67,
+    "headline_caveat": "Judge scores are high (correctness/groundedness ~4.5-4.8/5) but this is a SINGLE LLM judge scoring its own model family's output on a rubric it was given -- not independently verified against real customer outcomes. The judge-flagged 'possible_unnecessary_escalation' proxy rate (67%) and the system's raw 80% global-mode escalation rate both point the same direction: this system escalates far more than its own reply quality would justify. See Section 4 for the human-calibration-grounded version of this same finding, which lands at a materially lower (28%) unnecessary-escalation rate on its own smaller sample -- the two do not agree, and that disagreement is itself a finding (Section 5)."
+  },
+
+  "3_llm_judge_vs_llm_proxy_calibration": {
+    "source": "data/evaluation/judge_human_agreement.json",
+    "WARNING": "NOT human-vs-LLM agreement -- both raters here are LLMs (evaluation/judge.py's judge, and Claude acting as a disclosed proxy annotator). Reported because it is the only calibration signal actually available in this repository; see docs/PHASE_11_LIMITATIONS.md.",
+    "n_paired": 48,
+    "n_missing_judge_verdict": 2,
+    "dimension_spearman_r": {
+      "correctness": 0.1243,
+      "groundedness": 0.1898,
+      "helpfulness": 0.005,
+      "actionability": 0.1701,
+      "brand_consistency": -0.1287
+    },
+    "hallucination_cohen_kappa": 0.0,
+    "hallucination_raw_agreement_rate": 0.9583,
+    "interpretation": "Correlations between the judge and the LLM-proxy annotator are weak-to-negligible across all five dimensions (|r| < 0.19, none statistically significant at n=48). Hallucination raw agreement is high (95.8%) but Cohen's kappa is 0.0 -- expected when the trait is rare and imbalanced in both raters (5-6% of cases), which mechanically depresses kappa even with high raw agreement (the kappa paradox). Conclusion: even a second capable LLM does not reliably reproduce this judge's specific 1-5 ratings, meaning judge scores should be read as directional signal, not a precise, reproducible measurement -- and this is BEFORE accounting for the fact that a real human rater would likely diverge further, not less."
+  },
+
+  "4_human_grounded_escalation_metrics": {
+    "source": "data/evaluation/escalation_metrics.json",
+    "WARNING": "Ground truth here is human_should_escalate from human_calibration_completed.jsonl, which is an LLM-proxy label, NOT a genuine human judgment. Treat this section as a worked example of the metric the assignment requires, computed on the best available data, not as satisfying the human-calibration requirement.",
+    "denominator": 50,
+    "n_scored": 50,
+    "n_uncertain_excluded": 0,
+    "true_positive": 24,
+    "false_positive": 14,
+    "false_negative": 0,
+    "true_negative": 12,
+    "precision": 0.6316,
+    "recall": 1.0,
+    "f1": 0.7742,
+    "unsafe_auto_resolution_count": 0,
+    "unsafe_auto_resolution_rate": 0.0,
+    "unnecessary_escalation_count": 14,
+    "unnecessary_escalation_rate": 0.28,
+    "coverage_caveat": "This is computed over the 50-example calibration sample ONLY. The other 150 golden examples have no escalation ground truth of any kind (human or otherwise) and are explicitly NOT included in this denominator -- do not extrapolate this precision/recall to the full 200-example set without re-running calibration on a larger sample.",
+    "interpretation": "On this sample, the system never auto-handled a case the proxy annotator thought needed a human (recall=1.0, 0 unsafe auto-resolutions) -- it errs toward over-escalating rather than under-escalating, which is the safer failure direction for a customer-support agent. But it does so at real cost: 14 of 38 system escalations (37% of escalations, 28% of all 50 examples) were judged unnecessary -- mostly well-grounded feature-request acknowledgments and content-availability answers that could have been auto-handled (e.g. GOLD-0053, GOLD-0055, GOLD-0017)."
+  },
+
+  "5_pattern_analysis_50_example_calibration": {
+    "source": "manual review during Phase 11 Step 1, recorded per-example in human_reviewer_notes fields of human_calibration_completed.jsonl",
+    "judge_vs_proxy_disagreement": "The judge scored GOLD-0114 as correctness=5, groundedness=4, hallucination=False ('No invented policies or actions are stated') and GOLD-0117 as correctness=4, groundedness=3, hallucination=False ('No invented policies or actions are claimed') -- see judge_results.jsonl. Both are the clearest hallucination cases found in manual review; the judge did not catch either. This is the most concrete evidence in this dataset that the judge's rubric is missing something: its hallucination reasoning explicitly frames the check as 'invented policies or actions,' and both real failures here are about the reply misusing content FROM the retrieved evidence (an invented customer name, a falsely claimed completed action) in a way the judge's own stated reasoning doesn't register as that category.",
+    "agent_incorrectly_auto_handles": "No case in the 50-example sample where the system auto-handled something the proxy thought should escalate (0 unsafe auto-resolutions) -- see Section 4.",
+    "agent_unnecessarily_escalates": "14/50 examples (28%) -- concentrated in Content Availability and Feature Request intents, where the historical resolution pattern is a single well-grounded canned acknowledgment/policy answer with no account-specific lookup needed (GOLD-0053, GOLD-0055, GOLD-0017, GOLD-0006 among others).",
+    "groundedness_failures": "GOLD-0013 (omits explicit 'not possible' fact present in evidence, gives a softer non-answer instead) and GOLD-0174 (paraphrases loosely rather than reusing specific evidence language) -- neither is a hallucination, but both show the generator sometimes drops or waters down available grounding.",
+    "hallucination_cases": "GOLD-0114 (fabricated customer name 'Alondra' copied from an unrelated retrieved conversation) and GOLD-0117 (false claim 'we've just sent you a DM' -- an action the system never took, copied verbatim from unrelated evidence). Both are copy-paste-style hallucinations: the generator reuses fragments of retrieved historical RESPONSES (not just their content) without recognizing those fragments reference a different customer/action.",
+    "weak_historical_evidence": "GOLD-0066 and GOLD-0102 both retrieve evidence with similarity scores in the 0.6-0.77 range that is only tangentially related to the actual request; the generated replies still fall back safely to a generic acknowledgment rather than fabricating specifics, so weak evidence did not directly cause a hallucination in this sample, but it does explain some of the 'wrong_intent' and low-groundedness cases.",
+    "incorrect_intent_classification": "Not directly re-verified per-example in the 50-sample (gold_intent presence varies), but see Section 1: the deterministic classifier is wrong on 47.5% of the full 200-example set, concentrated in over-predicting OTHER/UNKNOWN.",
+    "retrieval_failures": "GOLD-0059 (customer asks a content-availability question -- 'has this been pulled from the UK' -- but retrieval/generation answers with a generic technical-triage question instead of addressing content availability) is the clearest retrieval/intent-routing miss in the 50-sample.",
+    "generation_failures": "GOLD-0114 and GOLD-0117 (see hallucination_cases) are generation failures specifically: the retrieval step surfaced plausible evidence, but the generation step copied name/action fragments inappropriately rather than paraphrasing content."
+  },
+
+  "6_top_failure_modes": [
+    {
+      "rank": 1,
+      "category": "Intent classifier under-recalls into OTHER/UNKNOWN, underperforming the simple LLM baseline",
+      "measured_signal": "Deterministic classifier: 50.3% accuracy, 51.5% macro-F1 vs. simple LLM baseline: 78.5% accuracy, 71.2% macro-F1 (data/evaluation/intent_metrics.json). OTHER/UNKNOWN precision 0.08 / recall 0.86; Feature Request recall 0.13; Content Availability recall 0.24.",
+      "representative_example": "See intent_metrics.json confusion_matrix for the full breakdown (per-example predicted/gold intents are in agent_predictions.jsonl).",
+      "what_happened": "The proposed deterministic classifier is the weaker of the two intent-classification approaches actually tested, despite being the 'proposed system' component.",
+      "plausible_hypothesis": "The classifier's confidence/decision thresholds are tuned too conservatively, or its feature set doesn't discriminate well between adjacent intents (e.g. App Technical vs. Content Availability, which docs/INTENTS.md already flags as the taxonomy's weakest boundary), causing it to abstain into OTHER/UNKNOWN rather than commit to a specific wrong-but-close label.",
+      "component": "intent classification"
+    },
+    {
+      "rank": 2,
+      "category": "Systematic over-escalation on well-grounded, low-risk replies",
+      "measured_signal": "80% global-mode escalation rate (retrieval_comparison.json); judge-based proxy flags 67% of all 200 replies as 'possible_unnecessary_escalation'; human-calibration-grounded metric (n=50) finds a lower but still material 28% unnecessary-escalation rate with 0% unsafe auto-resolution.",
+      "representative_example": "GOLD-0053, GOLD-0055, GOLD-0017 -- all escalated (LOW_CONFIDENCE / CONFLICTING_EVIDENCE) despite well-grounded, correctly-templated replies matching near-identical historical resolutions.",
+      "what_happened": "The escalation policy triggers on its own confidence/evidence-conflict heuristics even when the retrieved evidence is highly consistent and the generated reply is a safe, low-stakes acknowledgment.",
+      "plausible_hypothesis": "Evidence-sufficiency and confidence heuristics (src/evidence.py) were reasoned, not calibrated against labeled data (see evidence_threshold_validation.json's own caveat) -- they may be miscalibrated toward false negatives on feature-request/content-availability intents specifically, where near-duplicate historical phrasing should register as high-confidence agreement rather than low confidence.",
+      "component": "escalation"
+    },
+    {
+      "rank": 3,
+      "category": "Copy-paste hallucination: generator reuses name/action fragments from retrieved evidence",
+      "measured_signal": "5/200 (2.6%) judge-flagged hallucination rate (global mode); two concrete cases found in the 50-example manual review (GOLD-0114, GOLD-0117) that the LLM judge itself scored highly on correctness/groundedness, i.e. the judge MISSED both.",
+      "representative_example": "GOLD-0114 -- reply addresses the customer as 'Alondra,' a name that appears nowhere in the actual customer message and was copied from an unrelated retrieved historical reply. GOLD-0117 -- reply states 'We've just sent you a DM,' an action the system never performed, copied verbatim from unrelated retrieved evidence.",
+      "what_happened": "When retrieved evidence is weak or tangential (both cases have low-signal customer messages: 'come on...' and an angry complaint about phone support respectively), the generator sometimes reuses surface fragments (names, claimed actions) from the retrieved historical RESPONSE text rather than treating it as a content template to paraphrase from.",
+      "plausible_hypothesis": "The generation prompt likely doesn't instruct the model strongly enough to strip person-specific and action-specific details from retrieved evidence before reusing its structure/tone -- and the LLM judge's hallucination rubric may be tuned to catch invented POLICY facts specifically, not invented NAMES or invented CLAIMED ACTIONS, explaining why the judge missed both.",
+      "component": "generation"
+    },
+    {
+      "rank": 4,
+      "category": "Retrieved-artifact leakage: brand agent signoff tokens and tracking links copied into replies",
+      "measured_signal": "60/200 (30%) of global-mode replies contain a raw t.co link or an agent signoff token (e.g. '/KC', '/JN') lifted from retrieved historical evidence (reply_failure_categorization.json's copied_historical_artifact category).",
+      "representative_example": "GOLD-0079 -- reply ends with '/NJ', a real historical support agent's initials from the retrieved evidence, presented as if it were this system's own signoff.",
+      "what_happened": "The generator frequently reuses retrieved response text closely enough that formatting artifacts specific to a single historical human agent (their sign-off initials, or a tracking-shortened link meant for a different customer) survive into the new reply.",
+      "plausible_hypothesis": "This is a generation-prompt/post-processing gap rather than a retrieval problem -- the system has no step that strips agent-signoff tokens or validates that a URL is still contextually appropriate before presenting a reply as its own.",
+      "component": "generation"
+    },
+    {
+      "rank": 5,
+      "category": "Retrieval/intent mismatch on content-availability-flavored technical complaints",
+      "measured_signal": "GOLD-0059 in the 50-example calibration set: customer explicitly asks whether a song was 'pulled from the UK' (a content-availability question); the system retrieves and answers with a generic device/OS/version technical-triage question instead.",
+      "representative_example": "GOLD-0059 -- \"I get an error 'This song is not available.' Have they been pulled from the UK?\" answered with \"Can you tell us what device and Spotify version you're using?\"",
+      "what_happened": "A message that blends a technical symptom ('error: not available') with an explicit content-policy question gets routed toward the technical-troubleshooting historical pattern and never addresses the licensing/availability question the customer actually asked.",
+      "plausible_hypothesis": "This is the exact App Technical vs. Content Availability ambiguity flagged as a known taxonomy soft spot in docs/INTENTS.md; the retrieval step's nearest neighbors were dominated by 'not available' phrasing matched to technical-error historical cases rather than content-licensing ones.",
+      "component": "retrieval / intent"
+    }
+  ],
+
+  "7_what_is_misleading_about_the_headline_number": [
+    "If you quote only 'intent classification accuracy: 50.3%' without the baseline comparison, it reads as a mediocre-but-functional system. In context, it is WORSE than a one-shot LLM prompt with zero retrieval or engineering (78.5%) -- the 'proposed system' component loses to Baseline 2.",
+    "If you quote only judge scores (avg correctness 4.79/5, avg groundedness 4.52/5), it reads as near-perfect reply quality. The same judge also missed both concrete hallucination cases found by a second read, and its dimension scores correlate weakly (Spearman r < 0.19, none significant) with an independent LLM-proxy's ratings on the same 48 paired examples -- so a high average score is not a strong, reproducible signal of quality, only a rough one.",
+    "If you quote only the 80% escalation rate as 'the system is appropriately cautious,' it hides that a large share of those escalations (28-67% depending on which proxy you trust) are judged unnecessary on well-grounded, low-risk replies -- the system is not selectively cautious, it is broadly over-cautious in a way that would generate substantial avoidable human-review load in production.",
+    "If you describe the 200-example golden set as '200 human-labelled examples' without qualification, it overstates the evaluation's rigor: only 50 of those 200 have ANY escalation ground truth, and that ground truth is an LLM proxy, not a person. Precision/recall/F1 for escalation is reported on n=50, not n=200 -- extrapolating it to the full set is not supported by this evaluation."
+  ],
+
+  "8_one_more_week_plan": [
+    "Get a genuine human annotator (even just 1 person, 2-3 hours) to independently re-label the same 50 calibration examples, so judge_human_agreement.json and escalation_metrics.json can be recomputed against real human judgment instead of the disclosed LLM-proxy stand-in -- this is the single highest-value fix, since it's the one requirement this phase could not actually satisfy.",
+    "Investigate why the deterministic intent classifier underperforms the simple LLM baseline by 28 points of accuracy -- likely low-hanging fruit (threshold tuning, feature audit) given the LLM baseline with zero engineering already clears 78%.",
+    "Recalibrate escalation thresholds in src/evidence.py against the (by-then-real) human-labeled 50-example set specifically to reduce the unnecessary-escalation rate on Content Availability / Feature Request intents, without touching the 0% unsafe-auto-resolution rate on Account Security / Account Access.",
+    "Add a post-generation filter that strips agent-signoff tokens (e.g. trailing '/XX' patterns) and re-validates any retrieved URL/name fragments before presenting a reply, targeting the 30% copied-historical-artifact rate.",
+    "Expand the taxonomy tie-break guidance (docs/INTENTS.md) for the App Technical vs. Content Availability boundary with a worked rule specific to 'is this song/artist unavailable' phrasing, and re-run retrieval on the affected subset to see if it resolves cases like GOLD-0059."
+  ],
+
+  "9_limitations": [
+    "The 50-example 'human calibration' set is LLM-proxy-generated (Claude, disclosed via annotator_type field), not genuine human judgment -- Steps 3 and 4 of this evaluation are worked examples of the required methodology, not a satisfied requirement.",
+    "Judge-proxy agreement is weak (Spearman r < 0.19 on all five 1-5 dimensions, kappa 0.0 on hallucination despite 95.8% raw agreement) -- judge scores should not be treated as precise measurements.",
+    "Escalation precision/recall/F1/unsafe-auto-resolution-rate are computed on n=50, not the full n=200 golden set; the other 150 examples have no escalation ground truth at all.",
+    "The LLM judge and the LLM-proxy annotator are both instances of models in the same general family as (or related to) the models being evaluated -- neither is an independent, disinterested rater in the way a human domain expert or end customer would be.",
+    "Ollama-served local LLM calls were observed to be flakey during this evaluation run (documented cold-start failures with a bounded single retry in src/generation/llm_client.py); a small number of judge calls (8/400) failed outright and are excluded (llm_unavailable/unparseable_output) rather than imputed.",
+    "This evaluation was run once, end-to-end, without iterating on the system based on golden-set results (per CLAUDE.md's 'do not optimize against the test set' rule) -- so these numbers reflect a single un-tuned pass, not a best-of-N result."
+  ]
+}

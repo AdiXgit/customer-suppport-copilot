@@ -1,0 +1,48 @@
+{
+  "n_human_examples": 50,
+  "n_paired_with_judge_verdict": 48,
+  "example_ids_missing_judge_verdict": [
+    "GOLD-0077",
+    "GOLD-0151"
+  ],
+  "note": "This compares the LLM JUDGE (evaluation/judge.py) against an LLM-PROXY second annotator (see annotator_type field in human_calibration_completed.jsonl) -- NOT genuine human-vs-LLM agreement. Both raters are LLMs; treat this as a same-class calibration check, not inter-rater reliability with a human.",
+  "dimension_agreement": {
+    "correctness": {
+      "n": 48,
+      "spearman_r": 0.1243,
+      "p_value": 0.3998,
+      "n_sample_size": 48
+    },
+    "groundedness": {
+      "n": 48,
+      "spearman_r": 0.1898,
+      "p_value": 0.1964,
+      "n_sample_size": 48
+    },
+    "helpfulness": {
+      "n": 48,
+      "spearman_r": 0.005,
+      "p_value": 0.9731,
+      "n_sample_size": 48
+    },
+    "actionability": {
+      "n": 48,
+      "spearman_r": 0.1701,
+      "p_value": 0.2477,
+      "n_sample_size": 48
+    },
+    "brand_consistency": {
+      "n": 48,
+      "spearman_r": -0.1287,
+      "p_value": 0.3833,
+      "n_sample_size": 48
+    }
+  },
+  "hallucination_agreement": {
+    "n": 48,
+    "kappa": 0.0,
+    "raw_agreement_rate": 0.9583,
+    "n_sample_size": 48
+  },
+  "escalation_decision_agreement_note": "The LLM judge (evaluation/judge.py) does not output an escalation decision -- it only scores reply quality dimensions. There is no judge-vs-human escalation agreement to compute. Human-vs-SYSTEM escalation agreement is reported separately in escalation_metrics.json (Step 4)."
+}

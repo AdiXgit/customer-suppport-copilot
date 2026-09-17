@@ -1,0 +1,261 @@
+{
+  "global": {
+    "retrieval_mode": "global",
+    "n_judged": 192,
+    "system_marked_sufficient_count": 99,
+    "judge_marked_sufficient_count": 187,
+    "agreement": {
+      "both_sufficient": 92,
+      "both_insufficient": 2,
+      "system_sufficient_judge_disagrees": 3,
+      "system_insufficient_judge_disagrees": 95,
+      "raw_agreement_rate": 0.4896
+    },
+    "system_false_positive_examples": [
+      {
+        "example_id": "GOLD-0051",
+        "customer_message": "@191335 \u00f6demeyi tahsil ettiniz fakat ben hala free g\u00f6z\u00fck\u00fcyorum. Yard\u0131mc\u0131 olabilir misiniz? https://t.co/XZeqb9thZo",
+        "reply": "Hi there!  We've just sent a DM your way. Let's carry on chatting there.",
+        "evidence_reasons": [],
+        "judge_reason": "This response doesn't directly reflect past actions with similar issues."
+      },
+      {
+        "example_id": "GOLD-0005",
+        "customer_message": "@SpotifyCares 2/ when I register via my Vodafone Contract, will my playlists stay intact &amp; my current payment cancel?",
+        "reply": "Your playlists will remain intact even if you switch to Spotify through Vodafone. Once you cancel your current subscription, it will stop being billed.",
+        "evidence_reasons": [],
+        "judge_reason": "Assumes cancellation stops billing without evidence."
+      },
+      {
+        "example_id": "GOLD-0118",
+        "customer_message": "@115888 yall can not go down while i'm on break at work i need to jam stat",
+        "reply": "Hey there!  We're sorry to hear you're having trouble with Spotify right now. Our team is looking into it, and everything should be running smoothly soon. Thanks for your patience!",
+        "evidence_reasons": [],
+        "judge_reason": "Claims 'our team is looking into it' without evidence from historical data."
+      }
+    ],
+    "system_false_negative_examples": [
+      {
+        "example_id": "GOLD-0158",
+        "customer_message": "@SpotifyCares I was listening to music all of a sudden I connected to a device I've never seen before and the songs are changing live on my phone app. Is my account compromised?",
+        "reply": "Hey there! It sounds like you might be experiencing unauthorized access. Can you DM us your account's username or email address so we can take a look?",
+        "evidence_reasons": [
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "The request for username/email aligns with past responses in similar situations."
+      },
+      {
+        "example_id": "GOLD-0141",
+        "customer_message": "@SpotifyCares can you please check your dms??? My account has been hacked and I\u2019ve been trying to get help for over an hour now",
+        "reply": "Hey there, that doesn't sound good. Could you send us a DM with your account's email address or username? We'll take a look backstage.",
+        "evidence_reasons": [
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "While similar to examples, it doesn't perfectly mirror any and lacks a specific 'backstage' action description."
+      },
+      {
+        "example_id": "GOLD-0057",
+        "customer_message": "@SpotifyCares good morning from Atlantic \ud83c\udde8\ud83c\udde6. Noticed that I'm being charged twice for my account. 9.99$ and 14.99$. Can you help?",
+        "reply": "Hey there! Can you DM us your account's email address or username? We'll take a look backstage.",
+        "evidence_reasons": [
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "The phrase 'take a look backstage' aligns with past responses in similar situations."
+      },
+      {
+        "example_id": "GOLD-0055",
+        "customer_message": "Hey @115888 , would be awesome if you build a #Shazam \u2018like\u2019 service straight into the mobile app !! :) :)",
+        "reply": "Hey there! Thanks for the suggestion. We'll pass your feedback along to the team.",
+        "evidence_reasons": [
+          "CONFLICTING_INTENTS"
+        ],
+        "judge_reason": "While not explicitly stated, passing feedback to the team is a common response to feature requests based on the evidence."
+      },
+      {
+        "example_id": "GOLD-0018",
+        "customer_message": "@SpotifyCares Subscriber since 2012. I was just on chat system regarding reference 4295899920 relating to unauthorized access to my account. 2nd time in 1 week. Was disconnected from chat and now cannot finish the migration of all my content from old to new account.",
+        "reply": "Hi there!  We understand you're having trouble migrating your content after dealing with unauthorized access to your account. Can you please send us your email address or username via DM? We'll look into this for you.",
+        "evidence_reasons": [
+          "CONFLICTING_INTENTS",
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "Requests email/username as seen in similar cases."
+      },
+      {
+        "example_id": "GOLD-0146",
+        "customer_message": "@181186 my account was hacked and songs deleted. can you reset my account to a time before 3 days ago when the a-hole struck?",
+        "reply": "Hi there, I understand you're concerned about unauthorized activity on your account. Please send us a direct message with your account's email address so we can help investigate this further.",
+        "evidence_reasons": [
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "The request for account email is consistent with how SpotifyCares handled similar situations in the evidence."
+      },
+      {
+        "example_id": "GOLD-0021",
+        "customer_message": "@SpotifyCares My family member is having trouble joining Family Sharing. I have resent and cancelled the invitation multiple times with no success. We live in the same address / postal code.",
+        "reply": "Hi there, help's here! Could you please send us a DM with the email addresses or usernames of your account and the family member who is having trouble joining?",
+        "evidence_reasons": [
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "The request for email addresses/usernames aligns with past responses."
+      },
+      {
+        "example_id": "GOLD-0159",
+        "customer_message": "@SpotifyCares credit card hacked called you and reported Oct 23 still charging my card need support chatted w/ Mark R",
+        "reply": "Hi there, I understand you're having an issue with unauthorized charges on your account. Please send us a direct message with your Spotify account email address or username so we can look into this further.",
+        "evidence_reasons": [
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "While similar responses ask for account info, this one is not directly mirrored from the evidence."
+      },
+      {
+        "example_id": "GOLD-0074",
+        "customer_message": "@117153 have been trying to upgrade for the past hour using pay pal, but still not upgrading!",
+        "reply": "Hey there! It sounds like you're having some trouble upgrading your account. Could you send us a DM with your account's email address so we can take a look?",
+        "evidence_reasons": [
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "It closely follows the pattern of responses to similar customer issues."
+      },
+      {
+        "example_id": "GOLD-0174",
+        "customer_message": "why arent twice\u2019s korean versions of songs available in spotify au/nz \ud83d\ude20 @116380",
+        "reply": "Hi! We understand you're looking for Twice's Korean songs on Spotify AU/NZ.  We always aim to have as much music available as possible. In the meantime, you can find more info about Spotify content here: https://t.co/0i8GpimuDa  \ud83d\ude42",
+        "evidence_reasons": [
+          "CONFLICTING_INTENTS"
+        ],
+        "judge_reason": "No invented claims or policies."
+      }
+    ],
+    "note": "This compares the system's own evidence_sufficient flag against the LLM JUDGE's overall_evidence_supported verdict, not human judgment -- it is directional evidence about threshold calibration, not a substitute for the human-calibration comparison. Thresholds in src/evidence.py were NOT changed based on this output."
+  },
+  "intent_filtered": {
+    "retrieval_mode": "intent_filtered",
+    "n_judged": 192,
+    "system_marked_sufficient_count": 105,
+    "judge_marked_sufficient_count": 184,
+    "agreement": {
+      "both_sufficient": 99,
+      "both_insufficient": 5,
+      "system_sufficient_judge_disagrees": 3,
+      "system_insufficient_judge_disagrees": 85,
+      "raw_agreement_rate": 0.5417
+    },
+    "system_false_positive_examples": [
+      {
+        "example_id": "GOLD-0005",
+        "customer_message": "@SpotifyCares 2/ when I register via my Vodafone Contract, will my playlists stay intact &amp; my current payment cancel?",
+        "reply": "Hi there! When you switch to a Vodafone Contract Spotify plan, your playlists will stay intact.  You'll need to cancel your current payment method directly with them.",
+        "evidence_reasons": [],
+        "judge_reason": "Assumes cancelling payment is handled by Spotify, not Vodafone."
+      },
+      {
+        "example_id": "GOLD-0045",
+        "customer_message": "Dear @115888,\nWhy the f did you put our EP under singles and not albums? I'm going full OCD.\n\nxoxo Dream Drop \n\nhttps://t.co/n3RLrKiG6v",
+        "reply": "Hey Dream Drop! Thanks for reaching out. I'm sorry about this issue with your EP.  To help me look into this further, could you please share the name of your EP?",
+        "evidence_reasons": [],
+        "judge_reason": "Asking for the EP name is not directly supported by the provided evidence."
+      },
+      {
+        "example_id": "GOLD-0088",
+        "customer_message": "alright im tired of listening to the preview on itunes and im not paying $1.29 for this @115888 where is the single! release the single!",
+        "reply": "Hey there! I understand you're looking for this single release.  Our content team works hard to make sure we have the latest music available. For details about Spotify content, you can check https://t.co/0i8GpimuDa /KC",
+        "evidence_reasons": [],
+        "judge_reason": "Doesn't directly relate to the customer's specific issue or past cases."
+      }
+    ],
+    "system_false_negative_examples": [
+      {
+        "example_id": "GOLD-0158",
+        "customer_message": "@SpotifyCares I was listening to music all of a sudden I connected to a device I've never seen before and the songs are changing live on my phone app. Is my account compromised?",
+        "reply": "Hey there, we understand this is concerning! To help us investigate, could you please DM us your account's username or email address?",
+        "evidence_reasons": [
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "The request to DM account information aligns with past responses to similar security concerns."
+      },
+      {
+        "example_id": "GOLD-0057",
+        "customer_message": "@SpotifyCares good morning from Atlantic \ud83c\udde8\ud83c\udde6. Noticed that I'm being charged twice for my account. 9.99$ and 14.99$. Can you help?",
+        "reply": "Hey there! Can you DM us your account's email address or username? We'll take a look backstage.",
+        "evidence_reasons": [
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "The request for account details aligns with past responses."
+      },
+      {
+        "example_id": "GOLD-0146",
+        "customer_message": "@181186 my account was hacked and songs deleted. can you reset my account to a time before 3 days ago when the a-hole struck?",
+        "reply": "I'm sorry to hear about the issue with your account. Please send us a direct message with your account email address so we can take a look.",
+        "evidence_reasons": [
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "Asking for an email address is a common practice seen in similar cases."
+      },
+      {
+        "example_id": "GOLD-0021",
+        "customer_message": "@SpotifyCares My family member is having trouble joining Family Sharing. I have resent and cancelled the invitation multiple times with no success. We live in the same address / postal code.",
+        "reply": "Hi there!  It sounds frustrating that your family member is having trouble joining Family Sharing. Can you send us a DM with both your account email address and your family member's email address? We can take a look backstage.",
+        "evidence_reasons": [
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "The request for email addresses aligns with past responses."
+      },
+      {
+        "example_id": "GOLD-0159",
+        "customer_message": "@SpotifyCares credit card hacked called you and reported Oct 23 still charging my card need support chatted w/ Mark R",
+        "reply": "Hi there, sorry to hear about the issue with your card. Please send us a DM with your account's username and email address so we can take a look.",
+        "evidence_reasons": [
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "The request for username and email is consistent with historical responses to hacked accounts."
+      },
+      {
+        "example_id": "GOLD-0074",
+        "customer_message": "@117153 have been trying to upgrade for the past hour using pay pal, but still not upgrading!",
+        "reply": "Hey there, we're here to help! Could you DM us your account's email address? We'll take a look backstage.",
+        "evidence_reasons": [
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "The request for account details is supported by historical examples."
+      },
+      {
+        "example_id": "GOLD-0184",
+        "customer_message": "@SpotifyCares been a loyal customer for years and no response the one time I need help #GooglemusicCares",
+        "reply": "Hi there!  We're sorry to hear you haven't received a response yet. We've sent you a direct message so we can help sort this out.",
+        "evidence_reasons": [
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "While common, there's no guarantee they sent a DM in past cases."
+      },
+      {
+        "example_id": "GOLD-0174",
+        "customer_message": "why arent twice\u2019s korean versions of songs available in spotify au/nz \ud83d\ude20 @116380",
+        "reply": "Hi! We understand you're hoping for Twice's Korean versions to be available on Spotify in AU/NZ.  We always strive to add more music, and there\u2019s info about Spotify content here: https://t.co/0i8GpimuDa /T",
+        "evidence_reasons": [
+          "CONFLICTING_INTENTS"
+        ],
+        "judge_reason": "While it doesn't explicitly mention Twice's Korean versions, the phrasing is consistent with responses to similar requests about unavailable content."
+      },
+      {
+        "example_id": "GOLD-0107",
+        "customer_message": "@SpotifyCares received subscription payment failed notification despite card being valid. Tried updating using same card and with two other credit cards but always get same error \"seems your payment card provider is having a bad day\". I think actually spotify not working",
+        "reply": "Thanks for reaching out!  It sounds frustrating to keep running into payment issues. Can you please send us a DM with your account's email address so we can look into this further? /JO",
+        "evidence_reasons": [
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "Claims are directly supported by similar past interactions."
+      },
+      {
+        "example_id": "GOLD-0142",
+        "customer_message": "@SpotifyCares need help acct hacked",
+        "reply": "Hey there, that doesn't sound good. Could you DM us your account's username or email address? We'll take a look backstage /JO https://t.co/ldFdZRiNAt",
+        "evidence_reasons": [
+          "WEAK_RESPONSE_TYPES"
+        ],
+        "judge_reason": "The response uses language and phrasing consistent with historical examples."
+      }
+    ],
+    "note": "This compares the system's own evidence_sufficient flag against the LLM JUDGE's overall_evidence_supported verdict, not human judgment -- it is directional evidence about threshold calibration, not a substitute for the human-calibration comparison. Thresholds in src/evidence.py were NOT changed based on this output."
+  }
+}

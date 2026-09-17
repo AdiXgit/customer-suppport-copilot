@@ -1,0 +1,225 @@
+{
+  "seed": 7,
+  "note": "EXPERIMENTAL ONLY. Production src/intent/deterministic_classifier.py and data/processed/twitter/spotifycares_intent_corpus.parquet were NOT modified. This measures what a small set of proposed, narrowly-scoped rule additions (see module docstring for evidence) would recover from the existing OTHER/UNKNOWN bucket, for human review.",
+  "other_unknown_before": 28163,
+  "other_unknown_after_experimental_rules": 27746,
+  "total_recovered": 417,
+  "recovered_fraction_of_other_bucket": 0.0148,
+  "recovered_fraction_of_full_corpus": 0.0101,
+  "recovered_counts_by_rule": {
+    "exp_technical_vocab_gap": 351,
+    "exp_content_not_available_phrasing": 56,
+    "exp_market_your_app_phrasing": 8,
+    "exp_feature_wish_with_mention": 2
+  },
+  "examples_for_manual_precision_audit": {
+    "exp_technical_vocab_gap": [
+      {
+        "resolution_id": "RES-8265-8264",
+        "customer_message": "@SpotifyCares is there an email i can message? Ive been trying to buy premuim for a few days but i keep getting the card bad day error.",
+        "proposed_intent": "App & Playback Technical Issues"
+      },
+      {
+        "resolution_id": "RES-8689-8687",
+        "customer_message": "@SpotifyCares not sure why the app has been slow to load and glitching music for the past couple months. Samsung galaxy s5",
+        "proposed_intent": "App & Playback Technical Issues"
+      },
+      {
+        "resolution_id": "RES-9383-9376",
+        "customer_message": "@SpotifyCares Then after about 5 hours it glitches again",
+        "proposed_intent": "App & Playback Technical Issues"
+      },
+      {
+        "resolution_id": "RES-27956-27953",
+        "customer_message": "@SpotifyCares It's cool dw I thought it was a funny glitch. \ud83d\ude02\ud83d\ude02 restarted the app and its all working now",
+        "proposed_intent": "App & Playback Technical Issues"
+      },
+      {
+        "resolution_id": "RES-32483-32482",
+        "customer_message": "@SpotifyCares I deactivated my Facebook a few years ago and now I can't log into Spotify? I don't want to make a new email. Any tips? Thanks",
+        "proposed_intent": "App & Playback Technical Issues"
+      },
+      {
+        "resolution_id": "RES-39766-39769",
+        "customer_message": "@SpotifyCares No error messages, the music just cuts out every 10-15 seconds.",
+        "proposed_intent": "App & Playback Technical Issues"
+      },
+      {
+        "resolution_id": "RES-43459-43456",
+        "customer_message": "@SpotifyCares There are no error messages. Ill try to play it and it just wont and this isnt the first time. Im just wondering why I cant play it https://t.co/mbTJuQJj25",
+        "proposed_intent": "App & Playback Technical Issues"
+      },
+      {
+        "resolution_id": "RES-44431-44430",
+        "customer_message": "@SpotifyCares I need help with deactivating my account.",
+        "proposed_intent": "App & Playback Technical Issues"
+      },
+      {
+        "resolution_id": "RES-48108-48104",
+        "customer_message": "@SpotifyCares Before messing with the settings I was getting error code: 2\n\nI am able to use the web player, but miss my friend feed",
+        "proposed_intent": "App & Playback Technical Issues"
+      },
+      {
+        "resolution_id": "RES-66000-65999",
+        "customer_message": "@117153 Hi, I am trying to join Premium for Family, received an invitation code from my husband, but I keep getting error code 600 after filling out all my information.",
+        "proposed_intent": "App & Playback Technical Issues"
+      },
+      {
+        "resolution_id": "RES-67681-67678",
+        "customer_message": "@SpotifyCares Tracks constantly skipping, jumping. Doesn't matter whether I'm on 4G, WiFi, whether tracks are downloaded or streamed. About a month now.",
+        "proposed_intent": "App & Playback Technical Issues"
+      },
+      {
+        "resolution_id": "RES-76248-76247",
+        "customer_message": "Dear @115888 ,\ni have a problem when i want to join in family package, when i submit the form, i got an error like the below image.. so, what can i do? https://t.co/av8SFGwqqP",
+        "proposed_intent": "App & Playback Technical Issues"
+      },
+      {
+        "resolution_id": "RES-102208-102206",
+        "customer_message": "@SpotifyCares the app works. so i'll just use that. that is weird though, that glitch i had never happened before. anyways, thanks for your help! have a good day!",
+        "proposed_intent": "App & Playback Technical Issues"
+      },
+      {
+        "resolution_id": "RES-156976-156975",
+        "customer_message": "@SpotifyCares Hi, I have an issue - i use spotify via Facebook and accidentaly made another account, where I purchased premium. Now I`m trying to connect my FB account to the one where I paid for premium, but it reports me some kind of error. Can u help me solve this?",
+        "proposed_intent": "App & Playback Technical Issues"
+      },
+      {
+        "resolution_id": "RES-168152-168151",
+        "customer_message": "@115888 Hey if I'm hearing pops, micro pause glitches and other encoding artifacts in specific tracks how can I formally report it for remediation? These don't present like streaming interruptions &amp; as I said few specific tracks",
+        "proposed_intent": "App & Playback Technical Issues"
+      }
+    ],
+    "exp_content_not_available_phrasing": [
+      {
+        "resolution_id": "RES-44420-44418",
+        "customer_message": "@SpotifyCares where's Bonzo goes to Bitburg by Ramones? In fact, the whole album, Animal boy, is not available. Wtf.",
+        "proposed_intent": "Content Availability & Catalog Accuracy"
+      },
+      {
+        "resolution_id": "RES-44420-44421",
+        "customer_message": "@SpotifyCares where's Bonzo goes to Bitburg by Ramones? In fact, the whole album, Animal boy, is not available. Wtf.",
+        "proposed_intent": "Content Availability & Catalog Accuracy"
+      },
+      {
+        "resolution_id": "RES-371588-371579",
+        "customer_message": "@SpotifyCares No not greyed out. Sometimes it comes up with a message saying something like \"This song is not available\"",
+        "proposed_intent": "Content Availability & Catalog Accuracy"
+      },
+      {
+        "resolution_id": "RES-374853-374852",
+        "customer_message": "@117153 help, every song is being skipped on my desktop and I can't find any article solving my \"this song is not available\" problem.",
+        "proposed_intent": "Content Availability & Catalog Accuracy"
+      },
+      {
+        "resolution_id": "RES-409781-409776",
+        "customer_message": "@SpotifyCares no matter what New Order song I try to play I get \"song is not available\" https://t.co/degqDX0zzz",
+        "proposed_intent": "Content Availability & Catalog Accuracy"
+      },
+      {
+        "resolution_id": "RES-434752-434749",
+        "customer_message": "@SpotifyCares I have a premium account - for whatever reason every Bowie and Springsteen song is showing up as \"song is not available.\" HALP",
+        "proposed_intent": "Content Availability & Catalog Accuracy"
+      },
+      {
+        "resolution_id": "RES-466833-466831",
+        "customer_message": "@115888 When I go to play a song it says the song isn't available, and it says it on every song.",
+        "proposed_intent": "Content Availability & Catalog Accuracy"
+      },
+      {
+        "resolution_id": "RES-602847-602846",
+        "customer_message": "Omg I'm so sad! @5413's Metamorphosis album isn't available on @115888 \ud83d\ude2d\ud83d\ude2d\ud83d\ude2d",
+        "proposed_intent": "Content Availability & Catalog Accuracy"
+      },
+      {
+        "resolution_id": "RES-739913-739912",
+        "customer_message": "@spotifycares hey, trying to play Machine Head or Metallica and getting a message this song is not available for whole discography in UK",
+        "proposed_intent": "Content Availability & Catalog Accuracy"
+      },
+      {
+        "resolution_id": "RES-784937-784936",
+        "customer_message": "@SpotifyCares Spotify isn't working for me. It's not allowing music to play. It keeps saying \"The song is not available. If you have the file on your computer you can import it\" with any song I click.",
+        "proposed_intent": "Content Availability & Catalog Accuracy"
+      },
+      {
+        "resolution_id": "RES-808971-808967",
+        "customer_message": "@SpotifyCares 'This song is not available. If you have the file on your computer you can import it.' applies to tracks by Kendrick Lamar.",
+        "proposed_intent": "Content Availability & Catalog Accuracy"
+      },
+      {
+        "resolution_id": "RES-844359-844354",
+        "customer_message": "@SpotifyCares On my phone it just doesn\u2019t play and skips to the next, and on my PC it says \u2018song is not available if you have it you can import etc\u2019",
+        "proposed_intent": "Content Availability & Catalog Accuracy"
+      },
+      {
+        "resolution_id": "RES-857993-857986",
+        "customer_message": "@SpotifyCares Thanks yeah it comes up with a blue strip that says 'This song is not available. If you have the file on your computer you can import it.'",
+        "proposed_intent": "Content Availability & Catalog Accuracy"
+      },
+      {
+        "resolution_id": "RES-858002-857998",
+        "customer_message": "@SpotifyCares I get the message saying the song is not available and to import it. Such as Underdog by Banks.",
+        "proposed_intent": "Content Availability & Catalog Accuracy"
+      },
+      {
+        "resolution_id": "RES-868516-868514",
+        "customer_message": "@SpotifyCares What gives with the \"This track is not available. If you have the track on your computer you can import it.\" ? Started today",
+        "proposed_intent": "Content Availability & Catalog Accuracy"
+      }
+    ],
+    "exp_market_your_app_phrasing": [
+      {
+        "resolution_id": "RES-166625-166623",
+        "customer_message": "@115888 is your app available to download on an Apple Watch?",
+        "proposed_intent": "Country/Market Availability Inquiry"
+      },
+      {
+        "resolution_id": "RES-1160826-1160825",
+        "customer_message": "@115888 why your app is not available in India?",
+        "proposed_intent": "Country/Market Availability Inquiry"
+      },
+      {
+        "resolution_id": "RES-1253408-1253407",
+        "customer_message": "@115888 why don't you make your app available in india. We indians also follow international music. #spotify in #India",
+        "proposed_intent": "Country/Market Availability Inquiry"
+      },
+      {
+        "resolution_id": "RES-1941270-1941269",
+        "customer_message": "@115888 Please, don't write that is \"music for everyone\", cause Russians can't listening music in your app, its not available in our region",
+        "proposed_intent": "Country/Market Availability Inquiry"
+      },
+      {
+        "resolution_id": "RES-1964249-1964248",
+        "customer_message": "@SpotifyCares hi dear when will be your service available here in middle east? Thanks.",
+        "proposed_intent": "Country/Market Availability Inquiry"
+      },
+      {
+        "resolution_id": "RES-2635036-2635035",
+        "customer_message": "Hi @SpotifyCares is your service already available in the UAE? Thanks.",
+        "proposed_intent": "Country/Market Availability Inquiry"
+      },
+      {
+        "resolution_id": "RES-2794545-2794544",
+        "customer_message": "@SpotifyCares when will your service be available in Nigeria, Africa?",
+        "proposed_intent": "Country/Market Availability Inquiry"
+      },
+      {
+        "resolution_id": "RES-2902791-2902790",
+        "customer_message": "@115888 ar your planning to make your service available in Romania soon?",
+        "proposed_intent": "Country/Market Availability Inquiry"
+      }
+    ],
+    "exp_feature_wish_with_mention": [
+      {
+        "resolution_id": "RES-1569806-1569803",
+        "customer_message": "@115888 really wish you guys had more of the Japanese artists I like :-\\ Barely any @64328 and no @64329 :-\\",
+        "proposed_intent": "Feature Request & Product Feedback"
+      },
+      {
+        "resolution_id": "RES-1958841-1958840",
+        "customer_message": "I wish that you could filter by writer creds on @115888 so I could easily listen to all of @15200 work \ud83d\ude0d\ud83d\ude0d https://t.co/gWQRiP9Xvk",
+        "proposed_intent": "Feature Request & Product Feedback"
+      }
+    ]
+  }
+}

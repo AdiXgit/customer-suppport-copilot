@@ -1,0 +1,23 @@
+{
+  "majority_class_source": {
+    "majority_intent": "OTHER / UNKNOWN",
+    "source": "data\\processed\\twitter\\spotifycares_intent_corpus.parquet",
+    "source_row_count": 41092,
+    "source_distribution": {
+      "OTHER / UNKNOWN": 28163,
+      "Premium Subscription & Billing": 6043,
+      "App & Playback Technical Issues": 2781,
+      "Account Access & Login": 1796,
+      "Content Availability & Catalog Accuracy": 710,
+      "Feature Request & Product Feedback": 670,
+      "Account Security": 574,
+      "Country/Market Availability Inquiry": 252,
+      "General Complaint / Service Dissatisfaction": 103
+    }
+  },
+  "run_metadata": {
+    "run_id": "cf3c0873-2294-44fa-8a4b-5f585bac811f",
+    "run_timestamp_utc": "2026-09-16T07:55:30Z",
+    "n_examples": 200
+  }
+}

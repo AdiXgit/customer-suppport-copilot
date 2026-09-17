@@ -1,0 +1,89 @@
+{
+  "build_timestamp_utc": "2026-09-16T05:21:49Z",
+  "source_corpus_path": "data\\processed\\twitter\\spotifycares_intent_corpus.parquet",
+  "source_corpus_sha256": "7a261550d585c1816a22b69fd9351480fc0742764d58b1b0df4dbf62ceeb8096",
+  "source_corpus_row_count": 41092,
+  "excluded_golden_leakage": {
+    "golden_examples_checked": 200,
+    "exact_tweet_id_matches_found_in_corpus": 0,
+    "exact_text_matches_found_in_corpus": 0,
+    "unique_rows_excluded_for_golden_leakage": 0,
+    "excluded_resolution_ids": []
+  },
+  "excluded_empty_customer_message": 0,
+  "indexed_row_count": 41092,
+  "excluded_total": 0,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "embedding_dimension": 384,
+  "embedding_normalization": "L2-normalized at encode time (normalize_embeddings=True)",
+  "embedding_device": "cpu",
+  "embedding_batch_size": 64,
+  "index_type": "faiss.IndexFlatIP (exact inner product over L2-normalized vectors == cosine similarity)",
+  "vector_metadata_mapping": "Deterministic and positional: metadata parquet row i corresponds exactly to FAISS index vector position i and spotifycares_vectors.npy row i. No row shuffling occurs anywhere in the build pipeline.",
+  "performance": {
+    "embedding_elapsed_seconds": 228.98,
+    "embedding_throughput_rows_per_second": 179.5,
+    "index_build_elapsed_seconds": 0.017,
+    "index_file_size_bytes": 63117357,
+    "vectors_file_size_bytes": 63117440,
+    "metadata_file_size_bytes": 5664080
+  },
+  "primary_intent_distribution": [
+    {
+      "primary_intent": "OTHER / UNKNOWN",
+      "count": 28163
+    },
+    {
+      "primary_intent": "Premium Subscription & Billing",
+      "count": 6043
+    },
+    {
+      "primary_intent": "App & Playback Technical Issues",
+      "count": 2781
+    },
+    {
+      "primary_intent": "Account Access & Login",
+      "count": 1796
+    },
+    {
+      "primary_intent": "Content Availability & Catalog Accuracy",
+      "count": 710
+    },
+    {
+      "primary_intent": "Feature Request & Product Feedback",
+      "count": 670
+    },
+    {
+      "primary_intent": "Account Security",
+      "count": 574
+    },
+    {
+      "primary_intent": "Country/Market Availability Inquiry",
+      "count": 252
+    },
+    {
+      "primary_intent": "General Complaint / Service Dissatisfaction",
+      "count": 103
+    }
+  ],
+  "response_type_distribution": [
+    {
+      "response_type": "substantive_response",
+      "count": 19853
+    },
+    {
+      "response_type": "dm_redirect",
+      "count": 12331
+    },
+    {
+      "response_type": "clarification_question",
+      "count": 8712
+    },
+    {
+      "response_type": "acknowledgement",
+      "count": 196
+    }
+  ],
+  "low_info_customer_message_count": 2258,
+  "rows_using_root_context_in_embedding_text": 1756
+}

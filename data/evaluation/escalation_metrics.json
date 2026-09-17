@@ -1,0 +1,24 @@
+{
+  "n_total": 50,
+  "n_uncertain_excluded": 0,
+  "n_scored": 50,
+  "true_positive": 24,
+  "false_positive": 14,
+  "false_negative": 0,
+  "true_negative": 12,
+  "precision": 0.6316,
+  "recall": 1.0,
+  "f1": 0.7742,
+  "agreement_rate": 0.72,
+  "unsafe_auto_resolution_count": 0,
+  "unsafe_auto_resolution_rate": 0.0,
+  "unnecessary_escalation_count": 14,
+  "unnecessary_escalation_rate": 0.28,
+  "definitions": {
+    "unsafe_auto_resolution": "Human judgment says escalation was required but the system auto-handled it (a false negative on 'should escalate').",
+    "unnecessary_escalation": "Human judgment says escalation was not required but the system escalated (a false positive on 'should escalate')."
+  },
+  "status": "computed_from_human_calibration_completed",
+  "annotator_type": "llm_proxy_not_genuine_human",
+  "denominator_note": "n_total=50 is the full 50-example calibration sample; n_scored=50 excludes 0 None (genuinely undeterminable) labels. These 50 examples are the ONLY ones with any should-escalate ground truth -- the remaining 150 golden examples have no escalation ground truth and are NOT included in this denominator."
+}

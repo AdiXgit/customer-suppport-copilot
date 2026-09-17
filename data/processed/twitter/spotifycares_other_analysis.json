@@ -1,0 +1,1143 @@
+{
+  "methodology": "Reproducible seeded sample drawn from the OTHER/UNKNOWN rows of spotifycares_intent_corpus.parquet (Polars .sample(seed=...)). Each sampled row is bucketed using LOOSE, exploratory keyword heuristics (src defined inline in scripts/analyze_other_bucket.py, intentionally separate from and broader than the production regexes in src/intent/deterministic_classifier.py). These heuristics estimate a CEILING on potentially recoverable signal -- they are exploratory only and are never written back as production labels. Categories with a single loose-signal hit are labeled by that candidate intent letter; two or more hits are 'J_ambiguous_multi_intent'; bare/short/metadata-like messages are 'L_bare_or_metadata'; non-English text with no signal is 'K_non_english'; everything else with zero signal is 'A_genuinely_other'. No golden-set data was read or used.",
+  "seed": 42,
+  "sampling_method": "polars.DataFrame.sample(n=sample_size, seed=seed), sampled from primary_intent == 'OTHER / UNKNOWN'",
+  "other_unknown_bucket_total": 28163,
+  "sample_size": 2000,
+  "sample_fraction_of_bucket": 0.071,
+  "category_legend": {
+    "A_genuinely_other": "No loose signal for any of the 8 substantive intents; likely genuinely OTHER/UNKNOWN",
+    "B_access": "Likely Account Access & Login",
+    "C_security": "Likely Account Security",
+    "D_billing": "Likely Premium Subscription & Billing",
+    "E_technical": "Likely App & Playback Technical Issues",
+    "F_content": "Likely Content Availability & Catalog Accuracy",
+    "G_feature": "Likely Feature Request & Product Feedback",
+    "H_complaint": "Likely General Complaint / Service Dissatisfaction",
+    "I_market": "Likely Country/Market Availability Inquiry",
+    "J_ambiguous_multi_intent": "Two or more loose signals fired -- ambiguous between multiple canonical intents",
+    "K_non_english": "Non-English / insufficiently interpretable, no signal",
+    "L_bare_or_metadata": "Bare follow-up, greeting/ack, or metadata-like content (email, order id, etc.) with no independent intent",
+    "M_other_unsuitable": "Reserved -- not populated by this heuristic; no additional 'unsuitable pair' cases were distinguishable from A/L in this pass"
+  },
+  "category_counts": {
+    "A_genuinely_other": 1589,
+    "D_billing": 122,
+    "H_complaint": 38,
+    "L_bare_or_metadata": 136,
+    "E_technical": 45,
+    "J_ambiguous_multi_intent": 11,
+    "C_security": 4,
+    "G_feature": 14,
+    "K_non_english": 4,
+    "B_access": 6,
+    "F_content": 13,
+    "I_market": 18
+  },
+  "category_percentages": {
+    "A_genuinely_other": 0.7945,
+    "D_billing": 0.061,
+    "H_complaint": 0.019,
+    "L_bare_or_metadata": 0.068,
+    "E_technical": 0.0225,
+    "J_ambiguous_multi_intent": 0.0055,
+    "C_security": 0.002,
+    "G_feature": 0.007,
+    "K_non_english": 0.002,
+    "B_access": 0.003,
+    "F_content": 0.0065,
+    "I_market": 0.009
+  },
+  "response_type_distribution_by_category": {
+    "A_genuinely_other": {
+      "clarification_question": 383,
+      "substantive_response": 891,
+      "dm_redirect": 310,
+      "acknowledgement": 5
+    },
+    "D_billing": {
+      "substantive_response": 45,
+      "dm_redirect": 66,
+      "clarification_question": 11
+    },
+    "H_complaint": {
+      "dm_redirect": 6,
+      "substantive_response": 21,
+      "clarification_question": 11
+    },
+    "L_bare_or_metadata": {
+      "substantive_response": 90,
+      "clarification_question": 23,
+      "acknowledgement": 6,
+      "dm_redirect": 17
+    },
+    "E_technical": {
+      "clarification_question": 27,
+      "dm_redirect": 12,
+      "substantive_response": 6
+    },
+    "J_ambiguous_multi_intent": {
+      "substantive_response": 2,
+      "dm_redirect": 7,
+      "clarification_question": 2
+    },
+    "C_security": {
+      "substantive_response": 1,
+      "clarification_question": 1,
+      "dm_redirect": 2
+    },
+    "G_feature": {
+      "substantive_response": 13,
+      "clarification_question": 1
+    },
+    "K_non_english": {
+      "substantive_response": 4
+    },
+    "B_access": {
+      "substantive_response": 1,
+      "clarification_question": 1,
+      "dm_redirect": 4
+    },
+    "F_content": {
+      "dm_redirect": 6,
+      "clarification_question": 5,
+      "substantive_response": 2
+    },
+    "I_market": {
+      "substantive_response": 13,
+      "dm_redirect": 3,
+      "clarification_question": 2
+    }
+  },
+  "message_length_words": {
+    "mean": 15.95,
+    "min": 1,
+    "max": 53
+  },
+  "representative_examples_by_category": {
+    "A_genuinely_other": [
+      {
+        "resolution_id": "RES-2432997-2432996",
+        "conversation_id": 2432997,
+        "customer_message": "@31698 @115888 @SpotifyCares guys I don\u2019t know if it\u2019s you but \u201cAround U\u201d doesn\u2019t even stream anymore and that makes me sad. Help? https://t.co/VVXF4GsPwV",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1104898-1104896",
+        "conversation_id": 1104898,
+        "customer_message": "#Spotify needs a sleep function! Sick of running my phone flat overnight and sleeping though what should of been my alarm",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2929232-2929231",
+        "conversation_id": 2929232,
+        "customer_message": "@117153 having difficulty going online from the iPhone app",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2146008-2146007",
+        "conversation_id": 2146008,
+        "customer_message": "@115888 @SpotifyCares @117168 when will you update the app to work with the iPhone X? #letsgo",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1897577-1897576",
+        "conversation_id": 1897577,
+        "customer_message": "If @115888 charges me in the next 3 days, they will overdraw my account.",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-481118-481117",
+        "conversation_id": 481118,
+        "customer_message": "Thumbs up for @SpotifyCares excellent #CustomerService \ud83d\udc4d| @115888 #spotify",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1931951-1931952",
+        "conversation_id": 1931951,
+        "customer_message": "@SpotifyCares It doesn't help. Sort yourselves out",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 2
+      },
+      {
+        "resolution_id": "RES-765688-765687",
+        "conversation_id": 765688,
+        "customer_message": "@116130 hi guys,when/will u make lossless music available? Would be a very welcome addition to Spotify users who enjoy music through hifi",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 0
+      }
+    ],
+    "D_billing": [
+      {
+        "resolution_id": "RES-2363305-2363304",
+        "conversation_id": 2363305,
+        "customer_message": "@SpotifyCares is there any way to listen to music without premium and not have it go to suggested songs",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "D_billing"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2803544-2803543",
+        "conversation_id": 2803544,
+        "customer_message": "@115888 I signed up for a 60-day trial of Spotify Premium. Why do I still hear ads?",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "D_billing"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1872516-1872515",
+        "conversation_id": 1872516,
+        "customer_message": "@SpotifyCares hi team, I have a UK premium account but can\u2019t connect to a Sonos play1 in Egypt. Any workarounds? https://t.co/99JVCtsEjW",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "D_billing"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2929806-2929805",
+        "conversation_id": 2929806,
+        "customer_message": "Hey, @115888, it should be easy to check who your users already are before sending them promotions they don't qualify for. I am already a Premium subscriber and these ads only give me momentary high hopes! :( https://t.co/DlodSmgyUS",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "D_billing"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-867574-867573",
+        "conversation_id": 867574,
+        "customer_message": "@SpotifyCares hi! i'm having a strange issue where only certain songs will play :( i have premium and it's happening on mobile + desktop.",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "D_billing"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2030376-2030375",
+        "conversation_id": 2030376,
+        "customer_message": "@117153 Hi. I bought for premium account 5 hours ago but my spotify still in free mode. trying to relogin but nothing happen. help me",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "D_billing"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2909820-2909819",
+        "conversation_id": 2909820,
+        "customer_message": "@SpotifyCares Hi. Signed up for family account. My girlfriend has signed up too. But only has option for 7 days free premium. Have we registered wrong?",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "D_billing"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1952340-1952339",
+        "conversation_id": 1952340,
+        "customer_message": "@118266 halo. Dengan Spotify premium, apakah memutar musik yang sudah disimpan tidak mengurangi penggunaan data? Tks.",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "D_billing"
+        ],
+        "number_of_context_messages": 0
+      }
+    ],
+    "H_complaint": [
+      {
+        "resolution_id": "RES-2080335-2080334",
+        "conversation_id": 2080335,
+        "customer_message": "@115888 How do we report a song for derogatory content? #pissedmom #disappointed",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "H_complaint"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2614459-2614458",
+        "conversation_id": 2614459,
+        "customer_message": "@115888 how is that song \u2018dua\u2019 worthy of #NewMusicFriday ?? It\u2019s god awful and creepy. Stop selling out to labels.",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "H_complaint"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-285763-285762",
+        "conversation_id": 285763,
+        "customer_message": "@SpotifyCares why are all the songs on my Release Radar the clean versions of the songs?? I can't even save the songs I hear. I have to find the explicit version and save that version. This is really annoying.",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "H_complaint"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1407565-1407563",
+        "conversation_id": 1407565,
+        "customer_message": "@117153 I have just been informed that Rogers and Spotify have gotten a divorce.  That sucks big time.",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "H_complaint"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2065610-2065605",
+        "conversation_id": 2065610,
+        "customer_message": "@SpotifyCares Thanks for the reply. People are starting to get fed up with this answer. A little communication would go a long way. It's been over a year",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "H_complaint"
+        ],
+        "number_of_context_messages": 2
+      },
+      {
+        "resolution_id": "RES-1880001-1880000",
+        "conversation_id": 1880001,
+        "customer_message": "@115888 when I search for an album and then select Shuffle Play, why does it play other songs by random artists instead?\n#Annoying #NotCool",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "H_complaint"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1162429-1162431",
+        "conversation_id": 1162429,
+        "customer_message": "@115888 is there a way to remove an artist from my Release Radar? I don't like Lee Brice, I have never liked any of his songs on Spotify, but he keeps popping up and THIS IS TERRIBLE PLEASE HELP WITH THIS #FIRSTWORLDPROBLEM https://t.co/X0upiecghH",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "H_complaint"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2653222-2653219",
+        "conversation_id": 2653222,
+        "customer_message": "@SpotifyCares That doesn\u2019t explain why it\u2019s so terrible",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "H_complaint"
+        ],
+        "number_of_context_messages": 2
+      }
+    ],
+    "L_bare_or_metadata": [
+      {
+        "resolution_id": "RES-187736-187727",
+        "conversation_id": 187736,
+        "customer_message": "@SpotifyCares Thank you.",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": true,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 6
+      },
+      {
+        "resolution_id": "RES-2600305-2600306",
+        "conversation_id": 2600305,
+        "customer_message": "@SpotifyCares Ok,later. Thanks!\ud83d\udc4d",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": true,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 2
+      },
+      {
+        "resolution_id": "RES-2552642-2616816",
+        "conversation_id": 2552642,
+        "customer_message": "@115888 Thank you!!! Finally \ud83d\ude4c\ud83c\udffd\ud83d\ude4c\ud83c\udffd",
+        "response_type": "substantive_response",
+        "non_english": true,
+        "low_info_customer_message": true,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 1
+      },
+      {
+        "resolution_id": "RES-187300-187299",
+        "conversation_id": 187300,
+        "customer_message": "U messin @115888 ? https://t.co/BlSE9P6zV4",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": true,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1557081-1557072",
+        "conversation_id": 1557081,
+        "customer_message": "@SpotifyCares Alright thank you",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": true,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 8
+      },
+      {
+        "resolution_id": "RES-234587-234586",
+        "conversation_id": 234587,
+        "customer_message": "Nigeria https://t.co/cqaujomgj3",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": true,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2483539-2483540",
+        "conversation_id": 2483539,
+        "customer_message": "@SpotifyCares laptop, windows",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": true,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 2
+      },
+      {
+        "resolution_id": "RES-2596666-2596665",
+        "conversation_id": 2596666,
+        "customer_message": ".@118062 reputation on @115888 please",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": true,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 0
+      }
+    ],
+    "E_technical": [
+      {
+        "resolution_id": "RES-2190880-2190879",
+        "conversation_id": 2190880,
+        "customer_message": "@115888 why does my app keep on glitching even after updating ??",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "E_technical"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1157289-1985488",
+        "conversation_id": 1157289,
+        "customer_message": "@115888 Never does. Only played 1 or 2 songs n then pure ads or just stays.stuck on a loading ad",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "E_technical"
+        ],
+        "number_of_context_messages": 1
+      },
+      {
+        "resolution_id": "RES-2545916-2545914",
+        "conversation_id": 2545916,
+        "customer_message": "@SpotifyCares Getting error \n3 - Oops something went wrong, please try again.",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "E_technical"
+        ],
+        "number_of_context_messages": 1
+      },
+      {
+        "resolution_id": "RES-1190780-1190781",
+        "conversation_id": 1190780,
+        "customer_message": "@SpotifyCares No error messages, I can turn the mobile data on in my settings for Spotify but as soon as I close my settings it deactivated again",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "E_technical"
+        ],
+        "number_of_context_messages": 2
+      },
+      {
+        "resolution_id": "RES-1261034-1261029",
+        "conversation_id": 1261034,
+        "customer_message": "@SpotifyCares Still skipping and now had a Loreal commercial start playing for about 10 seconds in the middle of a song.",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "E_technical"
+        ],
+        "number_of_context_messages": 4
+      },
+      {
+        "resolution_id": "RES-2914428-2914429",
+        "conversation_id": 2914428,
+        "customer_message": "@SpotifyCares Yeah, continually saying I'm offline, or just saying error whenever I try to load a page",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "E_technical"
+        ],
+        "number_of_context_messages": 2
+      },
+      {
+        "resolution_id": "RES-76248-76247",
+        "conversation_id": 76248,
+        "customer_message": "Dear @115888 ,\ni have a problem when i want to join in family package, when i submit the form, i got an error like the below image.. so, what can i do? https://t.co/av8SFGwqqP",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "E_technical"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2913967-2913966",
+        "conversation_id": 2913967,
+        "customer_message": "@115888 been like this for 3 min? Everything is loading....wtf? https://t.co/aGyNe7vbOz",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "E_technical"
+        ],
+        "number_of_context_messages": 0
+      }
+    ],
+    "J_ambiguous_multi_intent": [
+      {
+        "resolution_id": "RES-910798-910797",
+        "conversation_id": 910798,
+        "customer_message": "i wish spotify premium for students can be paid by load",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "D_billing",
+          "G_feature"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1995758-1995757",
+        "conversation_id": 1995758,
+        "customer_message": "It's really frustrating that @115888\u200b is still not available in India where a lot of my readers are based. https://t.co/ZHRgEWa4kc",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "H_complaint",
+          "I_market"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2042274-2042273",
+        "conversation_id": 2042274,
+        "customer_message": "@115888 signed up to premium but still saying I can't skip songs and let me download albums \ud83d\ude12\ud83e\udd14 #GettingAnnoyed",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "D_billing",
+          "E_technical"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-667904-667903",
+        "conversation_id": 667904,
+        "customer_message": "Hello! I'm from Brazil and I signed up for Spotify Premium, but it's popping up that I'm not premium. I received a message from the card bank saying that I had made a purchase on Spotify but I'm not yet premium, please help me. I'm sorry for that awful English\n@117153 https://t.co/qJ2CjtBTsd",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "D_billing",
+          "H_complaint"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2871172-2871170",
+        "conversation_id": 2871172,
+        "customer_message": "The @115888 app has been frustrating me a lot lately. First it took away the ability to skip, pause/play, back track a long from my lock screen or a widget, now shuffle only goes through three characters. And I see no way to fix this.",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "E_technical",
+          "H_complaint"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2736077-2736075",
+        "conversation_id": 2736077,
+        "customer_message": "@SpotifyCares I'm trying to register my premium for family but this error code keeps coming up - help please! https://t.co/wONIxjukCC",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "D_billing",
+          "E_technical"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2964660-2964659",
+        "conversation_id": 2964660,
+        "customer_message": "@SpotifyCares the Spotify \"sign up\" page keeps loading after i press SIGN UP and i can't make an account. i've tried several devices and browers and the result is the same. help??  #Spotify \ud83d\ude25",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "B_access",
+          "E_technical"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2259561-2259558",
+        "conversation_id": 2259561,
+        "customer_message": "The @115888 iPhone app kind of sucks. I wish it worked more like the desktop app",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "G_feature",
+          "H_complaint"
+        ],
+        "number_of_context_messages": 0
+      }
+    ],
+    "C_security": [
+      {
+        "resolution_id": "RES-83689-83688",
+        "conversation_id": 83689,
+        "customer_message": "i was thinking, what if @115888 had achievements for like how many times you played a song or when someone else is listening to your playlist",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "C_security"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2858998-2858995",
+        "conversation_id": 2858998,
+        "customer_message": "@SpotifyCares same issue with incorrect artist for arist named \"Magnet\" - newest single on the profile is for someone else, also showed up on release radar -.-",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "C_security"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2491766-2491765",
+        "conversation_id": 2491766,
+        "customer_message": "@SpotifyCares If I do not click the confirm your email, that means its not me! I dont want to have to close someone else's account again",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "C_security"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-813409-813408",
+        "conversation_id": 813409,
+        "customer_message": "@SpotifyCares Im trying to get verified and it\u2019s asking me to find an artist is it asking for me or someone else???",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "C_security"
+        ],
+        "number_of_context_messages": 0
+      }
+    ],
+    "G_feature": [
+      {
+        "resolution_id": "RES-885132-885133",
+        "conversation_id": 885132,
+        "customer_message": "@SpotifyCares I wish that was that easy. Your support and way of talking local files is really poor and uncomfortable",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "G_feature"
+        ],
+        "number_of_context_messages": 2
+      },
+      {
+        "resolution_id": "RES-2083269-2083268",
+        "conversation_id": 2083269,
+        "customer_message": "I wish @115888 had a Work-mode that automatically skipped explicit songs in a playlist for when I'm listening on speakers.",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "G_feature"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1767064-1767063",
+        "conversation_id": 1767064,
+        "customer_message": "@115888 Your app doesnt work. I try playing my playlist, but it doesn't play. It only plays suggestion song.",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "G_feature"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1106527-1106526",
+        "conversation_id": 1106527,
+        "customer_message": "@SpotifyCares So if I have local files that I purchased from another place, how can these files sync to Spotify.  I wish this was easier..",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "G_feature"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2557540-2557539",
+        "conversation_id": 2557540,
+        "customer_message": "I wish I could 'thumbs down' an artist on @115888 to prevent any of their music appearing in my radio stations.",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "G_feature"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1621632-1621631",
+        "conversation_id": 1621632,
+        "customer_message": "Hey @115888 \nSuggestion: we can change playlist pictures via our mobile apps.",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "G_feature"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2364794-2364793",
+        "conversation_id": 2364794,
+        "customer_message": "I wish I could create a label profile on @115888 and put all our artists on one page. :)",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "G_feature"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2414571-2414570",
+        "conversation_id": 2414571,
+        "customer_message": "@115888 Hi Guys, any plans to update the app for iPhone X? Would be awesome to use the extra screen real estate.",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "G_feature"
+        ],
+        "number_of_context_messages": 0
+      }
+    ],
+    "K_non_english": [
+      {
+        "resolution_id": "RES-2158557-2158554",
+        "conversation_id": 2158557,
+        "customer_message": "@SpotifyCares Aii aii. We'll be waiting. \ud83d\udd25\ud83d\udd25\ud83d\udd25\ud83d\udd25\ud83d\udd25\ud83d\udcaa\ud83c\udffd\ud83d\udcaa\ud83c\udffd\ud83d\udcaa\ud83c\udffd\ud83d\udcaa\ud83c\udffd",
+        "response_type": "substantive_response",
+        "non_english": true,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 2
+      },
+      {
+        "resolution_id": "RES-1964092-1964091",
+        "conversation_id": 1964092,
+        "customer_message": "Spotify Don't Need Ads \ud83e\udd26\ud83c\udffe\u200d\u2640\ufe0f",
+        "response_type": "substantive_response",
+        "non_english": true,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1821345-1821344",
+        "conversation_id": 1821345,
+        "customer_message": "fight for my way (\uc308 \ub9c8\uc774\uc6e8\uc774) soundtracks to be on @115888 is all i\u2019m asking for \ud83d\ude4f\ud83c\udffd",
+        "response_type": "substantive_response",
+        "non_english": true,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2337266-2337267",
+        "conversation_id": 2337266,
+        "customer_message": "@SpotifyCares YES MAKE IT HAPPEN \ud83d\udc4f\ud83c\udffd\ud83d\udc4f\ud83c\udffd\ud83d\udc4f\ud83c\udffd",
+        "response_type": "substantive_response",
+        "non_english": true,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [],
+        "number_of_context_messages": 2
+      }
+    ],
+    "B_access": [
+      {
+        "resolution_id": "RES-2912445-2912444",
+        "conversation_id": 2912445,
+        "customer_message": "@SpotifyCares Is Spotify down? Can't access anything I haven't downloaded. Can't search. Nothing. Lots of others reporting the same... ?",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "B_access"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2705135-2705133",
+        "conversation_id": 2705135,
+        "customer_message": "Why does my @115888 stop playing music when I get a notification on my @115858 iPhone? I didn\u2019t sign up for this.",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "B_access"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1956879-1956878",
+        "conversation_id": 1956879,
+        "customer_message": "@SpotifyCares I want to close my account but I can't access the email acct that the confirmation would be sent to - Solution? Ph# perhaps?!",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "B_access"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-712156-712155",
+        "conversation_id": 712156,
+        "customer_message": "@SpotifyCares I can't sign up",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "B_access"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-2141719-2141718",
+        "conversation_id": 2141719,
+        "customer_message": "@85006 Youve just blocked me for a month over a photo I posted over 3 years ago so now I cant access my @SpotifyCares account.  You allow nudity and Nazis to post online without any hindrance. Whats the story?",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "B_access"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1812495-1812494",
+        "conversation_id": 1812495,
+        "customer_message": "@SpotifyCares hello, please help me with my spotify account. i\u2019ve been having so many issues with it since i tried to sign up for it.",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "B_access"
+        ],
+        "number_of_context_messages": 0
+      }
+    ],
+    "F_content": [
+      {
+        "resolution_id": "RES-1997465-1997464",
+        "conversation_id": 1997465,
+        "customer_message": "@125633 I\ufe0f have a serious inquiry. I\ufe0f just dropped another song and it\u2019s under a duplicate artist profile and not my original how!?",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "F_content"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1787912-1787909",
+        "conversation_id": 1787912,
+        "customer_message": "@SpotifyCares When I try to play a song nothing plays. But when I try to shuffle it says This song is not available. And the same after a few tries.",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "F_content"
+        ],
+        "number_of_context_messages": 2
+      },
+      {
+        "resolution_id": "RES-429233-429232",
+        "conversation_id": 429233,
+        "customer_message": "@115888 why can't I listen to any of the Queen songs? It just says \"song not available.\"",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "F_content"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-380825-380821",
+        "conversation_id": 380825,
+        "customer_message": "@SpotifyCares Superman album, it was removed from all my playlists and when i found it again the titles were now english)",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "F_content"
+        ],
+        "number_of_context_messages": 3
+      },
+      {
+        "resolution_id": "RES-1834457-1834460",
+        "conversation_id": 1834457,
+        "customer_message": "@SpotifyCares This does not help.. I actually think it is bugged as it hasnt changed in weeks with only 1 song related that I have no disliked and removed",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "F_content"
+        ],
+        "number_of_context_messages": 4
+      },
+      {
+        "resolution_id": "RES-1175605-1175604",
+        "conversation_id": 1175605,
+        "customer_message": "Is anyone else having problems playing @15790 on @115888 ? When I try in my computer it says \u201cthis song is not available\u201d ....",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "F_content"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1083396-1083395",
+        "conversation_id": 1083396,
+        "customer_message": "@SpotifyCares Why do I keep getting \"Song is not available\" On my pc and Phone one wireless one wired. Wife on same account can play them?",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "F_content"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-890181-890179",
+        "conversation_id": 890181,
+        "customer_message": "@SpotifyCares why has The Game - Blood Moon: Year Of The Wolf album been removed? And any chance we can get Kano - 140 Grime St added? Thanks \ud83d\ude01",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "F_content"
+        ],
+        "number_of_context_messages": 0
+      }
+    ],
+    "I_market": [
+      {
+        "resolution_id": "RES-172497-172496",
+        "conversation_id": 172497,
+        "customer_message": "@115888 just wondering - when will you discover a country named Croatia? We're a bit tired to be one of rare countries in Europe without Spotify.",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "I_market"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1884921-1884920",
+        "conversation_id": 1884921,
+        "customer_message": "When will this be available @115888 @3742 #Windows10 #Spotify https://t.co/0211ZYEZMb",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "I_market"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-866330-866325",
+        "conversation_id": 866330,
+        "customer_message": "@115888 Country Gold is only male!? https://t.co/pBgeNPmkBx",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "I_market"
+        ],
+        "number_of_context_messages": 1
+      },
+      {
+        "resolution_id": "RES-1759246-1759245",
+        "conversation_id": 1759246,
+        "customer_message": "@SpotifyCares Hey there... I'm all of a sudden missing a bunch of country songs. Lots of random album tracks from a TON of artists????",
+        "response_type": "dm_redirect",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "I_market"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1160826-1160825",
+        "conversation_id": 1160826,
+        "customer_message": "@115888 why your app is not available in India?",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "I_market"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-564524-564525",
+        "conversation_id": 564524,
+        "customer_message": "@SpotifyCares My company set up a new proxy that disables WebSockets. Both Spotify web and desktop clients seem to depend on them. There used to be a fallback available in Spotify web via the http=1 URL parameter, but it has been removed recently. I'm now asking if there is any alternative?",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "I_market"
+        ],
+        "number_of_context_messages": 2
+      },
+      {
+        "resolution_id": "RES-851870-851869",
+        "conversation_id": 851870,
+        "customer_message": "@115888 is not available in my country I wanna choke",
+        "response_type": "substantive_response",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "I_market"
+        ],
+        "number_of_context_messages": 0
+      },
+      {
+        "resolution_id": "RES-1142204-1142203",
+        "conversation_id": 1142204,
+        "customer_message": "@115888 I'm in Belgium, speaking French (like half the country), but I get this in Dutch (other half of the country). How do I change it? https://t.co/IHfe2Y78YM",
+        "response_type": "clarification_question",
+        "non_english": false,
+        "low_info_customer_message": false,
+        "loose_signal_hits": [
+          "I_market"
+        ],
+        "number_of_context_messages": 0
+      }
+    ]
+  }
+}

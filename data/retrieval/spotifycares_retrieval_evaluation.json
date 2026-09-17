@@ -1,0 +1,2804 @@
+{
+  "seed": 99,
+  "eval_sample_size": 1000,
+  "manual_audit_sample_size": 40,
+  "methodology": "Eval queries are a seeded sample of ALREADY-INDEXED, golden-free retrieval metadata rows -- never the golden set. Each query is searched with its own retrieval_id excluded (leave-one-out), so it cannot trivially retrieve itself. 'Relevance' for Recall@k / same-intent@k is defined as sharing the query's Phase 7D deterministic primary_intent label -- a proxy signal, not human judgment; human judgment is captured separately in the manual_audit_sample for a small seeded subset.",
+  "global_retrieval": {
+    "n_eligible_queries": 340,
+    "recall_at_k": {
+      "1": 0.5618,
+      "3": 0.7382,
+      "5": 0.7941,
+      "10": 0.8735
+    },
+    "same_intent_at_k": {
+      "1": 0.5618,
+      "3": 0.5225,
+      "5": 0.5082,
+      "10": 0.4953
+    }
+  },
+  "intent_filtered_retrieval": {
+    "n_eligible_queries": 340,
+    "recall_at_k": {
+      "1": 1.0,
+      "3": 1.0,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "same_intent_at_k": {
+      "1": 1.0,
+      "3": 1.0,
+      "5": 1.0,
+      "10": 1.0
+    }
+  },
+  "duplicate_analysis": {
+    "exact_duplicate_customer_message_groups": 1571,
+    "exact_duplicate_customer_message_rows": 3429,
+    "exact_duplicate_brand_response_groups": 3,
+    "exact_duplicate_brand_response_rows": 6,
+    "duplicate_retrieval_ids": 0,
+    "note": "Repeated real historical customer messages/responses are not automatically removed -- they reflect genuinely common support patterns. Flagged here only so retrieval-metric interpretation accounts for the possibility that near-identical historical cases inflate apparent recall."
+  },
+  "performance": {
+    "single_query_latency_seconds": 16.4436,
+    "total_evaluation_elapsed_seconds": 28.97
+  },
+  "manual_audit_sample": [
+    {
+      "query_retrieval_id": "RES-2008367-2008363",
+      "query_customer_message": "@115888 @SpotifyCares @38265 .@30552  would love to see Reddit India community get behind this, and maybe, MAYBE, that'll help \ud83e\udd1e",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "substantive_response",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8833,
+          "customer_message": "@147834 @SpotifyCares For that matter, in India too..",
+          "historical_brand_response": "@150788 Hi Saachi! Not to worry. We're launching in new countries as often as possible. Sign up here to be first to hear: https://t.co/XDwWzj7cLP \ud83d\ude42 /AU",
+          "primary_intent": "Country/Market Availability Inquiry",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.874,
+          "customer_message": "@147836 please bring spotify to India",
+          "historical_brand_response": "@723216 @147836 Hey! Thanks for reaching out about this. We've let our developers know you'd like to see us in India in the future. We're always working to bring Spotify to as many people as possible /J",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.8738,
+          "customer_message": "@115888 @SpotifyCares Why you\nguys are not available in India \ud83c\uddee\ud83c\uddf3?",
+          "historical_brand_response": "@823515 Hey there! We're launching in new countries as often as possible. Be sure to add your email at https://t.co/X8DVSX9QgM /GK",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8833,
+          "customer_message": "@147834 @SpotifyCares For that matter, in India too..",
+          "historical_brand_response": "@150788 Hi Saachi! Not to worry. We're launching in new countries as often as possible. Sign up here to be first to hear: https://t.co/XDwWzj7cLP \ud83d\ude42 /AU",
+          "primary_intent": "Country/Market Availability Inquiry",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.874,
+          "customer_message": "@147836 please bring spotify to India",
+          "historical_brand_response": "@723216 @147836 Hey! Thanks for reaching out about this. We've let our developers know you'd like to see us in India in the future. We're always working to bring Spotify to as many people as possible /J",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.8738,
+          "customer_message": "@115888 @SpotifyCares Why you\nguys are not available in India \ud83c\uddee\ud83c\uddf3?",
+          "historical_brand_response": "@823515 Hey there! We're launching in new countries as often as possible. Be sure to add your email at https://t.co/X8DVSX9QgM /GK",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "partial",
+        "problem_actually_similar": false,
+        "response_relevant": "partial",
+        "usable_resolution_evidence": false,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Query is off-topic praise/aside, not a real question; retrieved India-availability cases are topically adjacent but not a real match to a non-request."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-1935350-1935349",
+      "query_customer_message": "@SpotifyCares me ayudan con mi cuenta de @115888 por favor",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "clarification_question",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8031,
+          "customer_message": "@SpotifyCares necesito ayuda!!!",
+          "historical_brand_response": "@408848 \u00a1Hola Karen! Hemos respondido tu MD. Sigamos hablando por all\u00e1 \u270c /CI",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.7808,
+          "customer_message": "Ano na? @SpotifyCares @115888 https://t.co/XV4EapXieG",
+          "historical_brand_response": "@609970 @115888 Hi! For your security, we'd suggest deleting your tweet as it contains your private info. We've just sent you a DM. Let's carry on there /JE",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.7772,
+          "customer_message": "@115888 hola! Pueden ayudarme a conocer mi direcci\u00f3n de domicilio en Spotify?",
+          "historical_brand_response": "@378080 @115888 \u00a1Hola Joanna! Hemos respondido a tu mensaje directo. Continuemos hablando por all\u00ed /WM",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8031,
+          "customer_message": "@SpotifyCares necesito ayuda!!!",
+          "historical_brand_response": "@408848 \u00a1Hola Karen! Hemos respondido tu MD. Sigamos hablando por all\u00e1 \u270c /CI",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.7808,
+          "customer_message": "Ano na? @SpotifyCares @115888 https://t.co/XV4EapXieG",
+          "historical_brand_response": "@609970 @115888 Hi! For your security, we'd suggest deleting your tweet as it contains your private info. We've just sent you a DM. Let's carry on there /JE",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.7772,
+          "customer_message": "@115888 hola! Pueden ayudarme a conocer mi direcci\u00f3n de domicilio en Spotify?",
+          "historical_brand_response": "@378080 @115888 \u00a1Hola Joanna! Hemos respondido a tu mensaje directo. Continuemos hablando por all\u00ed /WM",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "partial",
+        "problem_actually_similar": true,
+        "response_relevant": false,
+        "usable_resolution_evidence": false,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Vague Spanish 'help me with my account' -- retrieved similarly vague Spanish requests; topically plausible but true underlying problem unknown from text alone; evidence is just DM redirects."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-1097435-1097434",
+      "query_customer_message": "@115888 @SpotifyCares in a future app update can you add a way to put songs in your playlist by number please. That would help a lot.",
+      "query_primary_intent": "Feature Request & Product Feedback",
+      "query_response_type": "substantive_response",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8214,
+          "customer_message": "@SpotifyCares  Can you guys make me playlist that's names \"go follow @439536\" thx :)",
+          "historical_brand_response": "@439536 Hey there! Yep, we'll be happy to make one for you. Before we proceed, could you let us know your favorite artists/bands and genres? /MT",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.8105,
+          "customer_message": "@115888 @SpotifyCares there should be feature where I pick a song and it automatically makes a playlist of similar songs from my library",
+          "historical_brand_response": "@538993 Hey! This sounds like a great idea. Suggest it in our Community at https://t.co/rtDvYZOF32 and get support from other users /JS",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.7977,
+          "customer_message": "@115888 @SpotifyCares pleaseeeeeeee, please put a way to sort through your music in playlists.. like newest to oldest, oldest to newest.. #LoveYou",
+          "historical_brand_response": "@254718 Hey there! You can find more info about sorting and filtering tracks here: https://t.co/myAf3mlgcv. Hope that helps /NQ",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.7851,
+          "customer_message": "@115888 @SpotifyCares Feature Request: Spotify playlists separated from personally made ones. Like @115948 does. https://t.co/NgJiXFQRR1",
+          "historical_brand_response": "@120794 Hey Kevin, we appreciate your feedback! Don't worry, we'll let our devs know this is something you'd like to see /GK",
+          "primary_intent": "Feature Request & Product Feedback",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.76,
+          "customer_message": "@SpotifyCares can you make me a playlist",
+          "historical_brand_response": "@334529 Hey there! What type of music are you into? We'll see what we can cook up \ud83d\ude09 /MG",
+          "primary_intent": "Feature Request & Product Feedback",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.7593,
+          "customer_message": "@SpotifyCares THANK YOU!",
+          "historical_brand_response": "@331478 No worries! Just give us a shout if you need anything else \ud83d\ude42 /TB",
+          "primary_intent": "Feature Request & Product Feedback",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": true,
+        "usable_resolution_evidence": true,
+        "intent_compatible": "Feature Request & Product Feedback",
+        "misleading_or_unrelated": false,
+        "notes": "Genuine near-duplicate feature requests (playlist customization) despite being deterministically mislabeled OTHER -- embedding similarity recovers real signal the classifier missed."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-2874419-2874417",
+      "query_customer_message": "@SpotifyCares still nothing on the multi-room music support for Echo devices? It was announced in late August as coming soon... is the delay due to @115888 or @115821?",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "substantive_response",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.865,
+          "customer_message": "@SpotifyCares when will you support Multi-Room on Amazon's Echo devices? I reluctantly canceled Spotify bc you don't support that feature!",
+          "historical_brand_response": "@667557 Hey Justin! We don't have any info on this right now, but we'll let the right team know it's something you'd like to see /MX",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.8276,
+          "customer_message": "@AmazonHelp @SpotifyCares when will Spotify be available on multi-room so I can listen on my Echo &amp; Echo dot!?",
+          "historical_brand_response": "@606386 Hey Joe! We don't have news about this yet, but you can vote for the official idea at https://t.co/248j19QkbF /NH",
+          "primary_intent": "Country/Market Availability Inquiry",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.8224,
+          "customer_message": "@SpotifyCares Hi. When will you support multi room audio on Amazon Echo?",
+          "historical_brand_response": "@670753 Hey! We don't have any info on this right now, but we'll let the right team know it's something you'd like to see /DF",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.865,
+          "customer_message": "@SpotifyCares when will you support Multi-Room on Amazon's Echo devices? I reluctantly canceled Spotify bc you don't support that feature!",
+          "historical_brand_response": "@667557 Hey Justin! We don't have any info on this right now, but we'll let the right team know it's something you'd like to see /MX",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.8276,
+          "customer_message": "@AmazonHelp @SpotifyCares when will Spotify be available on multi-room so I can listen on my Echo &amp; Echo dot!?",
+          "historical_brand_response": "@606386 Hey Joe! We don't have news about this yet, but you can vote for the official idea at https://t.co/248j19QkbF /NH",
+          "primary_intent": "Country/Market Availability Inquiry",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.8224,
+          "customer_message": "@SpotifyCares Hi. When will you support multi room audio on Amazon Echo?",
+          "historical_brand_response": "@670753 Hey! We don't have any info on this right now, but we'll let the right team know it's something you'd like to see /DF",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": true,
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Near-exact duplicate question (multi-room Echo support); same generic 'no info yet' answer is realistic and usable as evidence of how this is currently handled."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-980818-980815",
+      "query_customer_message": "@115888 why is it doing this? https://t.co/89rfzfO5KN",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "clarification_question",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8823,
+          "customer_message": ".@115888 please explain what's going on. https://t.co/wZ3bCxpGw5",
+          "historical_brand_response": "@736695 Hi Anna! Sometimes content gets temporarily removed because of licensing changes. Hopefully we'll have it available again soon /MU",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.8814,
+          "customer_message": "@115888 how is this possible? Why are you doing this to me https://t.co/19qb3XeBNg",
+          "historical_brand_response": "@437466 2: 3,333 offline songs in 3 different devices that would make a total of 9.999. More info here: https://t.co/zKCrMdomWR /BM",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.8814,
+          "customer_message": "@115888 how is this possible? Why are you doing this to me https://t.co/19qb3XeBNg",
+          "historical_brand_response": "@437466 1: Hi Gabby! We're sorry you're feeling this way. Currently, there's a 3,333 limit for offline songs. Keep in mind you can save up to...",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8823,
+          "customer_message": ".@115888 please explain what's going on. https://t.co/wZ3bCxpGw5",
+          "historical_brand_response": "@736695 Hi Anna! Sometimes content gets temporarily removed because of licensing changes. Hopefully we'll have it available again soon /MU",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.8814,
+          "customer_message": "@115888 how is this possible? Why are you doing this to me https://t.co/19qb3XeBNg",
+          "historical_brand_response": "@437466 2: 3,333 offline songs in 3 different devices that would make a total of 9.999. More info here: https://t.co/zKCrMdomWR /BM",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.8814,
+          "customer_message": "@115888 how is this possible? Why are you doing this to me https://t.co/19qb3XeBNg",
+          "historical_brand_response": "@437466 1: Hi Gabby! We're sorry you're feeling this way. Currently, there's a 3,333 limit for offline songs. Keep in mind you can save up to...",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "poor",
+        "problem_actually_similar": false,
+        "response_relevant": false,
+        "usable_resolution_evidence": false,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": true,
+        "notes": "Lexical-shape match only ('why are you doing this') -- underlying problems (content licensing vs. offline-song cap) are unrelated. Classic lexical-similarity-not-problem-similarity failure."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-1244045-1244048",
+      "query_customer_message": "@SpotifyCares I'm using the desktop app on my mac and the mobile app on my nexus. I have the same experience on both devices.",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "clarification_question",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8134,
+          "customer_message": "@SpotifyCares on my Android phone and on the laptop MacBook. Both have exact same issue. https://t.co/Wyyz0ENvo0",
+          "historical_brand_response": "@676188 Thanks. Just to make sure, can you send us a screenshot of the exact error message? We'd like to take a closer look /KM",
+          "primary_intent": "Content Availability & Catalog Accuracy",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.8079,
+          "customer_message": "@SpotifyCares And i don't have any problem with spotify on my laptop &amp; iPad, just on my phone",
+          "historical_brand_response": "@467282 Thanks. Could you also DM us your phone's exact Android version and account's email address? We'll check backstage /LW https://t.co/ldFdZRiNAt",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.7969,
+          "customer_message": "@SpotifyCares it's the same across my iPad, iPhone, android device and desktop... it can't be an issue on my end can it?",
+          "historical_brand_response": "@174972 Hmm. Can you DM us your account's email address or username? We'll take a look backstage /PB https://t.co/ldFdZR1cbT",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8134,
+          "customer_message": "@SpotifyCares on my Android phone and on the laptop MacBook. Both have exact same issue. https://t.co/Wyyz0ENvo0",
+          "historical_brand_response": "@676188 Thanks. Just to make sure, can you send us a screenshot of the exact error message? We'd like to take a closer look /KM",
+          "primary_intent": "Content Availability & Catalog Accuracy",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.8079,
+          "customer_message": "@SpotifyCares And i don't have any problem with spotify on my laptop &amp; iPad, just on my phone",
+          "historical_brand_response": "@467282 Thanks. Could you also DM us your phone's exact Android version and account's email address? We'll check backstage /LW https://t.co/ldFdZRiNAt",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.7969,
+          "customer_message": "@SpotifyCares it's the same across my iPad, iPhone, android device and desktop... it can't be an issue on my end can it?",
+          "historical_brand_response": "@174972 Hmm. Can you DM us your account's email address or username? We'll take a look backstage /PB https://t.co/ldFdZR1cbT",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "manual_audit": {
+        "category": "partial",
+        "problem_actually_similar": null,
+        "response_relevant": false,
+        "usable_resolution_evidence": false,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Context-dependent: query is a mid-conversation follow-up ('same on both devices') whose real problem lives in an earlier turn not visible to the retriever. Matches share conversational shape, not the specific issue."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-1346886-1346884",
+      "query_customer_message": ".@115888 The debut album from Stormwarrior is self titled, not called \"Same\".",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "clarification_question",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.5892,
+          "customer_message": "@115888 @54223 can we fix the fact that the self titled album does not have the explicit versions ?",
+          "historical_brand_response": "@422194 Hey Colin! Where possible we have both versions available. More info here: https://t.co/uKBxlsmKqi /SY",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.563,
+          "customer_message": "where's the ALBUM @115888",
+          "historical_brand_response": "@737074 Hey there! We\u2019ll have it available to you as soon as it\u2019s available to us. https://t.co/0i8GpimuDa /LW",
+          "primary_intent": "Content Availability & Catalog Accuracy",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.5589,
+          "customer_message": "Ummmmm @118062 I can't find the new album anywhere. Not on @115888 or @115948 this is not okay",
+          "historical_brand_response": "@649714 Taylor Swift's 'Reputation' isn't available to stream just yet \u2013 stay tuned! For now, check out the singles: https://t.co/3h0TnPWP0c /DR",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.5892,
+          "customer_message": "@115888 @54223 can we fix the fact that the self titled album does not have the explicit versions ?",
+          "historical_brand_response": "@422194 Hey Colin! Where possible we have both versions available. More info here: https://t.co/uKBxlsmKqi /SY",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.563,
+          "customer_message": "where's the ALBUM @115888",
+          "historical_brand_response": "@737074 Hey there! We\u2019ll have it available to you as soon as it\u2019s available to us. https://t.co/0i8GpimuDa /LW",
+          "primary_intent": "Content Availability & Catalog Accuracy",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.5589,
+          "customer_message": "Ummmmm @118062 I can't find the new album anywhere. Not on @115888 or @115948 this is not okay",
+          "historical_brand_response": "@649714 Taylor Swift's 'Reputation' isn't available to stream just yet \u2013 stay tuned! For now, check out the singles: https://t.co/3h0TnPWP0c /DR",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "partial",
+        "problem_actually_similar": true,
+        "response_relevant": "partial",
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Related content-correction/missing-album topic but different specific case."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-756592-756588",
+      "query_customer_message": "@SpotifyCares 8.4.22.857",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "clarification_question",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.9868,
+          "customer_message": "@SpotifyCares 8.4.27.895",
+          "historical_brand_response": "@153882 Thanks! Best thing to try here is a reinstall. Just follow the steps at https://t.co/EqisDMwZAT. Let us know how it goes /JJ",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.9837,
+          "customer_message": "@SpotifyCares 8.4.22.515",
+          "historical_brand_response": "@555607 Got it! We're afraid this isn't available on mobile devices yet, but we'll make sure to pass on your feedback /JP",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.9837,
+          "customer_message": "@SpotifyCares 8.4.22.515",
+          "historical_brand_response": "@330174 Thanks. Does logging out, restarting your device, and logging back in make a difference? /LO",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.9868,
+          "customer_message": "@SpotifyCares 8.4.27.895",
+          "historical_brand_response": "@153882 Thanks! Best thing to try here is a reinstall. Just follow the steps at https://t.co/EqisDMwZAT. Let us know how it goes /JJ",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.9837,
+          "customer_message": "@SpotifyCares 8.4.22.515",
+          "historical_brand_response": "@555607 Got it! We're afraid this isn't available on mobile devices yet, but we'll make sure to pass on your feedback /JP",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.9837,
+          "customer_message": "@SpotifyCares 8.4.22.515",
+          "historical_brand_response": "@330174 Thanks. Does logging out, restarting your device, and logging back in make a difference? /LO",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        }
+      ],
+      "manual_audit": {
+        "category": "poor",
+        "problem_actually_similar": false,
+        "response_relevant": false,
+        "usable_resolution_evidence": false,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Query is literally just an app-version string (a reply to a clarifying question) -- carries no independent signal; near-duplicate version-string matches are found but the associated resolutions are for unrelated problems."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-513057-513055",
+      "query_customer_message": "@SpotifyCares volume dropped to below half as a result of changing streaming from another device to phone. How do I get it back?",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "clarification_question",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.7642,
+          "customer_message": "@SpotifyCares I\u2019m on an iPhone 7 and I can no longer change the volume when I don\u2019t have the app pulled up- Spotify or iOS prob?",
+          "historical_brand_response": "@435930 Hey there, we're here to help! Does logging out &gt; restarting the device &gt; logging back in help? Keep us posted /TB",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.7556,
+          "customer_message": "What\u2019s wrong with Spotify\u2019s volume? It\u2019s gone all the way down @SpotifyCares",
+          "historical_brand_response": "@165017 Hey there! What device, operating system, and version of Spotify is this happening on? Let us know - we'll lend a hand /SY",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.7538,
+          "customer_message": "@SpotifyCares 11.0.2",
+          "historical_brand_response": "@165017 Awesome. When did this start happening? Was it after an app or iOS update? /SY",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.7642,
+          "customer_message": "@SpotifyCares I\u2019m on an iPhone 7 and I can no longer change the volume when I don\u2019t have the app pulled up- Spotify or iOS prob?",
+          "historical_brand_response": "@435930 Hey there, we're here to help! Does logging out &gt; restarting the device &gt; logging back in help? Keep us posted /TB",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.7556,
+          "customer_message": "What\u2019s wrong with Spotify\u2019s volume? It\u2019s gone all the way down @SpotifyCares",
+          "historical_brand_response": "@165017 Hey there! What device, operating system, and version of Spotify is this happening on? Let us know - we'll lend a hand /SY",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.7538,
+          "customer_message": "@SpotifyCares 11.0.2",
+          "historical_brand_response": "@165017 Awesome. When did this start happening? Was it after an app or iOS update? /SY",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": true,
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Volume-drop issue matched to genuinely similar volume issues with appropriate troubleshooting asks."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-1359532-1359529",
+      "query_customer_message": "@SpotifyCares Ok I have the info. It's no been classified in the UK. It's out today, and advertised on Spotify for release today.",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "substantive_response",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8424,
+          "customer_message": "@SpotifyCares But this isn\u2019t available in the uk as of yet correct?",
+          "historical_brand_response": "@708521 Soundtrack Business is available everywhere! We'd suggest checking out this link for more info: https://t.co/uLEU9CVHnz /QI",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.8287,
+          "customer_message": "@SpotifyCares So it\u2019s not available in the UK?",
+          "historical_brand_response": "@408439 That's right. No worries, we'll let the right team know it's something you'd like to see /RP",
+          "primary_intent": "Country/Market Availability Inquiry",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.8094,
+          "customer_message": "@SpotifyCares Thanks but the UK is not listed in the country list.",
+          "historical_brand_response": "@128529 2. UNiDAYS here: https://t.co/QjZHD4jDVM. In the meantime, let us know if you need help with anything else /GU",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8424,
+          "customer_message": "@SpotifyCares But this isn\u2019t available in the uk as of yet correct?",
+          "historical_brand_response": "@708521 Soundtrack Business is available everywhere! We'd suggest checking out this link for more info: https://t.co/uLEU9CVHnz /QI",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.8287,
+          "customer_message": "@SpotifyCares So it\u2019s not available in the UK?",
+          "historical_brand_response": "@408439 That's right. No worries, we'll let the right team know it's something you'd like to see /RP",
+          "primary_intent": "Country/Market Availability Inquiry",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.8094,
+          "customer_message": "@SpotifyCares Thanks but the UK is not listed in the country list.",
+          "historical_brand_response": "@128529 2. UNiDAYS here: https://t.co/QjZHD4jDVM. In the meantime, let us know if you need help with anything else /GU",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": true,
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "UK content-availability question matched to same-topic UK availability cases."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-1941802-1941801",
+      "query_customer_message": "Hey @SpotifyCares - just created an account and my user name is random letters and numbers. Help!",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "dm_redirect",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.9228,
+          "customer_message": "@115888 @SpotifyCares I signed up for an account and my username is random letters and numbers. I didn't set my username to that. Any help?",
+          "historical_brand_response": "@364178 Hey Luis! Can you DM us your account's email address? We'll take a look backstage /JL https://t.co/ldFdZRiNAt",
+          "primary_intent": "Account Access & Login",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.9063,
+          "customer_message": "@SpotifyCares Hello, I signed up for a new account and my username is a bunch of random letters and numbers. Could you please help me set it to the username I want?",
+          "historical_brand_response": "@236484 Hi Alexandru! Can you DM us with your account's username or email address? We'll see what we can suggest /WW https://t.co/ldFdZRiNAt",
+          "primary_intent": "Account Access & Login",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.8903,
+          "customer_message": "Hey @SpotifyCares can you help me with my account? Why my username displays as random letters? https://t.co/IOwEdOSWfc",
+          "historical_brand_response": "@573791 Hi! We'd suggest deleting your tweet to keep your info secure. Can you send the screenshot to us via DM instead? /QI https://t.co/ldFdZRiNAt",
+          "primary_intent": "Account Access & Login",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.9228,
+          "customer_message": "@115888 @SpotifyCares I signed up for an account and my username is random letters and numbers. I didn't set my username to that. Any help?",
+          "historical_brand_response": "@364178 Hey Luis! Can you DM us your account's email address? We'll take a look backstage /JL https://t.co/ldFdZRiNAt",
+          "primary_intent": "Account Access & Login",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.9063,
+          "customer_message": "@SpotifyCares Hello, I signed up for a new account and my username is a bunch of random letters and numbers. Could you please help me set it to the username I want?",
+          "historical_brand_response": "@236484 Hi Alexandru! Can you DM us with your account's username or email address? We'll see what we can suggest /WW https://t.co/ldFdZRiNAt",
+          "primary_intent": "Account Access & Login",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.8903,
+          "customer_message": "Hey @SpotifyCares can you help me with my account? Why my username displays as random letters? https://t.co/IOwEdOSWfc",
+          "historical_brand_response": "@573791 Hi! We'd suggest deleting your tweet to keep your info secure. Can you send the screenshot to us via DM instead? /QI https://t.co/ldFdZRiNAt",
+          "primary_intent": "Account Access & Login",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": "partial",
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Near-exact match (random username after signup) 3/3; evidence value reduced only because the actual fix happens via DM."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-2545256-2545261",
+      "query_customer_message": "@SpotifyCares That does help but it messes up again soon after.",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "substantive_response",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.9101,
+          "customer_message": "@SpotifyCares I tried that but it didn\u2019t help fix the problem",
+          "historical_brand_response": "@304151 Best thing to try here is a reinstall. Just follow the steps at https://t.co/EqisDMwZAT. Let us know how it goes /VK",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.9083,
+          "customer_message": "@SpotifyCares Still does not help.",
+          "historical_brand_response": "@139555 Thanks for letting us know. Are you getting any specific error messages while using the web player? A screenshot of what you're seeing would be helpful /CE",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.8997,
+          "customer_message": "@SpotifyCares I tried, but nope, it didn't help.",
+          "historical_brand_response": "@726770 We see. Could you try a quick reinstall for us? Just follow the steps here: https://t.co/EqisDMwZAT. Let us know how this goes /CG",
+          "primary_intent": "Account Access & Login",
+          "response_type": "clarification_question"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.9101,
+          "customer_message": "@SpotifyCares I tried that but it didn\u2019t help fix the problem",
+          "historical_brand_response": "@304151 Best thing to try here is a reinstall. Just follow the steps at https://t.co/EqisDMwZAT. Let us know how it goes /VK",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.9083,
+          "customer_message": "@SpotifyCares Still does not help.",
+          "historical_brand_response": "@139555 Thanks for letting us know. Are you getting any specific error messages while using the web player? A screenshot of what you're seeing would be helpful /CE",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.8997,
+          "customer_message": "@SpotifyCares I tried, but nope, it didn't help.",
+          "historical_brand_response": "@726770 We see. Could you try a quick reinstall for us? Just follow the steps here: https://t.co/EqisDMwZAT. Let us know how this goes /CG",
+          "primary_intent": "Account Access & Login",
+          "response_type": "clarification_question"
+        }
+      ],
+      "manual_audit": {
+        "category": "partial",
+        "problem_actually_similar": null,
+        "response_relevant": "partial",
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Context-dependent follow-up ('that does help but...') matched to similarly-shaped generic follow-ups; reasonable given the shape, but the specific underlying issue is not recoverable from the query alone."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-2577802-2577801",
+      "query_customer_message": "@SpotifyCares my music keeps pausing/skipping/activating Siri by itself \ud83d\ude29\ud83d\ude29 I\u2019ve deleted it and redownloaded it &amp; I\u2019m pretty sure it\u2019s just got worse ?? \ud83d\ude4f\ud83c\udffc",
+      "query_primary_intent": "App & Playback Technical Issues",
+      "query_response_type": "dm_redirect",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8444,
+          "customer_message": "if you don\u2019t fix this damn bug where my phone pauses my music every .002 seconds and switches to siri i\u2019m getting apple music @SpotifyCares",
+          "historical_brand_response": "@371860 Hey there! Could you try uninstalling and reinstalling the app? Let us know how it goes /DF",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.7637,
+          "customer_message": "@SpotifyCares No such luck",
+          "historical_brand_response": "@679799 Can you DM us your account's username or email address? We'll take a look backstage /JP https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.7491,
+          "customer_message": "@SpotifyCares if I get a notification or accidentally open Siri while playing music, it will cut the music off and force me to close and reopen the app so I can listen to music again (don\u2019t have premium so idk if changing songs help the problem)",
+          "historical_brand_response": "@679799 Hey there! What iOS and Spotify version are you using? Also, does it happen with any notification or a specific one? Keep us posted /BH",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8444,
+          "customer_message": "if you don\u2019t fix this damn bug where my phone pauses my music every .002 seconds and switches to siri i\u2019m getting apple music @SpotifyCares",
+          "historical_brand_response": "@371860 Hey there! Could you try uninstalling and reinstalling the app? Let us know how it goes /DF",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.7451,
+          "customer_message": "@116130 my spotify keeps pausing music, tried re install etc already, anything to sort this?",
+          "historical_brand_response": "@779846 Hey Andrew, the cavalry's here! First, could you try using a different device? Also, could you let us know if this happening on WiFi, 3G/4G, or both? We'll see what we can suggest /JZ",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.7286,
+          "customer_message": "@SpotifyCares how come my Spotify keeps pausing/unpausing when I\u2019m trying to listen to stuff? Version 8.4.27.895 (also skips songs randomly too)",
+          "historical_brand_response": "@390911 Hi! Don't worry, help has arrived. Can you let us know what device you're using? In the meantime, can you give this a try: log out from Spotify &gt; restart your device &gt; log back in? Did that make a difference? /DR",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": true,
+        "usable_resolution_evidence": true,
+        "intent_compatible": "App & Playback Technical Issues",
+        "misleading_or_unrelated": false,
+        "notes": "Near-exact Siri-interrupts-playback bug matched to the same bug reported by other users."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-540365-540364",
+      "query_customer_message": "@SpotifyCares hi guys, I just d/l Spotify for my Mac, keep getting error 410 and can\u2019t get out of offline mode. Help!",
+      "query_primary_intent": "App & Playback Technical Issues",
+      "query_response_type": "dm_redirect",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.7126,
+          "customer_message": "@SpotifyCares I've tried logging out of Spotify and back in, and it didn't work. I'll try restarting my Mac at lunch break since I'm currently at work \ud83d\ude48",
+          "historical_brand_response": "@737064 Got it. While you're at it, we'd also suggest a reinstall. Just follow the steps at https://t.co/EqisDMwZAT. Let us know how it goes /NY",
+          "primary_intent": "Account Access & Login",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.712,
+          "customer_message": "@117153 HELP",
+          "historical_brand_response": "@333758 Hey there! What device, operating system, and Spotify version are you using? We'll see what we can suggest /RB",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.6823,
+          "customer_message": "my spotify on my mac keeps crashing please help @SpotifyCares",
+          "historical_brand_response": "@213195 Hey Emily! That's not cool. Does logging out &gt; restarting the device &gt; logging back in help? Keep us posted /RV",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.6823,
+          "customer_message": "my spotify on my mac keeps crashing please help @SpotifyCares",
+          "historical_brand_response": "@213195 Hey Emily! That's not cool. Does logging out &gt; restarting the device &gt; logging back in help? Keep us posted /RV",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.6661,
+          "customer_message": "Getting this error message on @115888 .. reinstalled, did cold reboot and cleared ram.. someone send help \ud83d\ude2d\ud83d\ude2d #spotify https://t.co/HwF503Uy25",
+          "historical_brand_response": "@807650 Hey Nicole! Everything should be running smoothly now. Let us know if this is still happening /GS",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.6579,
+          "customer_message": "@117153 Spotify hasn't worked since Sunday, don't know why. I attempted uninstall then download but it comes up with error message 18",
+          "historical_brand_response": "@490649 Hey Amanda, help's here! Can you DM us your account's email address? We'll take a look backstage /JN https://t.co/ldFdZRiNAt",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "manual_audit": {
+        "category": "partial",
+        "problem_actually_similar": "partial",
+        "response_relevant": "partial",
+        "usable_resolution_evidence": "partial",
+        "intent_compatible": "App & Playback Technical Issues",
+        "misleading_or_unrelated": false,
+        "notes": "Mac/offline-mode error partially matched by a login-reinstall case (different specific problem, same remedy family) and one genuine Technical match."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-2968470-2968469",
+      "query_customer_message": "@115888 I\u2019m switching to apple music if you don\u2019t make an app for apple watches",
+      "query_primary_intent": "General Complaint / Service Dissatisfaction",
+      "query_response_type": "substantive_response",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8614,
+          "customer_message": "@115888 Yo, hurry up and get on the Apple Watch. \n\nSincerely\n-Everyone who is forced to use Apple Music when on the Apple Watch \ud83d\ude12",
+          "historical_brand_response": "@642964 Hey! Check out the official idea and add your vote to let our devs know it's something you'd like to see: https://t.co/SEK4E4gi22 /AR",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.8363,
+          "customer_message": "@115888 Seriously, where is your Apple Watch app? It\u2019s long overdue. I don\u2019t want to use Apple Music, but it works with the watch.",
+          "historical_brand_response": "@214622 Hi! Check out the official idea and add your vote to let our devs know it's something you'd like to see: https://t.co/SEK4E4gi22 /RB",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.8324,
+          "customer_message": "@115888 please make an Apple Watch app!!!",
+          "historical_brand_response": "@435735 Hey! Check out the official idea and add your vote to convince our devs it's something to look into: https://t.co/SEK4E4gi22 /DF",
+          "primary_intent": "Feature Request & Product Feedback",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8034,
+          "customer_message": "@115888 Seriously considering switching to Apple Music since yall are too lazy to update your app for the iPhone X, and even bother with Apple Watch support",
+          "historical_brand_response": "@666409 2: About the Apple Watch, you can support the idea here: https://t.co/SEK4E4gi22. Stay tuned /BH",
+          "primary_intent": "General Complaint / Service Dissatisfaction",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.8034,
+          "customer_message": "@115888 Seriously considering switching to Apple Music since yall are too lazy to update your app for the iPhone X, and even bother with Apple Watch support",
+          "historical_brand_response": "@666409 1: Hey Noah! We're working into the iPhone X optimization as we speak. Fingers crossed we'll have an update soon.",
+          "primary_intent": "General Complaint / Service Dissatisfaction",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.7947,
+          "customer_message": "Yo @115888 fix your damn app before I get fed up and switch to apple music.",
+          "historical_brand_response": "@807651 Hi there, thanks for bearing with us. Spotify should be working perfectly again! /JS",
+          "primary_intent": "General Complaint / Service Dissatisfaction",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": true,
+        "usable_resolution_evidence": true,
+        "intent_compatible": "General Complaint / Service Dissatisfaction",
+        "misleading_or_unrelated": false,
+        "notes": "Apple Watch app request/complaint matched to near-identical complaints."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-2319909-2319908",
+      "query_customer_message": "@SpotifyCares Hi, I've deleted my account but I'm still getting emails. Is there anyway to check if I still have an account registered?",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "dm_redirect",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8393,
+          "customer_message": "@SpotifyCares \nHello, someone entered my account and changed the email with which I am registered. I need to recover my account",
+          "historical_brand_response": "@332553 Hey there! We've just sent you a DM \ud83d\ude42 /AN",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.8129,
+          "customer_message": "I got an email to confirm a spotify account but I didn't sign up with that email address, how do I check who's used my email? @spotifycares",
+          "historical_brand_response": "@183979 Hi Diana! Help's here. Could you DM us your email address? We'll take a look backstage /AU https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.7976,
+          "customer_message": "@SpotifyCares Hi someone stole my account by changing the registered email. Can I get the account recovered?",
+          "historical_brand_response": "@796165 Hey Russel, we\u2019re sorry to hear that. Check out https://t.co/QHn3ok8y2n for what to do next /RH",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8393,
+          "customer_message": "@SpotifyCares \nHello, someone entered my account and changed the email with which I am registered. I need to recover my account",
+          "historical_brand_response": "@332553 Hey there! We've just sent you a DM \ud83d\ude42 /AN",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.8129,
+          "customer_message": "I got an email to confirm a spotify account but I didn't sign up with that email address, how do I check who's used my email? @spotifycares",
+          "historical_brand_response": "@183979 Hi Diana! Help's here. Could you DM us your email address? We'll take a look backstage /AU https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.7976,
+          "customer_message": "@SpotifyCares Hi someone stole my account by changing the registered email. Can I get the account recovered?",
+          "historical_brand_response": "@796165 Hey Russel, we\u2019re sorry to hear that. Check out https://t.co/QHn3ok8y2n for what to do next /RH",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "partial",
+        "problem_actually_similar": "partial",
+        "response_relevant": false,
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Deleted-account-still-getting-emails matched to account-takeover cases -- related 'account state' theme but a different specific problem; DM-redirect evidence not concretely useful."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-1095361-1095360",
+      "query_customer_message": "@SpotifyCares Something is wrong with your CC payment system. None of my cards will work.",
+      "query_primary_intent": "Premium Subscription & Billing",
+      "query_response_type": "dm_redirect",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8596,
+          "customer_message": "@SpotifyCares No matter what credit card I use (Tried 3) it always says; Oops, seems your card or payment provider is having a bad day.",
+          "historical_brand_response": "@306060 Hi Matt, help's here! We just replied to your DM. For your security, let's carry on chatting there \ud83d\ude42 /RR",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.8523,
+          "customer_message": "@SpotifyCares can you guy do something about the payment method , I have tried so many different cards and none isn\u2019t working",
+          "historical_brand_response": "@400476 We've just sent you a bit more info over DM. We'll carry on helping out there /GS",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.8462,
+          "customer_message": "@SpotifyCares what\u2019s wrong with the payment functions? All of my cards can\u2019t go through",
+          "historical_brand_response": "@314189 Hey Jaime, help's here! Do you get an error message when using your card? Also, can you DM us your account's email address? /SJ",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8596,
+          "customer_message": "@SpotifyCares No matter what credit card I use (Tried 3) it always says; Oops, seems your card or payment provider is having a bad day.",
+          "historical_brand_response": "@306060 Hi Matt, help's here! We just replied to your DM. For your security, let's carry on chatting there \ud83d\ude42 /RR",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.8523,
+          "customer_message": "@SpotifyCares can you guy do something about the payment method , I have tried so many different cards and none isn\u2019t working",
+          "historical_brand_response": "@400476 We've just sent you a bit more info over DM. We'll carry on helping out there /GS",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.8462,
+          "customer_message": "@SpotifyCares what\u2019s wrong with the payment functions? All of my cards can\u2019t go through",
+          "historical_brand_response": "@314189 Hey Jaime, help's here! Do you get an error message when using your card? Also, can you DM us your account's email address? /SJ",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": "partial",
+        "usable_resolution_evidence": true,
+        "intent_compatible": "Premium Subscription & Billing",
+        "misleading_or_unrelated": false,
+        "notes": "Card-payment-declined issue matched almost exactly; evidence limited by DM redirect but topically perfect."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-2062087-2062086",
+      "query_customer_message": "@SpotifyCares my spotify account has disconnected from my phone bill...why??",
+      "query_primary_intent": "Premium Subscription & Billing",
+      "query_response_type": "dm_redirect",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8357,
+          "customer_message": "@SpotifyCares I keep getting charged for an account I don\u2019t have and can not access",
+          "historical_brand_response": "@411582 Hey there! Can you DM us the account's email address? We'll take a look backstage /RB https://t.co/ldFdZRiNAt",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.825,
+          "customer_message": "@SpotifyCares is there a number I can call to work out the issues with my account",
+          "historical_brand_response": "@783540 Hey Jasmine! We don't currently offer phone support, but we'd be happy to help you here on Twitter. Just let us know more about what's happening, and we'll see what we can suggest /CE",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.825,
+          "customer_message": "@SpotifyCares having a problem with my account.",
+          "historical_brand_response": "@815714 Hey there, help's here! Could you DM us your account's username and email address? We'll see what we can suggest /DQ https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8357,
+          "customer_message": "@SpotifyCares I keep getting charged for an account I don\u2019t have and can not access",
+          "historical_brand_response": "@411582 Hey there! Can you DM us the account's email address? We'll take a look backstage /RB https://t.co/ldFdZRiNAt",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.8223,
+          "customer_message": "@SpotifyCares Quit Billing me I do not have an account with you. How do I stop this?",
+          "historical_brand_response": "@581924 Hi! Can you DM us a screenshot of your bank statement showing the Spotify charges? Make sure it doesn't show your private payment info /RB https://t.co/ldFdZRiNAt",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.8083,
+          "customer_message": "@SpotifyCares I had a premium acoount,but forgot my username. When I changed my phone I dissconnected, but my bill still charged regularly.",
+          "historical_brand_response": "@611069 Hey Diana! The cavalry's here. Could you DM us your account's email address? We'll take a look under the hood /KB https://t.co/ldFdZRiNAt",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "manual_audit": {
+        "category": "poor",
+        "problem_actually_similar": false,
+        "response_relevant": false,
+        "usable_resolution_evidence": false,
+        "intent_compatible": "Premium Subscription & Billing",
+        "misleading_or_unrelated": false,
+        "notes": "Weak/generic matches ('having a problem with my account') carry almost no specific signal despite matching intent label."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-2920619-2920616",
+      "query_customer_message": "@SpotifyCares I\u2019m unsubscribing and going back to Apple Music.",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "substantive_response",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8309,
+          "customer_message": "@SpotifyCares ur the best i\u2019ll never leave you for apple music",
+          "historical_brand_response": "@288458 Aww, that made us blush a little. If you ever need us again, we're just a tweet away. https://t.co/M9DGmitf5G \ud83e\udd18 /JE",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.8229,
+          "customer_message": "@SpotifyCares Going to switch to Apple Music if you don't get back to my within the day. \ud83d\ude24",
+          "historical_brand_response": "@250520 Hi! We've replied to your DM. Check your inbox /LM",
+          "primary_intent": "General Complaint / Service Dissatisfaction",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.8159,
+          "customer_message": "@SpotifyCares Sent.",
+          "historical_brand_response": "@582772 Thanks! We've just sent a DM back your way. Let's carry on chatting there /TR",
+          "primary_intent": "General Complaint / Service Dissatisfaction",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8309,
+          "customer_message": "@SpotifyCares ur the best i\u2019ll never leave you for apple music",
+          "historical_brand_response": "@288458 Aww, that made us blush a little. If you ever need us again, we're just a tweet away. https://t.co/M9DGmitf5G \ud83e\udd18 /JE",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.8229,
+          "customer_message": "@SpotifyCares Going to switch to Apple Music if you don't get back to my within the day. \ud83d\ude24",
+          "historical_brand_response": "@250520 Hi! We've replied to your DM. Check your inbox /LM",
+          "primary_intent": "General Complaint / Service Dissatisfaction",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.8159,
+          "customer_message": "@SpotifyCares Sent.",
+          "historical_brand_response": "@582772 Thanks! We've just sent a DM back your way. Let's carry on chatting there /TR",
+          "primary_intent": "General Complaint / Service Dissatisfaction",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "manual_audit": {
+        "category": "partial",
+        "problem_actually_similar": "partial",
+        "response_relevant": false,
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": true,
+        "notes": "One retrieved result ('I'll never leave you for Apple Music') is the OPPOSITE sentiment of the query ('I'm unsubscribing... to Apple Music') -- a concrete negation/sentiment-blindness failure alongside two genuinely relevant complaint matches."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-2820824-2820822",
+      "query_customer_message": "@115888  what the hell is wrong with your Google Assistant integration, how come it used 5 GB last 6 hours while I am sleeping?!?!\n\n#Fail #Spotify @122986 @20734",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "clarification_question",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.6572,
+          "customer_message": "@115888 what's wrong with Spotify? It keeps saying I'm offline.",
+          "historical_brand_response": "@537187 Hey Abel, that doesn't sound right. What device, operating system, and Spotify version are you using? We'll see what we can suggest /JE",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.647,
+          "customer_message": "Why does Spotify keep stopping WHAT THE HECK @115888",
+          "historical_brand_response": "@136765 Hey Jose. Don't worry, help's here. Can you tell us what device, operating system, and Spotify app versions you're using? /JU",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.6421,
+          "customer_message": "Spotify premium is not working! Huhu, why @115888? \ud83d\ude2d\ud83d\ude2d\ud83d\ude2d",
+          "historical_brand_response": "@236880 Hey there, we're here to help! Could you DM us your account's username and email address? We'll take a look backstage /BX https://t.co/ldFdZRiNAt",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.6572,
+          "customer_message": "@115888 what's wrong with Spotify? It keeps saying I'm offline.",
+          "historical_brand_response": "@537187 Hey Abel, that doesn't sound right. What device, operating system, and Spotify version are you using? We'll see what we can suggest /JE",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.647,
+          "customer_message": "Why does Spotify keep stopping WHAT THE HECK @115888",
+          "historical_brand_response": "@136765 Hey Jose. Don't worry, help's here. Can you tell us what device, operating system, and Spotify app versions you're using? /JU",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.6421,
+          "customer_message": "Spotify premium is not working! Huhu, why @115888? \ud83d\ude2d\ud83d\ude2d\ud83d\ude2d",
+          "historical_brand_response": "@236880 Hey there, we're here to help! Could you DM us your account's username and email address? We'll take a look backstage /BX https://t.co/ldFdZRiNAt",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "manual_audit": {
+        "category": "partial",
+        "problem_actually_similar": "partial",
+        "response_relevant": "partial",
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "General app-malfunction/dissatisfaction theme matched but not the specific Google Assistant/battery complaint."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-1182763-1182761",
+      "query_customer_message": "@115888 if you don\u2019t help me i\u2019m gonna switch for apple music.",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "dm_redirect",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8779,
+          "customer_message": "@115888 should i switch to you or stay with apple music",
+          "historical_brand_response": "@361092 Hey, we'd love to have you on board! If you haven't had a Spotify subscription before, check out https://t.co/zgnxs5kPEu /MG",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.8593,
+          "customer_message": "@115888 I hate you I\u2019m getting Apple Music and I\u2019m serious this time",
+          "historical_brand_response": "@425396 Hey George! Sorry to hear you feel this way. Can you tell us more about what's happening? We'll see what we can suggest /RA",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.817,
+          "customer_message": "@115888 I will cancel my premium and switch to Apple Music",
+          "historical_brand_response": "@536998 We hear you. We do our best! But sometimes agreements are ongoing, or can't be reached with the content provider. If you ever need anything else, just shout and we'll come running /JX",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8779,
+          "customer_message": "@115888 should i switch to you or stay with apple music",
+          "historical_brand_response": "@361092 Hey, we'd love to have you on board! If you haven't had a Spotify subscription before, check out https://t.co/zgnxs5kPEu /MG",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.8593,
+          "customer_message": "@115888 I hate you I\u2019m getting Apple Music and I\u2019m serious this time",
+          "historical_brand_response": "@425396 Hey George! Sorry to hear you feel this way. Can you tell us more about what's happening? We'll see what we can suggest /RA",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.817,
+          "customer_message": "@115888 I will cancel my premium and switch to Apple Music",
+          "historical_brand_response": "@536998 We hear you. We do our best! But sometimes agreements are ongoing, or can't be reached with the content provider. If you ever need anything else, just shout and we'll come running /JX",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "partial",
+        "problem_actually_similar": true,
+        "response_relevant": "partial",
+        "usable_resolution_evidence": false,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Same 'switching to Apple Music' venting theme matched well; evidence is mostly generic engagement, not resolution content."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-1915540-1915539",
+      "query_customer_message": "@115888 having an issue finding my username I used",
+      "query_primary_intent": "Account Access & Login",
+      "query_response_type": "dm_redirect",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8068,
+          "customer_message": "@115888 everytime I make an account it doesn\u2019t let me choose my username.",
+          "historical_brand_response": "@205218 2: see this name when they visit your profile. We hope this clears things up. If you have any other questions, just give us a shout /CH",
+          "primary_intent": "Account Access & Login",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.8068,
+          "customer_message": "@115888 everytime I make an account it doesn\u2019t let me choose my username.",
+          "historical_brand_response": "@205218 1: Hey! Right now, it's not possible to choose a username at sign-up, but you can add a display name instead. Other Spotify users will...",
+          "primary_intent": "Account Access & Login",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.7762,
+          "customer_message": "@115888 when can I change my username?",
+          "historical_brand_response": "@351911 @115888 Hi! We've just responded to your DM. Let's continue chatting there /WW",
+          "primary_intent": "Account Access & Login",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8068,
+          "customer_message": "@115888 everytime I make an account it doesn\u2019t let me choose my username.",
+          "historical_brand_response": "@205218 2: see this name when they visit your profile. We hope this clears things up. If you have any other questions, just give us a shout /CH",
+          "primary_intent": "Account Access & Login",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.8068,
+          "customer_message": "@115888 everytime I make an account it doesn\u2019t let me choose my username.",
+          "historical_brand_response": "@205218 1: Hey! Right now, it's not possible to choose a username at sign-up, but you can add a display name instead. Other Spotify users will...",
+          "primary_intent": "Account Access & Login",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.7762,
+          "customer_message": "@115888 when can I change my username?",
+          "historical_brand_response": "@351911 @115888 Hi! We've just responded to your DM. Let's continue chatting there /WW",
+          "primary_intent": "Account Access & Login",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": true,
+        "usable_resolution_evidence": true,
+        "intent_compatible": "Account Access & Login",
+        "misleading_or_unrelated": false,
+        "notes": "Username-related access issue matched almost exactly."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-1960404-1960403",
+      "query_customer_message": "@SpotifyCares I am not receiving my reset password email in order for me to change my password to get into my account :( help.",
+      "query_primary_intent": "Account Access & Login",
+      "query_response_type": "dm_redirect",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.9458,
+          "customer_message": "I can't receive my password reset email @SpotifyCares",
+          "historical_brand_response": "@150022 Hey Joshua, we'd love to help! Can you DM us your account's username or email address? We'll check what's happening backstage /JP https://t.co/ldFdZRiNAt",
+          "primary_intent": "Account Access & Login",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.9409,
+          "customer_message": "@SpotifyCares trying to reset my password but wont send it to my email",
+          "historical_brand_response": "@553550 Hi there! That doesn't sound good. Can you DM us your account's email address? We'll take a look under the hood /QI https://t.co/ldFdZRiNAt",
+          "primary_intent": "Account Access & Login",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.9284,
+          "customer_message": "@SpotifyCares My password isn\u2019t working and I\ufe0f have tried both emails. Trying to reset it.",
+          "historical_brand_response": "@581826 Gotcha. Can you DM us your Spotify account's email address and username? We'll take a look backstage \ud83d\udd0d /PI https://t.co/ldFdZRiNAt",
+          "primary_intent": "Account Access & Login",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.9458,
+          "customer_message": "I can't receive my password reset email @SpotifyCares",
+          "historical_brand_response": "@150022 Hey Joshua, we'd love to help! Can you DM us your account's username or email address? We'll check what's happening backstage /JP https://t.co/ldFdZRiNAt",
+          "primary_intent": "Account Access & Login",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.9409,
+          "customer_message": "@SpotifyCares trying to reset my password but wont send it to my email",
+          "historical_brand_response": "@553550 Hi there! That doesn't sound good. Can you DM us your account's email address? We'll take a look under the hood /QI https://t.co/ldFdZRiNAt",
+          "primary_intent": "Account Access & Login",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.9284,
+          "customer_message": "@SpotifyCares My password isn\u2019t working and I\ufe0f have tried both emails. Trying to reset it.",
+          "historical_brand_response": "@581826 Gotcha. Can you DM us your Spotify account's email address and username? We'll take a look backstage \ud83d\udd0d /PI https://t.co/ldFdZRiNAt",
+          "primary_intent": "Account Access & Login",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": true,
+        "usable_resolution_evidence": true,
+        "intent_compatible": "Account Access & Login",
+        "misleading_or_unrelated": false,
+        "notes": "Password-reset-email-not-received matched near-exactly across all 3 results."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-1162269-1162265",
+      "query_customer_message": "@SpotifyCares @393457 You should've already had methods like paypal and ideal. This is just bad. Ever seen a student with a creditcard? Like wtf man",
+      "query_primary_intent": "Premium Subscription & Billing",
+      "query_response_type": "substantive_response",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8474,
+          "customer_message": "@SpotifyCares @695058 Can we already pay with paypal or ideal? We students don't all own a creditcard...",
+          "historical_brand_response": "@695059 Hey! We're afraid both are currently not available payment options for the student discount. No worries, we'll let the right team know they're something you'd like to see /RC",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.8221,
+          "customer_message": "@SpotifyCares Hi I want spotify premium student but why isn't there an iDeal or PayPal option? Just like every student, I don't have a creditcard.",
+          "historical_brand_response": "@133326 Hey Rana! Can you DM us your account's username or email address? We'll take a look under the hood /RS https://t.co/ldFdZRiNAt",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.7888,
+          "customer_message": "@SpotifyCares It's weird because I can pay the normal 9,99 subscription with paypal and Ideal, but the 50% student discount one only with credit card",
+          "historical_brand_response": "@361239 We hear you. Your feedback has been noted and passed onto the team. For now, let us know if there's anything else /GT",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8474,
+          "customer_message": "@SpotifyCares @695058 Can we already pay with paypal or ideal? We students don't all own a creditcard...",
+          "historical_brand_response": "@695059 Hey! We're afraid both are currently not available payment options for the student discount. No worries, we'll let the right team know they're something you'd like to see /RC",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.8221,
+          "customer_message": "@SpotifyCares Hi I want spotify premium student but why isn't there an iDeal or PayPal option? Just like every student, I don't have a creditcard.",
+          "historical_brand_response": "@133326 Hey Rana! Can you DM us your account's username or email address? We'll take a look under the hood /RS https://t.co/ldFdZRiNAt",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.7888,
+          "customer_message": "@SpotifyCares It's weird because I can pay the normal 9,99 subscription with paypal and Ideal, but the 50% student discount one only with credit card",
+          "historical_brand_response": "@361239 We hear you. Your feedback has been noted and passed onto the team. For now, let us know if there's anything else /GT",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": true,
+        "usable_resolution_evidence": true,
+        "intent_compatible": "Premium Subscription & Billing",
+        "misleading_or_unrelated": false,
+        "notes": "Student PayPal/iDeal payment-option complaint matched almost exactly, including a genuinely informative resolution ('not currently available payment options')."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-854637-854636",
+      "query_customer_message": "@115888 woke up this morning and all my saved songs are gone... any way this can be fixed?",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "clarification_question",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.873,
+          "customer_message": "@115888 just lost all my saved songs and i have no idea why... SO annoying!!!",
+          "historical_brand_response": "@602774 Hi George, that doesn't sound good. Could you DM us your account's username or email address? We'll take a look under the hood /JO https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.8499,
+          "customer_message": "all my saved songs disappeared on @117168 and idk what to do \ud83d\udd2b",
+          "historical_brand_response": "@431765 Hey, that's not cool! Can you let us know the device you're using? If you've created playlists, can you still see the tracks on them? /JC",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.8372,
+          "customer_message": "@115888 what's going on? All my most listened to music is no longer saved. I lost all my @33996 saved albums today. \ud83d\ude2d\ud83d\ude24",
+          "historical_brand_response": "@315234 Hey James, that's not cool. If possible, could you check if you can still see the albums using other devices? Let us know how it goes /JE",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.873,
+          "customer_message": "@115888 just lost all my saved songs and i have no idea why... SO annoying!!!",
+          "historical_brand_response": "@602774 Hi George, that doesn't sound good. Could you DM us your account's username or email address? We'll take a look under the hood /JO https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.8499,
+          "customer_message": "all my saved songs disappeared on @117168 and idk what to do \ud83d\udd2b",
+          "historical_brand_response": "@431765 Hey, that's not cool! Can you let us know the device you're using? If you've created playlists, can you still see the tracks on them? /JC",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.8372,
+          "customer_message": "@115888 what's going on? All my most listened to music is no longer saved. I lost all my @33996 saved albums today. \ud83d\ude2d\ud83d\ude24",
+          "historical_brand_response": "@315234 Hey James, that's not cool. If possible, could you check if you can still see the albums using other devices? Let us know how it goes /JE",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": "partial",
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Saved-songs-disappeared matched near-exactly; evidence limited by DM redirect on top result."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-2239681-2239680",
+      "query_customer_message": "@115888 I will soon move to Panam\u00e1 and I would like to transfer my current account. Is it possible to do it?",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "dm_redirect",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.5687,
+          "customer_message": "@117153 im wondering if I can transfer my stuff to one account to the next because I bought premium on the wrong account",
+          "historical_brand_response": "@772946 Hi there! Can you DM us the email addresses or usernames on both accounts? We'll take a look backstage /NQ https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.5434,
+          "customer_message": "@115888 Is it possible to change your family adress after moving in with someone else?",
+          "historical_brand_response": "@275727 Hey, help's here! Could you DM us your username and email address? We'll see what we can suggest /JY https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.5363,
+          "customer_message": "@117168 unable to change my UK account to US one after relocating, says @115888 not available in chosen country! how can I do this?",
+          "historical_brand_response": "@599946 Hey Andrew! Could you DM us your account's username or email address? We'll take a look backstage /JO https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.5687,
+          "customer_message": "@117153 im wondering if I can transfer my stuff to one account to the next because I bought premium on the wrong account",
+          "historical_brand_response": "@772946 Hi there! Can you DM us the email addresses or usernames on both accounts? We'll take a look backstage /NQ https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.5434,
+          "customer_message": "@115888 Is it possible to change your family adress after moving in with someone else?",
+          "historical_brand_response": "@275727 Hey, help's here! Could you DM us your username and email address? We'll see what we can suggest /JY https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.5363,
+          "customer_message": "@117168 unable to change my UK account to US one after relocating, says @115888 not available in chosen country! how can I do this?",
+          "historical_brand_response": "@599946 Hey Andrew! Could you DM us your account's username or email address? We'll take a look backstage /JO https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "manual_audit": {
+        "category": "partial",
+        "problem_actually_similar": "partial",
+        "response_relevant": "partial",
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Country-relocation account-transfer question partially matched (one strong hit, two only thematically related)."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-981133-981132",
+      "query_customer_message": "@SpotifyCares  You need to launch Spotify in India! It's been way too long!",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "substantive_response",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.9165,
+          "customer_message": "@SpotifyCares you guys should release Spotify in India!",
+          "historical_brand_response": "@131457 Hey there! We've just sent you a bit more info over DM \ud83d\ude42 /CG",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.9109,
+          "customer_message": "@SpotifyCares Yes please launch Spotify in India. \ud83d\ude03 Thank you. You guys are doing a great job!",
+          "historical_brand_response": "@366104 Thanks. We're launching in new countries as often as possible. Be sure to add your email at https://t.co/X8DVSX9QgM /GK",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.9032,
+          "customer_message": "@SpotifyCares Please bring Spotify to India",
+          "historical_brand_response": "@320293 Hi! We're launching in new countries as often as possible. Be sure to add your email at https://t.co/USiTd696hl \ud83d\ude42 /ST",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.9165,
+          "customer_message": "@SpotifyCares you guys should release Spotify in India!",
+          "historical_brand_response": "@131457 Hey there! We've just sent you a bit more info over DM \ud83d\ude42 /CG",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.9109,
+          "customer_message": "@SpotifyCares Yes please launch Spotify in India. \ud83d\ude03 Thank you. You guys are doing a great job!",
+          "historical_brand_response": "@366104 Thanks. We're launching in new countries as often as possible. Be sure to add your email at https://t.co/X8DVSX9QgM /GK",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.9032,
+          "customer_message": "@SpotifyCares Please bring Spotify to India",
+          "historical_brand_response": "@320293 Hi! We're launching in new countries as often as possible. Be sure to add your email at https://t.co/USiTd696hl \ud83d\ude42 /ST",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": "partial",
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "India-launch requests matched near-exactly; evidence is accurate boilerplate ('launching in new countries'), not a concrete answer, but that IS the real historical response."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-2718577-2718575",
+      "query_customer_message": "@SpotifyCares hi. playlist folders would be amazing in your app \ud83e\udd19",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "clarification_question",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8728,
+          "customer_message": "@SpotifyCares I'd love the option of playlist folders. Any chance of an update?",
+          "historical_brand_response": "@182253 Hi there! You can find out more about using playlist folders here: https://t.co/aGZZKzSM3w. Hope that helps /RB",
+          "primary_intent": "Feature Request & Product Feedback",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.859,
+          "customer_message": "@SpotifyCares But what about playlists within a folder. It\u2019s different. Maybe not though",
+          "historical_brand_response": "@796169 The same prompt should show up if you add duplicate tracks to a playlist within a folder. Could you tell us the make/model of your device, as well as the operating system and Spotify version you're using? /KB",
+          "primary_intent": "Content Availability & Catalog Accuracy",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.8159,
+          "customer_message": "@SpotifyCares someone cares :\u2019)",
+          "historical_brand_response": "@327487 We're always... https://t.co/LgAM6ky9Vv \ud83d\udc9a Just send a tweet our way if there's anything else. Have a great day! /GT",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8728,
+          "customer_message": "@SpotifyCares I'd love the option of playlist folders. Any chance of an update?",
+          "historical_brand_response": "@182253 Hi there! You can find out more about using playlist folders here: https://t.co/aGZZKzSM3w. Hope that helps /RB",
+          "primary_intent": "Feature Request & Product Feedback",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.859,
+          "customer_message": "@SpotifyCares But what about playlists within a folder. It\u2019s different. Maybe not though",
+          "historical_brand_response": "@796169 The same prompt should show up if you add duplicate tracks to a playlist within a folder. Could you tell us the make/model of your device, as well as the operating system and Spotify version you're using? /KB",
+          "primary_intent": "Content Availability & Catalog Accuracy",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.8159,
+          "customer_message": "@SpotifyCares someone cares :\u2019)",
+          "historical_brand_response": "@327487 We're always... https://t.co/LgAM6ky9Vv \ud83d\udc9a Just send a tweet our way if there's anything else. Have a great day! /GT",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": true,
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Playlist-folders feature request matched almost exactly, with a genuinely informative documentation-link response."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-1823759-1823758",
+      "query_customer_message": "So @115888 has been shit this weekend, keeps glitching. Intensifying an already terrible weekend.",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "clarification_question",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.7656,
+          "customer_message": ".@115888 is being stupid and glitchy after the last @115858 update \ud83d\udc4e",
+          "historical_brand_response": "@450267 Hey Tim! Can you give us more info about what's happening? We'll see what we can suggest /KL",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.7656,
+          "customer_message": ".@115888 is being stupid and glitchy after the last @115858 update \ud83d\udc4e",
+          "historical_brand_response": "@450267 Let us know via DM what is occurring, then we can help from there. https://t.co/GDrqU22YpT",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.731,
+          "customer_message": "WHATS GOING ON @115888",
+          "historical_brand_response": "@807632 Hey, thanks for the report! We had a little hiccup earlier, but everything should be running just fine now /JS",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.7656,
+          "customer_message": ".@115888 is being stupid and glitchy after the last @115858 update \ud83d\udc4e",
+          "historical_brand_response": "@450267 Hey Tim! Can you give us more info about what's happening? We'll see what we can suggest /KL",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.7656,
+          "customer_message": ".@115888 is being stupid and glitchy after the last @115858 update \ud83d\udc4e",
+          "historical_brand_response": "@450267 Let us know via DM what is occurring, then we can help from there. https://t.co/GDrqU22YpT",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.731,
+          "customer_message": "WHATS GOING ON @115888",
+          "historical_brand_response": "@807632 Hey, thanks for the report! We had a little hiccup earlier, but everything should be running just fine now /JS",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": "partial",
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "'Glitching all weekend' matched to other glitchiness complaints and a real outage acknowledgement."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-499253-499254",
+      "query_customer_message": "@SpotifyCares thanks! i guess my confusion comes from the design &amp; language, makes it seem like i'm signing up anew since you're gathering my billing info again and the button is to \"start premium\", when i already have premium and you have my billing info. please relay to your content/ux team",
+      "query_primary_intent": "Premium Subscription & Billing",
+      "query_response_type": "substantive_response",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.7694,
+          "customer_message": "@SpotifyCares Yeah, it just doesn\u2019t work. I\u2019m trying to change the billing information on file for my account, because I want to get premium again",
+          "historical_brand_response": "@145996 Got it. Could you send us a DM with your account's email address or username? We'll take a look backstage /CO https://t.co/ldFdZRiNAt",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.7686,
+          "customer_message": "@SpotifyCares i need help in regards to my premium account, thanks",
+          "historical_brand_response": "@156657 Hey Natalia! Can you DM us your account's email address or username? If you could also tell us more about what's happening, it'd be helpful. We'll be waiting /JE https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.7683,
+          "customer_message": "@SpotifyCares trying to switch to the $99/year plan and the form it sends me to has a form for credit card and button to \"start my spotify premium\". i already have premium, just want to switch my plan.  how do i do that?",
+          "historical_brand_response": "@234228 Hey Nate, help's here. After signing up for the offer, you'll be charged the full amount straight away and your Premium time will be applied. You can sign up for the yearly plan here: https://t.co/LHTUu8cPWx. If you need anything else, we're only a tweet away /AL",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.7694,
+          "customer_message": "@SpotifyCares Yeah, it just doesn\u2019t work. I\u2019m trying to change the billing information on file for my account, because I want to get premium again",
+          "historical_brand_response": "@145996 Got it. Could you send us a DM with your account's email address or username? We'll take a look backstage /CO https://t.co/ldFdZRiNAt",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 2,
+          "score": 0.7683,
+          "customer_message": "@SpotifyCares trying to switch to the $99/year plan and the form it sends me to has a form for credit card and button to \"start my spotify premium\". i already have premium, just want to switch my plan.  how do i do that?",
+          "historical_brand_response": "@234228 Hey Nate, help's here. After signing up for the offer, you'll be charged the full amount straight away and your Premium time will be applied. You can sign up for the yearly plan here: https://t.co/LHTUu8cPWx. If you need anything else, we're only a tweet away /AL",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.757,
+          "customer_message": "@SpotifyCares On my subscription page, there's nowhere to add a payment option. Just says \"Stay Premium\" and when I click that it errors",
+          "historical_brand_response": "@288739 Hey Jordy, help's here! Can you DM us your account's email address? We'll check backstage /MO https://t.co/ldFdZRiNAt",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "manual_audit": {
+        "category": "partial",
+        "problem_actually_similar": "partial",
+        "response_relevant": "partial",
+        "usable_resolution_evidence": true,
+        "intent_compatible": "Premium Subscription & Billing",
+        "misleading_or_unrelated": false,
+        "notes": "Billing-UX complaint about re-entering payment info partially matched to related but not identical billing-form complaints."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-2530281-2530279",
+      "query_customer_message": "@115888 I already have premum. Pls stop advertising to me. Thank.",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "clarification_question",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.6422,
+          "customer_message": "@115888 can i have no ads please \ud83d\ude18",
+          "historical_brand_response": "@811446 Hey there! Thanks for your feedback - we'll pass it onto the right folks. For now, check out https://t.co/WB5TSxRfDe if you haven't had a subscription before /LS",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.6368,
+          "customer_message": "Um hi @115888 pls put out more presale tix thx @4823",
+          "historical_brand_response": "@814116 Hey Anna. We\u2019re afraid the codes are unique and sent to those who listen to Billie Eilish the most on Spotify. Hopefully you're one of those listeners! Keep on rocking \ud83e\udd18 /JZ",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.6152,
+          "customer_message": "@115888 I already have premium. Stop showing me these ads ffs",
+          "historical_brand_response": "@583929 Hey Travis! That doesn't sound right. Can you DM us your account's email address? We'll take a look under the hood /AN https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.6422,
+          "customer_message": "@115888 can i have no ads please \ud83d\ude18",
+          "historical_brand_response": "@811446 Hey there! Thanks for your feedback - we'll pass it onto the right folks. For now, check out https://t.co/WB5TSxRfDe if you haven't had a subscription before /LS",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.6368,
+          "customer_message": "Um hi @115888 pls put out more presale tix thx @4823",
+          "historical_brand_response": "@814116 Hey Anna. We\u2019re afraid the codes are unique and sent to those who listen to Billie Eilish the most on Spotify. Hopefully you're one of those listeners! Keep on rocking \ud83e\udd18 /JZ",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.6152,
+          "customer_message": "@115888 I already have premium. Stop showing me these ads ffs",
+          "historical_brand_response": "@583929 Hey Travis! That doesn't sound right. Can you DM us your account's email address? We'll take a look under the hood /AN https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": "partial",
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "'Already have premium, stop showing ads' matched to the same recurring ads-despite-premium complaint pattern identified independently in Phase 7E's OTHER-bucket audit."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-525050-525049",
+      "query_customer_message": "@115888 if you save an album you should have the option of the individual songs not to add to your library.",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "substantive_response",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8243,
+          "customer_message": "@115888 so I had my 1900+ songs all saved through the \"Songs\" list and then you took that option away, so now I have to save each album...",
+          "historical_brand_response": "@172878 Hey Andy! Can you let us know what's happening exactly? We'll see what we can suggest /PL",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.8096,
+          "customer_message": "@115888 is there a way to save an album but not have every track in the album in your saved songs?",
+          "historical_brand_response": "@682347 Hey Grant! You should be able to pick and choose individual songs from any album to save to Your Music. Any questions, give us a shout /TF",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.791,
+          "customer_message": "Hi @115888 \n\nI think it\u2019s past due time we are able to save albums without having to save whole albums to our song list. Have a think on this and let me know. Ta. x",
+          "historical_brand_response": "@270312 We hear you! To help make it happen, we\u2019d recommend showing your support for the idea here: https://t.co/wYK19O06Co. Stay awesome \ud83d\ude01 /MX",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8243,
+          "customer_message": "@115888 so I had my 1900+ songs all saved through the \"Songs\" list and then you took that option away, so now I have to save each album...",
+          "historical_brand_response": "@172878 Hey Andy! Can you let us know what's happening exactly? We'll see what we can suggest /PL",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.8096,
+          "customer_message": "@115888 is there a way to save an album but not have every track in the album in your saved songs?",
+          "historical_brand_response": "@682347 Hey Grant! You should be able to pick and choose individual songs from any album to save to Your Music. Any questions, give us a shout /TF",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.791,
+          "customer_message": "Hi @115888 \n\nI think it\u2019s past due time we are able to save albums without having to save whole albums to our song list. Have a think on this and let me know. Ta. x",
+          "historical_brand_response": "@270312 We hear you! To help make it happen, we\u2019d recommend showing your support for the idea here: https://t.co/wYK19O06Co. Stay awesome \ud83d\ude01 /MX",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": true,
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Album-save-behavior feature request matched almost exactly, including a directly informative answer."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-2264864-2264861",
+      "query_customer_message": "@SpotifyCares Thank you! \ud83d\ude01",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "substantive_response",
+      "query_low_info": true,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.984,
+          "customer_message": "@SpotifyCares thank you soooo muchhh\u2764\ufe0f",
+          "historical_brand_response": "@279956 You're welcome! Let us know if you ever need us again. We'd be happy to help. https://t.co/m4HWSbgHVZ /LO",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.9834,
+          "customer_message": "@SpotifyCares Thank you very much\ud83d\udc9c",
+          "historical_brand_response": "@663802 You're welcome! If you ever need us again, just send us another tweet anytime \ud83d\ude09 /DB",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.9796,
+          "customer_message": "@SpotifyCares thank you so much \ud83d\ude29",
+          "historical_brand_response": "@334529 No worries! Let us know if you ever need us again. We'd be... https://t.co/LgAM6ky9Vv /MG",
+          "primary_intent": "Feature Request & Product Feedback",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.984,
+          "customer_message": "@SpotifyCares thank you soooo muchhh\u2764\ufe0f",
+          "historical_brand_response": "@279956 You're welcome! Let us know if you ever need us again. We'd be happy to help. https://t.co/m4HWSbgHVZ /LO",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.9834,
+          "customer_message": "@SpotifyCares Thank you very much\ud83d\udc9c",
+          "historical_brand_response": "@663802 You're welcome! If you ever need us again, just send us another tweet anytime \ud83d\ude09 /DB",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.9796,
+          "customer_message": "@SpotifyCares thank you so much \ud83d\ude29",
+          "historical_brand_response": "@334529 No worries! Let us know if you ever need us again. We'd be... https://t.co/LgAM6ky9Vv /MG",
+          "primary_intent": "Feature Request & Product Feedback",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "not_evidence_seeking",
+        "problem_actually_similar": null,
+        "response_relevant": null,
+        "usable_resolution_evidence": null,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Bare 'Thank you!' acknowledgement correctly matches other acknowledgements -- retrieval works as designed, but this is not a substantive evidence-seeking query in the first place."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-1754506-1754507",
+      "query_customer_message": "@SpotifyCares Sounds awesome!",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "substantive_response",
+      "query_low_info": true,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.9225,
+          "customer_message": "@SpotifyCares It's awesome.",
+          "historical_brand_response": "@505895 Thanks for the kind words! Feel free to give us a shout if you have any questions \ud83d\ude42 /JL",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.9117,
+          "customer_message": "@SpotifyCares Awesome. I'll check that out. Thanks!",
+          "historical_brand_response": "@186717 Cool! We're just a tweet away if you have other questions. Have a... https://t.co/c1ybueU8Vd \ud83d\ude09 /GT",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.9037,
+          "customer_message": "@SpotifyCares Thank you! i\u2019ll check this out!",
+          "historical_brand_response": "@410217 You're welcome! Let us know if you ever need us again. We'd be... https://t.co/LgAM6ky9Vv \ud83d\ude42 /NS",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.9225,
+          "customer_message": "@SpotifyCares It's awesome.",
+          "historical_brand_response": "@505895 Thanks for the kind words! Feel free to give us a shout if you have any questions \ud83d\ude42 /JL",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.9117,
+          "customer_message": "@SpotifyCares Awesome. I'll check that out. Thanks!",
+          "historical_brand_response": "@186717 Cool! We're just a tweet away if you have other questions. Have a... https://t.co/c1ybueU8Vd \ud83d\ude09 /GT",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.9037,
+          "customer_message": "@SpotifyCares Thank you! i\u2019ll check this out!",
+          "historical_brand_response": "@410217 You're welcome! Let us know if you ever need us again. We'd be... https://t.co/LgAM6ky9Vv \ud83d\ude42 /NS",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "not_evidence_seeking",
+        "problem_actually_similar": null,
+        "response_relevant": null,
+        "usable_resolution_evidence": null,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Same as above ('Sounds awesome!') -- closing remark, not a resolution-evidence query."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-2002629-2002625",
+      "query_customer_message": "@SpotifyCares Oh you guys are so sweet. Same for you! What I noticed is that songs keep appearing over and over again in a short time while I got 2k songs",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "substantive_response",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.7957,
+          "customer_message": "@SpotifyCares Thanks for noticing it :) With some time more and more songs are getting available.",
+          "historical_brand_response": "@327792 Sometimes content gets temporarily removed because of licensing changes. Are you having trouble playing any of David Archuleta's songs? /TB",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.7572,
+          "customer_message": "@SpotifyCares It\u2019s okay, I understand not every one can be great, but the same old songs keep popping up",
+          "historical_brand_response": "@562290 Discover Weekly is based on what you, and others like you, are listening to. Hopefully it\u2019s more in tune with your tastes next week! /RC",
+          "primary_intent": "Content Availability & Catalog Accuracy",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.7532,
+          "customer_message": "I love noticing random songs disappearing from playlists. @SpotifyCares what's up with that? :(",
+          "historical_brand_response": "@117528 Hi! Can you send us a DM with your username or email address? We'll take a look under the hood /HR https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.7957,
+          "customer_message": "@SpotifyCares Thanks for noticing it :) With some time more and more songs are getting available.",
+          "historical_brand_response": "@327792 Sometimes content gets temporarily removed because of licensing changes. Are you having trouble playing any of David Archuleta's songs? /TB",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.7572,
+          "customer_message": "@SpotifyCares It\u2019s okay, I understand not every one can be great, but the same old songs keep popping up",
+          "historical_brand_response": "@562290 Discover Weekly is based on what you, and others like you, are listening to. Hopefully it\u2019s more in tune with your tastes next week! /RC",
+          "primary_intent": "Content Availability & Catalog Accuracy",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.7532,
+          "customer_message": "I love noticing random songs disappearing from playlists. @SpotifyCares what's up with that? :(",
+          "historical_brand_response": "@117528 Hi! Can you send us a DM with your username or email address? We'll take a look under the hood /HR https://t.co/ldFdZRiNAt",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "manual_audit": {
+        "category": "partial",
+        "problem_actually_similar": true,
+        "response_relevant": "partial",
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Repeated-songs-in-library theme matched but not the exact mechanism."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-261680-261678",
+      "query_customer_message": "@178316 @SpotifyCares please fix? =)",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "clarification_question",
+      "query_low_info": true,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.9106,
+          "customer_message": "@SpotifyCares @400256 there ya go I fixed it",
+          "historical_brand_response": "@400255 Nice. Glad to hear it's all sorted. Just let us know if we can help with anything else. https://t.co/m4HWSbgHVZ /GK",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.9009,
+          "customer_message": "@188805 @148826 @43839 @115888 @SpotifyCares please fix this soon",
+          "historical_brand_response": "@629176 Hey! What\u2019s happening exactly? Can you let us know the device/OS you\u2019re using? /AP",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.8943,
+          "customer_message": "@293910 @SpotifyCares Me too thanks pls fix",
+          "historical_brand_response": "@344143 Hey TJ! We're here to help. Can you let us know what device, operating system, and version of Spotify you're using? /AN",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.9106,
+          "customer_message": "@SpotifyCares @400256 there ya go I fixed it",
+          "historical_brand_response": "@400255 Nice. Glad to hear it's all sorted. Just let us know if we can help with anything else. https://t.co/m4HWSbgHVZ /GK",
+          "primary_intent": "Premium Subscription & Billing",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.9009,
+          "customer_message": "@188805 @148826 @43839 @115888 @SpotifyCares please fix this soon",
+          "historical_brand_response": "@629176 Hey! What\u2019s happening exactly? Can you let us know the device/OS you\u2019re using? /AP",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.8943,
+          "customer_message": "@293910 @SpotifyCares Me too thanks pls fix",
+          "historical_brand_response": "@344143 Hey TJ! We're here to help. Can you let us know what device, operating system, and version of Spotify you're using? /AN",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        }
+      ],
+      "manual_audit": {
+        "category": "poor",
+        "problem_actually_similar": false,
+        "response_relevant": false,
+        "usable_resolution_evidence": false,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Query is almost entirely @mentions plus 'please fix? =)' -- carries no independent problem signal; matches share only the generic 'please fix' shape."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-1487199-1487198",
+      "query_customer_message": "What in the FUCK @115888 where is my @1534 album I\u2019m gonna pop off",
+      "query_primary_intent": "Content Availability & Catalog Accuracy",
+      "query_response_type": "dm_redirect",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.7971,
+          "customer_message": "@115888 my man .. where's the album",
+          "historical_brand_response": "@738171 Hi there! We\u2019ll have it available to you as soon as it\u2019s available to us. https://t.co/0i8GpimuDa /GK",
+          "primary_intent": "Content Availability & Catalog Accuracy",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.7852,
+          "customer_message": "Hi excuse me @115888 but where\u2019s my @34804 album \ud83e\udd14\ud83e\udd14\ud83e\udd14",
+          "historical_brand_response": "@435559 Hey there, we're here to help! What country is your Spotify account set to? We'll take a look backstage /TB",
+          "primary_intent": "Content Availability & Catalog Accuracy",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.7802,
+          "customer_message": "where's the ALBUM @115888",
+          "historical_brand_response": "@737074 Hey there! We\u2019ll have it available to you as soon as it\u2019s available to us. https://t.co/0i8GpimuDa /LW",
+          "primary_intent": "Content Availability & Catalog Accuracy",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.7971,
+          "customer_message": "@115888 my man .. where's the album",
+          "historical_brand_response": "@738171 Hi there! We\u2019ll have it available to you as soon as it\u2019s available to us. https://t.co/0i8GpimuDa /GK",
+          "primary_intent": "Content Availability & Catalog Accuracy",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.7852,
+          "customer_message": "Hi excuse me @115888 but where\u2019s my @34804 album \ud83e\udd14\ud83e\udd14\ud83e\udd14",
+          "historical_brand_response": "@435559 Hey there, we're here to help! What country is your Spotify account set to? We'll take a look backstage /TB",
+          "primary_intent": "Content Availability & Catalog Accuracy",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.7802,
+          "customer_message": "where's the ALBUM @115888",
+          "historical_brand_response": "@737074 Hey there! We\u2019ll have it available to you as soon as it\u2019s available to us. https://t.co/0i8GpimuDa /LW",
+          "primary_intent": "Content Availability & Catalog Accuracy",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": true,
+        "usable_resolution_evidence": true,
+        "intent_compatible": "Content Availability & Catalog Accuracy",
+        "misleading_or_unrelated": false,
+        "notes": "'Where's the album' matched near-exactly (3/3), consistent with the high-precision F_content pattern identified in Phase 7E."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-2662796-2662795",
+      "query_customer_message": "@115888 your app sucks, i shuffle Without Warning album and the first song that plays is Ariana Grande like what",
+      "query_primary_intent": "OTHER / UNKNOWN",
+      "query_response_type": "clarification_question",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.8064,
+          "customer_message": "@115888 How is the shuffle on your app so bad? I have thousands of songs and it's just alternating between two artists.",
+          "historical_brand_response": "@529034 Hey there! Could you try uninstalling and reinstalling the app? Let us know how it goes /DF",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.8004,
+          "customer_message": "@115888 do somethingThe shuffle option on the app. It is god awful. I dont put it on shuffle to hear the same song 3 mins later",
+          "historical_brand_response": "@554427 Hey! We\u2019ve recently made some improvements to our shuffle algorithm. We\u2019d love to hear your feedback here: https://t.co/T3vZnSL3od /CH",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.7751,
+          "customer_message": "@115888 when i push \u201cshuffle\u201d i actually want you to shuffle my songs. don\u2019t act like you know me like that.",
+          "historical_brand_response": "@398134 Hey Manda! We\u2019ve recently made some improvements to our shuffle algorithm. We\u2019d love to hear your feedback here: https://t.co/T3vZnSL3od /TF",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.8064,
+          "customer_message": "@115888 How is the shuffle on your app so bad? I have thousands of songs and it's just alternating between two artists.",
+          "historical_brand_response": "@529034 Hey there! Could you try uninstalling and reinstalling the app? Let us know how it goes /DF",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.8004,
+          "customer_message": "@115888 do somethingThe shuffle option on the app. It is god awful. I dont put it on shuffle to hear the same song 3 mins later",
+          "historical_brand_response": "@554427 Hey! We\u2019ve recently made some improvements to our shuffle algorithm. We\u2019d love to hear your feedback here: https://t.co/T3vZnSL3od /CH",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.7751,
+          "customer_message": "@115888 when i push \u201cshuffle\u201d i actually want you to shuffle my songs. don\u2019t act like you know me like that.",
+          "historical_brand_response": "@398134 Hey Manda! We\u2019ve recently made some improvements to our shuffle algorithm. We\u2019d love to hear your feedback here: https://t.co/T3vZnSL3od /TF",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        }
+      ],
+      "manual_audit": {
+        "category": "good",
+        "problem_actually_similar": true,
+        "response_relevant": true,
+        "usable_resolution_evidence": true,
+        "intent_compatible": "OTHER / UNKNOWN",
+        "misleading_or_unrelated": false,
+        "notes": "Shuffle-algorithm complaint matched almost exactly, including a genuine informative response about shuffle improvements."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-52345-52346",
+      "query_customer_message": "@SpotifyCares Never crashed, so idk",
+      "query_primary_intent": "App & Playback Technical Issues",
+      "query_response_type": "clarification_question",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.9228,
+          "customer_message": "@SpotifyCares It hasn't crashed ever.",
+          "historical_brand_response": "@144988 Thanks for confirming! Just to check, did you definitely watch the video ad that grants you 30 minutes ad-free listening in full after hearing the offer? /CH",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.9183,
+          "customer_message": "@SpotifyCares Did spotify crash? Hasn't worked all day.",
+          "historical_brand_response": "@304407 Hey there! Can you let us know the device/OS and Spotify version you're using? We'll see what we can suggest /AR",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.8654,
+          "customer_message": "@SpotifyCares Nope. It didnt crash.",
+          "historical_brand_response": "@380069 Got it! Just to check, did you watch the video ad that grants you 30 minutes ad-free listening in full after hearing the offer? /TB",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.9228,
+          "customer_message": "@SpotifyCares It hasn't crashed ever.",
+          "historical_brand_response": "@144988 Thanks for confirming! Just to check, did you definitely watch the video ad that grants you 30 minutes ad-free listening in full after hearing the offer? /CH",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 2,
+          "score": 0.9183,
+          "customer_message": "@SpotifyCares Did spotify crash? Hasn't worked all day.",
+          "historical_brand_response": "@304407 Hey there! Can you let us know the device/OS and Spotify version you're using? We'll see what we can suggest /AR",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        },
+        {
+          "rank": 3,
+          "score": 0.8654,
+          "customer_message": "@SpotifyCares Nope. It didnt crash.",
+          "historical_brand_response": "@380069 Got it! Just to check, did you watch the video ad that grants you 30 minutes ad-free listening in full after hearing the offer? /TB",
+          "primary_intent": "App & Playback Technical Issues",
+          "response_type": "clarification_question"
+        }
+      ],
+      "manual_audit": {
+        "category": "poor",
+        "problem_actually_similar": null,
+        "response_relevant": "partial",
+        "usable_resolution_evidence": false,
+        "intent_compatible": "App & Playback Technical Issues",
+        "misleading_or_unrelated": false,
+        "notes": "Context-dependent negative confirmation ('Never crashed, so idk') matched by conversational shape (other negative confirmations) rather than by the actual underlying issue, which is not visible in this turn."
+      }
+    },
+    {
+      "query_retrieval_id": "RES-2070895-2070894",
+      "query_customer_message": "Uh, my @115888 Discover Weekly playlist has a lot of Japanese pop and folk songs. Either the algorithm is jacked or my account is hacked.",
+      "query_primary_intent": "Account Security",
+      "query_response_type": "substantive_response",
+      "query_low_info": false,
+      "global_top3": [
+        {
+          "rank": 1,
+          "score": 0.681,
+          "customer_message": "@115888 your Discover Weekly personalised playlists used to be awesome.  Now its giving me music that is simply awful \ud83d\ude41",
+          "historical_brand_response": "@772078 Hey Rohan! Sorry to hear Discover Weekly wasn\u2019t to your liking this week. Don't worry, it\u2019ll be re-tuned on Monday. In the meantime, check out Daily Mix, Fresh Finds, and Release Radar \ud83d\ude09 /CH",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.6768,
+          "customer_message": "I am convinced that someone at @115888 enjoys giving me horrible Discover Weekly playlists. Thanks for pooping in my ears...",
+          "historical_brand_response": "@558040 Discover Weekly is based on what you, and others like you, are listening to. Hopefully it\u2019s more in tune with your tastes next week! /CG",
+          "primary_intent": "OTHER / UNKNOWN",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 3,
+          "score": 0.6717,
+          "customer_message": "@115888 someone has hacked my account and replaced my albums with Mexican stuff I've never heard of. Help quickly please! I have 10 years of playlists on here https://t.co/IU49dI1CPO",
+          "historical_brand_response": "@689356 Hey Ben! We\u2019re sorry to hear that. Check out https://t.co/QHn3ok8y2n for what to do next. Let us know how it goes /HC",
+          "primary_intent": "Account Security",
+          "response_type": "substantive_response"
+        }
+      ],
+      "intent_filtered_top3": [
+        {
+          "rank": 1,
+          "score": 0.6717,
+          "customer_message": "@115888 someone has hacked my account and replaced my albums with Mexican stuff I've never heard of. Help quickly please! I have 10 years of playlists on here https://t.co/IU49dI1CPO",
+          "historical_brand_response": "@689356 Hey Ben! We\u2019re sorry to hear that. Check out https://t.co/QHn3ok8y2n for what to do next. Let us know how it goes /HC",
+          "primary_intent": "Account Security",
+          "response_type": "substantive_response"
+        },
+        {
+          "rank": 2,
+          "score": 0.67,
+          "customer_message": "Someone hacked my @115888 and now I have hella turkish playlists \ud83d\ude02",
+          "historical_brand_response": "@694783 @115888 Hi! We've just sent you a bit more info over DM /AR",
+          "primary_intent": "Account Security",
+          "response_type": "dm_redirect"
+        },
+        {
+          "rank": 3,
+          "score": 0.6683,
+          "customer_message": "Got to love having my @115888 account hacked ...\ud83d\ude11 some random person playing Swedish pop music is brilliant https://t.co/oZtfSaZ5Kt",
+          "historical_brand_response": "@769073 @116130 Hey Greg! We're here to help. Can you DM us your account's email address? We'll take a look under the hood /AN https://t.co/ldFdZRiNAt",
+          "primary_intent": "Account Security",
+          "response_type": "dm_redirect"
+        }
+      ],
+      "manual_audit": {
+        "category": "partial",
+        "problem_actually_similar": "partial",
+        "response_relevant": false,
+        "usable_resolution_evidence": "partial",
+        "intent_compatible": "Account Security",
+        "misleading_or_unrelated": true,
+        "notes": "Ambiguous/joking use of 'hacked' (about a Discover Weekly playlist, not a real compromise) still surfaces literal account-hijacking cases -- global retrieval is a plausible near-miss, but intent-FILTERED retrieval confidently returns only literal hacking cases, which would be actively misleading if treated as evidence for this query."
+      }
+    }
+  ],
+  "manual_audit_summary": {
+    "n_manually_audited": 40,
+    "category_counts": {
+      "partial": 14,
+      "good": 19,
+      "poor": 5,
+      "not_evidence_seeking": 2
+    },
+    "category_percentages": {
+      "partial": 0.35,
+      "good": 0.475,
+      "poor": 0.125,
+      "not_evidence_seeking": 0.05
+    },
+    "definitions": {
+      "good": "Problem genuinely similar, response relevant, usable as resolution evidence",
+      "partial": "Topically/thematically related but not a specific match, and/or evidence weak (generic or DM-redirect-limited)",
+      "poor": "Lexical-similarity-only, context-insufficient, or otherwise not a real match",
+      "not_evidence_seeking": "Query itself is a closing remark/acknowledgement, not a substantive request -- retrieval behaved correctly but there was no real resolution evidence to seek"
+    },
+    "global_vs_intent_filtered_top3_diff": {
+      "eligible_non_other_queries_in_sample": 13,
+      "queries_where_top3_differs_between_modes": 7,
+      "directional_observations": [
+        "#13 (Technical): intent filtering HELPS -- removes a cross-intent (Account Access) neighbor, leaving 3 genuinely technical matches.",
+        "#14 (Complaint): intent filtering HELPS -- surfaces near-duplicate complaint-labeled matches that are closer than global's OTHER/Feature mix.",
+        "#39 (Account Security): intent filtering HURTS -- the query is an ambiguous/joking use of the word 'hacked' about a playlist personalization issue, not a real compromise; forcing the Account Security filter confidently returns literal account-hijacking cases that would mislead a reply-generation step if used as evidence.",
+        "#2 (Feature Request): intent filtering HURTS slightly -- loses closer OTHER-labeled semantic neighbors (Phase 7D under-coverage means many genuine feature requests are labeled OTHER, so filtering strictly by intent excludes real evidence).",
+        "#17, #29 (Billing): roughly NEUTRAL -- both modes return topically-plausible but not specific matches."
+      ],
+      "conclusion": "No universal winner. Intent filtering helps when the deterministic label is correct and the global top-k would otherwise include cross-intent noise; it actively hurts when the deterministic label itself is wrong or the query is ambiguous (confidently narrows to the wrong evidence pool), and it can lose good matches that are mislabeled OTHER/UNKNOWN by the intentionally low-coverage Phase 7D classifier."
+    },
+    "recall_and_same_intent_at_k_caveat": "same_intent@k for intent-FILTERED retrieval is 1.0 at every k by construction (the candidate pool is pre-restricted to the query's own intent), so it is tautological and NOT evidence that intent-filtered retrieval is better -- it only proves the filter worked. The meaningful comparison between modes is the manual audit above and global retrieval's own recall/same-intent numbers, not this metric."
+  }
+}
