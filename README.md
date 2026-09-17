@@ -10,8 +10,12 @@ whether to auto-handle the case or escalate it to a human, with a stated
 reason. See `docs/FINAL_REPORT.md` for the full write-up (results, failure
 modes, limitations); this file covers what the system is and how to run it.
 
-**No UI, no deployment.** This is a CLI + evaluation-harness project only,
-per the assignment's engineering constraints (see `CLAUDE.md`).
+**🚀 [Live Demo](https://customer-suppport-copilot-bstsn4wam6f8tikcaw3xbn.streamlit.app/)**
+
+Try the deployed SpotifyCares Support Copilot on Streamlit Cloud.
+
+This is a CLI + Streamlit-UI + evaluation-harness project, per the
+assignment's engineering constraints (see `CLAUDE.md`).
 
 ## Architecture
 
