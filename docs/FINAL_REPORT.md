@@ -1,8 +1,8 @@
 # SpotifyCares Support Agent — Final Report
 
 Brand: **SpotifyCares** (Twitter customer-support account), selected from
-the Kaggle "Customer Support on Twitter" dataset — see
-`research/brand_selection.md` for the selection process.
+the Kaggle "Customer Support on Twitter" dataset — see `docs/DECISIONS.md`
+(decision 1) and `docs/DATA.md` for the selection process and scoring.
 
 ## 1. Problem framing
 
@@ -47,8 +47,8 @@ Per the assignment's engineering-principles constraint and the Phase 11 stop
 condition: no UI, no Docker, no deployment, no GitHub push, no LangChain/
 LangGraph, no knowledge graph, no fine-tuning, no multi-agent architecture.
 Also not built: a genuine human-annotation UI/workflow (the 50-example
-calibration set is an LLM proxy — see `docs/PHASE_11_LIMITATIONS.md`); a
-GroqLLMClient implementation beyond the abstraction's shape; retrieval
+calibration set is an LLM proxy — see Section 10); a GroqLLMClient
+implementation beyond the abstraction's shape; retrieval
 threshold auto-calibration (thresholds are reasoned, not tuned against
 labeled data — explicitly not done per CLAUDE.md's "don't optimize against
 the test set" rule).
@@ -143,7 +143,7 @@ the 80% escalation rate looks "appropriately cautious" but a large share is
 judged unnecessary; and describing the 200-example set as uniformly
 human-labelled would overstate this evaluation's rigor — only 50 of the 200
 have any escalation ground truth, and that ground truth is an LLM proxy,
-not a person (see Section 9 and `docs/PHASE_11_LIMITATIONS.md`).
+not a person (see Section 10).
 
 ## 9. One-more-week plan
 
@@ -155,8 +155,14 @@ available in this session.
 
 ## 10. Limitations
 
-- The 50-example "human calibration" set is LLM-proxy-generated, not
-  genuine human judgment (`docs/PHASE_11_LIMITATIONS.md`).
+- The 50-example "human calibration" set is LLM-proxy-generated
+  (Claude, disclosed via the `annotator_type` field on every record in
+  `data/evaluation/human_calibration_completed.jsonl`), not genuine human
+  judgment. No human annotator was available in this session; closing
+  this gap would require one person spending 2-3 hours filling in
+  `data/evaluation/human_calibration_template.jsonl` with real judgment
+  (see Section 9) — no code changes would be needed, since the schema
+  already supports it.
 - Judge-proxy agreement is weak across all five rated dimensions.
 - Escalation precision/recall/F1 are computed on n=50, not the full n=200.
 - The judge and the proxy annotator are both LLMs, not independent human

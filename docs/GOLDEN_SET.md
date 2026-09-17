@@ -11,9 +11,7 @@ the eventual system), not classifier training data.
 Labels used throughout: **MEASURED** (computed from data), **OBSERVED**
 (manually inspected), **HYPOTHESIS** (proposed, not yet validated).
 
-Full sampling method, evidence, and rationale are in
-`research/golden_set_sampling.md`. This document is the user-facing
-summary: what was produced, the schema, and how to use it.
+This document covers what was produced, the schema, and how to use it.
 
 ---
 
@@ -35,10 +33,10 @@ No `.venv` changes, no classifier, no embeddings, no RAG, and no model
 training were performed. Sampling reused the already-installed
 project `.venv` (pandas, pyarrow — set up in Phase 4) and the
 SpotifyCares-only conversation subset already materialized during
-Phase 1/2 (itself built via a single chunked read of the 493MB raw
-CSV — see `research/golden_set_sampling.md` for why the raw CSV did
-not need to be re-scanned for this phase). `data/raw/twitter/twcs.csv`
-was not modified. Banking77 was not downloaded or used.
+Phase 1/2 (itself built via a single chunked read of the 493MB raw CSV;
+the raw CSV did not need to be re-scanned for this phase).
+`data/raw/twitter/twcs.csv` was not modified. Banking77 was not
+downloaded or used.
 
 ---
 
@@ -61,12 +59,11 @@ the headline number without saying so. (This is also flagged as a
 required "what's misleading about the headline number" caveat for the
 eventual evaluation report, per CLAUDE.md.)
 
-The regex buckets used to build Group B's candidate pools are
-heuristic filters for *sampling* only — see
-`research/golden_set_sampling.md` for the exact patterns. They are
-explicitly **not** treated as ground truth: every Group B example still
-gets an independent human `primary_intent` judgment, and the human is
-free to disagree with (or exclude) the regex's implied intent.
+The regex buckets used to build Group B's candidate pools are heuristic
+filters for *sampling* only. They are explicitly **not** treated as
+ground truth: every Group B example still gets an independent human
+`primary_intent` judgment, and the human is free to disagree with (or
+exclude) the regex's implied intent.
 
 ---
 
@@ -100,9 +97,9 @@ taxonomy's OTHER/General-Complaint boundary, not a sampling failure.
 
 ## Exclusions applied before sampling
 
-Per the Phase 2 labeling guide (`research/intent_discovery.md`) and
-this phase's own inspection, the following were removed from the
-candidate pool **before** any random draw (all counts MEASURED):
+Per the OTHER/UNKNOWN strategy in `docs/INTENTS.md` and this phase's own
+inspection, the following were removed from the candidate pool **before**
+any random draw (all counts MEASURED):
 
 | Exclusion | Count removed | Rule |
 |---|---|---|
@@ -139,8 +136,7 @@ marketing/status accounts:
 **331 messages from a single "customer" account** is a strong signal
 of a broadcast/marketing account, not an individual — genuine
 customers overwhelmingly appear once. All four were verified by
-reading sampled message content (see `research/golden_set_sampling.md`
-for the full evidence) before exclusion. This is also the actual
+reading sampled message content before exclusion. This is also the actual
 identity behind `conv_id=83694`'s root message (see below) — the
 83694 mega-thread turns out to be a promotional tweet from account
 115888, exactly one of these four accounts.
@@ -234,17 +230,15 @@ unambiguous JSON object and loads directly into pandas
    only — this file has none of the sampling/flag metadata, so the
    annotator cannot infer or be biased by why an example was selected.
 2. For each example: read `customer_message` only (never the brand's
-   reply, never the rest of the conversation — per the Phase 2
-   labeling guide's explicit rule, and per this phase's requirement
-   that ONLY the customer message is labeling input).
+   reply, never the rest of the conversation — this phase's requirement
+   is that ONLY the customer message is labeling input).
 3. Assign exactly one `primary_intent` from the 8-intent +
-   OTHER/UNKNOWN taxonomy (`docs/INTENTS.md`), using the tie-breaking
-   rules and inclusion/exclusion table in
-   `research/intent_discovery.md`.
+   OTHER/UNKNOWN taxonomy, using the tie-breaking rules and each
+   intent's include/exclude criteria in `docs/INTENTS.md`.
 4. Optionally fill `secondary_issue`, `ambiguous`, `non_english`.
 5. If the message isn't a genuine labelable support request (per the
-   Phase 2 exclusion criteria), set `excluded=true` and give a reason
-   instead of forcing a `primary_intent`.
+   OTHER/UNKNOWN exclusion criteria in `docs/INTENTS.md`), set
+   `excluded=true` and give a reason instead of forcing a `primary_intent`.
 6. After labeling, join back to `golden_set_candidates.jsonl` on
    `example_id` for analysis (per-group breakdowns, flag correlation,
    etc.).

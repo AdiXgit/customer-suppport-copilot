@@ -10,9 +10,8 @@ Labels used: **MEASURED** (computed over the full corpus or a
 regex-tagged subset), **OBSERVED** (read directly off a manual sample),
 **HYPOTHESIS** (plausible, not yet validated).
 
-Full supporting evidence, method, and the draft labeling guide are in
-`research/intent_discovery.md`. This document is the taxonomy itself
-plus the quality check and final recommendation.
+This document is the taxonomy itself, its tie-break rules, the quality
+check, and the final recommendation.
 
 Frequencies below come from **manual categorization of a random sample
 of 150 root customer messages** (one per SpotifyCares conversation,
@@ -68,10 +67,9 @@ Billing) unless the customer frames it purely as a login problem.
 - "yo whats up with this? cant log in to my spotify for artist page"
 
 **FINALIZED (Phase 6D)**: an earlier draft of this list included a CSRF-
-token-error example here. Per the finalized tie-break rule below
-(resolved via `docs/TAXONOMY_CONFLICT_REVIEW.md`), a verbatim technical
-error identifier like "CSRF token is invalid" belongs to **App &
-Playback Technical Issues**, not here — see that intent's
+token-error example here. Per the finalized tie-break rule below, a
+verbatim technical error identifier like "CSRF token is invalid" belongs
+to **App & Playback Technical Issues**, not here — see that intent's
 representative examples instead, and see "Tie-Break: Account Access &
 Login vs. App & Playback Technical Issues" below for the full rule.
 
@@ -424,23 +422,20 @@ For classifier training/eval purposes:
   link with no text, a one-word "help me") should get an explicit
   OTHER/UNKNOWN label and route to ESCALATE by default (a bot should
   not guess at an intent it can't identify from the text).
-- See the draft labeling guide in `research/intent_discovery.md` for
-  the full decision procedure and edge cases.
 
 ---
 
 ## Tie-Break: Account Access & Login vs. App & Playback Technical Issues
 
-**Status: FINALIZED (Phase 6D)**. This resolves the conflict
-documented in `docs/TAXONOMY_CONFLICT_REVIEW.md`, where an earlier
-draft of this document's own representative examples disagreed with
-the tie-break rule used to build the 200-example golden set (see that
-review for the full investigation, including 12 affected examples and
-2 discovered internal inconsistencies in how the earlier, unwritten
-version of this rule was applied). **This does not change the 9-intent
-taxonomy** — it only makes precise how to choose between these two
-specific intents when a message reports trouble logging in,
-registering, or resetting a password.
+**Status: FINALIZED (Phase 6D)**. This resolves a conflict found during
+golden-set annotation, where an earlier draft of this document's own
+representative examples disagreed with the tie-break rule used to build
+the 200-example golden set (12 affected examples, 2 discovered internal
+inconsistencies in how the earlier, unwritten version of this rule was
+applied — see `docs/DECISIONS.md` decisions 5-6 for the summary).
+**This does not change the 9-intent taxonomy** — it only makes precise
+how to choose between these two specific intents when a message reports
+trouble logging in, registering, or resetting a password.
 
 ### The rule
 
@@ -481,8 +476,7 @@ other link-dependent messages are handled elsewhere in this taxonomy).
   though the system's response is *factually wrong*, that alone is not
   a verifiable technical signal from message text — plain-language
   rejection → no criterion met → **Account Access & Login**. (This is
-  the other correction found during investigation — see GOLD-0126 in
-  `docs/TAXONOMY_CONFLICT_REVIEW.md`.)
+  the other correction found during investigation, on GOLD-0126.)
 - **(d) Broken login UI/buttons** — e.g. "the login buttons don't
   work." Criterion 2 → **App & Playback Technical Issues**.
 - **(e) Error codes / technical identifiers** — e.g. "error 404" or
@@ -517,8 +511,11 @@ than a taxonomy gap.
 separable by a concrete distinguishing signal (see each intent's
 "Potentially confused with" field). The weakest distinction is App
 Technical vs. Content Availability, both of which can present as "a
-song won't play" — this needs an explicit tie-breaking rule in the
-labeling guide (see `research/intent_discovery.md`).
+song won't play" — each intent's own "Potentially confused with" field
+above states the practical distinguishing signal (does the customer name
+a specific missing song/artist, or describe an error/crash?); unlike the
+Account Access vs. App Technical pair, this one did not need a separate
+formal tie-break table during golden-set annotation.
 
 **3. Balance.** Frequencies range from ~1% (Country/Market Inquiry) to
 ~19% (App Technical). Country/Market Inquiry and Metadata correction
@@ -554,15 +551,14 @@ the middle depending on specifics. This gives the escalation-policy
 component real signal to work with, rather than a domain that's either
 all-auto or all-escalate.
 
-**7. Ambiguity.** Two confusion pairs stand out and need explicit
-tie-breaking rules in the labeling guide: (a) App Technical vs. Content
-Availability, and (b) Feature Request vs. General Complaint. Both are
-addressed in `research/intent_discovery.md`. A third pair, Account
-Access & Login vs. App & Playback Technical Issues, was found during
-golden-set annotation (Phase 6) to be under-specified and inconsistently
-applied — this is now resolved by the finalized, deterministic
-tie-break rule above (see `docs/TAXONOMY_CONFLICT_REVIEW.md` for the
-investigation).
+**7. Ambiguity.** Two confusion pairs stand out: (a) App Technical vs.
+Content Availability, and (b) Feature Request vs. General Complaint. Both
+are addressed by the distinguishing signal noted in each intent's own
+"Potentially confused with" field above. A third pair, Account Access &
+Login vs. App & Playback Technical Issues, was found during golden-set
+annotation (Phase 6) to be under-specified and inconsistently applied in
+an earlier draft — this is now resolved by the finalized, deterministic
+tie-break rule above (see `docs/DECISIONS.md` decisions 5-6).
 
 ---
 

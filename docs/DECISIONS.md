@@ -1,14 +1,19 @@
 # Decision Log
 
 Non-obvious engineering and methodology decisions made over the course of
-this project, with the reasoning behind each. Compiled from the phase
-documents already in `docs/` and `research/` — no decision here is new;
-this is an index into where each was actually made, for a reviewer who
-doesn't want to read every phase document in full.
+this project, with the reasoning behind each. No decision here is new —
+this is a distilled record of choices actually made during development.
 
-1. **Brand: SpotifyCares**, chosen over other candidate brands in the
-   dataset on volume, response-quality, and resolution-pattern grounds.
-   See `research/brand_selection.md` for the scored comparison.
+1. **Brand: SpotifyCares**, chosen over 4 other finalists (AmazonHelp,
+   AppleSupport, Delta, AmericanAir) scored 1-5 on 10 criteria (volume,
+   conversation quality, issue diversity, visible-resolution rate, data
+   cleanliness, intent-classification suitability, RAG suitability,
+   escalation-analysis suitability, evaluation feasibility).
+   SpotifyCares scored highest (45/50) against Delta (40) and
+   AmericanAir (39), winning mainly on topical coherence (one product ->
+   a clean ~9-intent taxonomy) and the best visible (non-DM-hidden)
+   historical-resolution rate of any strong candidate. See `docs/DATA.md`
+   for the underlying dataset measurements this scoring was based on.
 
 2. **Intent taxonomy derived from the brand's own data, not copied from
    Banking77.** Banking77 was explicitly scoped to intent-taxonomy-design
@@ -30,23 +35,24 @@ doesn't want to read every phase document in full.
 5. **A deterministic tie-break rule for Account Access & Login vs. App &
    Playback Technical Issues**, added only after golden-set annotation
    surfaced real inconsistency in an earlier, unwritten version of the
-   rule (2 discovered errors across 12 affected examples). See
-   `docs/TAXONOMY_CONFLICT_REVIEW.md` and the finalized rule in
-   `docs/INTENTS.md`.
+   rule (2 discovered errors across 12 affected examples). The full,
+   finalized rule (with a decision table and worked examples) lives in
+   `docs/INTENTS.md`'s "Tie-Break" section.
 
 6. **The taxonomy tie-break fix was NOT applied retroactively** to the
-   already-labeled 200-example golden set, to avoid silently changing
-   evaluation ground truth after the fact. See
-   `docs/TAXONOMY_CONTRACT_FINAL.md`'s explicit "NOT been applied
-   retroactively" note.
+   already-labeled 200-example golden set — the golden set was labeled
+   under an earlier, less precise version of the rule, and re-labeling it
+   after the fact would have meant silently changing evaluation ground
+   truth. The 12 examples this affects are a known, accepted limitation
+   rather than a corrected error.
 
 7. **Golden-set labeling is a mixed-provenance process, disclosed as
    such**: 25 of 200 examples were labeled by a genuine human annotator
    (the calibration batch); the remaining 175 were labeled by Claude
    reading each message directly against the taxonomy contract, not by an
-   independent human and not via a separate LLM API call. See
-   `docs/GOLDEN_SET_ANNOTATION_REVIEW.md`. This project does not claim
-   "200 independently human-labelled examples."
+   independent human and not via a separate LLM API call. See the
+   "Evaluation methodology" section of `README.md`. This project does not
+   claim "200 independently human-labelled examples."
 
 8. **LLMClient abstraction with only `LocalLLMClient` (Ollama) actually
    implemented**; `GroqLLMClient` was scoped in CLAUDE.md but never built,
@@ -75,7 +81,8 @@ doesn't want to read every phase document in full.
     not a genuine human reviewer**, disclosed explicitly via an
     `annotator_type` field on every record rather than silently
     substituted. This was a live decision made mid-project when no human
-    annotator was available — see `docs/PHASE_11_LIMITATIONS.md`.
+    annotator was available — see `docs/FINAL_REPORT.md`'s Limitations
+    section (10) for what this does and doesn't establish.
 
 12. **`escalation_metrics()` was extended to accept boolean/None inputs
     in addition to the original 'yes'/'no'/'uncertain' strings**, instead

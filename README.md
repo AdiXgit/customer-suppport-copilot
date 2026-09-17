@@ -51,8 +51,7 @@ src/            agent pipeline (intent, retrieval, evidence, generation, escalat
 evaluation/     evaluation harness (metrics, baselines, LLM judge, calibration)
 scripts/        data-pipeline and evaluation entry points (see below)
 tests/          pytest suite (256 tests)
-docs/           phase-by-phase design docs, taxonomy, final report, decision log
-research/       supporting evidence/method notes behind key docs/ decisions
+docs/           final report, decision log, taxonomy, and data/design docs
 data/           datasets and generated artifacts (see "What's tracked" below)
 ```
 
@@ -116,13 +115,12 @@ expensive and not required to review the results.
 ## Evaluation methodology
 
 - **200-example golden set** (`data/golden/golden_set_annotations.jsonl`),
-  sampled per `docs/GOLDEN_SET.md` / `research/golden_set_sampling.md`.
+  sampled per `docs/GOLDEN_SET.md`.
   **Labeling provenance, stated plainly**: 25 of the 200 examples were
   labeled by a genuine human annotator (the calibration batch); the
   remaining 175 were labeled by Claude (the coding assistant) reading each
   message directly against the taxonomy contract — not by an independent
-  human, and not via a separate LLM API call. See
-  `docs/GOLDEN_SET_ANNOTATION_REVIEW.md`. **This project does not claim
+  human, and not via a separate LLM API call. **This project does not claim
   200 independently human-labelled examples.**
 - **Two baselines**: majority-class intent classifier, and a simple
   single-call LLM intent classifier with no retrieval/agent pipeline
@@ -137,8 +135,8 @@ expensive and not required to review the results.
   labeled by an LLM proxy (Claude), not a genuine independent human
   reviewer** — disclosed via an `annotator_type` field on every record in
   `data/evaluation/human_calibration_completed.jsonl`. See
-  `docs/PHASE_11_LIMITATIONS.md` for exactly what this does and doesn't
-  establish, and what closing the gap would require.
+  `docs/FINAL_REPORT.md`'s Limitations section for exactly what this does
+  and doesn't establish, and what closing the gap would require.
 - Full results, all five required report sections (automated / judge /
   human-calibration / human-grounded-escalation / limitations), the top-5
   failure modes with real example IDs, and the "what's misleading about my
@@ -161,22 +159,19 @@ This is reported, not hidden — see `docs/FINAL_REPORT.md` Section 7.
 
 ## Documentation map
 
+This repository's documentation was trimmed after the initial commit to
+just the files a reviewer actually needs; development/phase-tracking notes
+were removed once their conclusions were folded into these:
+
 - `docs/FINAL_REPORT.md` — the assignment deliverable report (problem
   framing, results, failure modes, misleading-headline-number reflection,
   one-more-week plan, limitations).
 - `docs/DECISIONS.md` — 15 non-obvious engineering/methodology decisions
   with rationale.
+- `docs/DATA.md` — dataset structure/quality and brand-selection summary.
 - `docs/INTENTS.md` — the 9-intent taxonomy and its tie-break rules.
-- `docs/GOLDEN_SET.md`, `docs/GOLDEN_ANNOTATION.md`,
-  `docs/GOLDEN_SET_ANNOTATION_REVIEW.md` — golden-set design, labeling
-  guide, and provenance review.
-- `docs/PHASE_11_LIMITATIONS.md` — the human-calibration limitation,
-  explained in detail.
-- `docs/TECH_STACK.md`, `docs/ENVIRONMENT.md`, `docs/DATA.md` —
-  environment and dataset reconnaissance.
-- `docs/TODO.md` — phase-by-phase project history.
-- `research/` — supporting method/evidence notes behind the `docs/`
-  decisions (brand selection, intent discovery, golden-set sampling).
+- `docs/GOLDEN_SET.md` — golden-set sampling design and composition.
+- `docs/TECH_STACK.md` — environment and dependency history.
 
 There is no `docs/EVALUATION.md` or `docs/AGENT_RULES.md` in this
 repository; use `docs/FINAL_REPORT.md` and `evaluation/` for evaluation

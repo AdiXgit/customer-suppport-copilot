@@ -25,7 +25,7 @@ rest of this document is kept as-is below as the original Phase 4 record.
 | pip | 26.2.1 (upgraded from the bundled 24.2 at venv creation) |
 | `sys.prefix` | `E:\hiver-support-agent\.venv` (confirmed isolated from the global Python 3.12 install used in Phase 0) |
 | venv on-disk size | ~716 MB |
-| Pip cache location | `E:\hiver-support-agent\.pip-cache` (redirected here via `PIP_CACHE_DIR`, since `C:` has very little free space — see `docs/ENVIRONMENT.md`) |
+| Pip cache location | `E:\hiver-support-agent\.pip-cache` (redirected here via `PIP_CACHE_DIR`, since `C:` has very little free space) |
 
 ### Installed packages (exact versions, MEASURED via `pip list --format=freeze`)
 
@@ -85,16 +85,15 @@ installed versions.
 Python 3.11+ — actually running **3.12.6** in `.venv` (see above).
 
 Use a project-local `.venv`. Done — see above. Located at
-`E:\hiver-support-agent\.venv` (project-local, on the `E:` drive per
-`docs/ENVIRONMENT.md`'s disk-space guidance, since `C:` has very
-little free space).
+`E:\hiver-support-agent\.venv` (project-local, on the `E:` drive since
+`C:` has very little free space).
 
 All dependencies should eventually be installed inside `.venv`.
 Currently installed: the Phase 4 minimum set above only.
 
-The `.venv` directory must never be committed to Git. (Repo is not
-yet a git repository — see `docs/ENVIRONMENT.md`; this rule applies
-once it is.)
+The `.venv` directory must never be committed to Git — enforced via
+`.gitignore` (the repository was still pre-`git init` when this rule was
+first written; it is a public GitHub repository now).
 
 ---
 

@@ -115,8 +115,8 @@ children with no further follow-up).
 
 ## 3. Brand Candidates (MEASURED)
 
-Top 20 brand accounts by tweet volume, out of 108 total. Full
-methodology and scoring in `research/brand_selection.md`.
+Top 20 brand accounts by tweet volume, out of 108 total. Scoring and the
+final brand-selection decision are in `docs/DECISIONS.md` (decision 1).
 
 | Brand | Total tweets | Conversations | 2-turn | 3-turn | 4+turn | Ends-with-brand-msg % (sampled) | DM-redirect % | Non-English % (est.) |
 |---|---|---|---|---|---|---|---|---|
@@ -150,10 +150,8 @@ messages in that brand's conversations with <90% ASCII characters) —
 it under-counts European-language text using mostly-Latin characters,
 so treat it as a lower bound, not exact language ID.
 
-Full brand analysis (all measured candidates, methodology, and
-example conversations) is in `research/dataset_reconnaissance.md`.
-Brand scoring and the final recommendation are in
-`research/brand_selection.md`.
+Brand scoring and the final recommendation are in `docs/DECISIONS.md`
+(decision 1).
 
 ---
 
@@ -195,7 +193,8 @@ phase.
   public dataset — a RAG/retrieval corpus built from these would be
   full of near-empty "evidence." (MEASURED redirect %, HYPOTHESIS that
   it correlates with retrieval-corpus quality — validated qualitatively
-  by sampling in `research/dataset_reconnaissance.md`.)
+  by manual sampling during brand selection; see `docs/DECISIONS.md`
+  decision 1.)
 - **Multilingual content** exists, especially for globally-operated
   brands like AmazonHelp (French, Spanish, Japanese observed directly
   in sampled conversations). An English-only pipeline will need a
